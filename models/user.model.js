@@ -1,17 +1,13 @@
-const mongoose = require('mongoose')
+const mongoose = require("mongoose")
 const Schema = mongoose.Schema
 
-const userSchema = new Schema ({
+const userSchema = new Schema({
     username: String,
-    password: String,
-    status: {
-        type: String,
-        enum: ["Pending Confirmation", "Active"],
-        default: "Pending Confirmation"
-    },
-    confirmationCode: String,
-    email: String
+    password: String
+}, {
+    timestamps: true
 })
 
-const User = mongoose.model('UserDB', userSchema)
+const User = mongoose.model("User", userSchema)
+
 module.exports = User
