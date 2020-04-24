@@ -1,1 +1,15 @@
-{{name}}
+<h2>{{name}}</h2>
+
+<div class="row">
+  <div class="col-6">
+    <img src="{{photo}}" alt="{{name}}">
+    <p>Country: {{country}}</p>
+    <p>Flagship work: {{flagshipWork}}</p>
+    <p>Works</p>
+    <ul>
+      {{#each works}}
+      <li>{{this}}</li>
+      {{/each}}
+    </ul>
+  </div>
+</div>
