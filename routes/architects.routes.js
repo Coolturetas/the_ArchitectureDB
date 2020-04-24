@@ -2,6 +2,12 @@ const express = require('express')
 const router = express.Router()
 const Architect = require('./../models/architect.model')
 
+//Creation
+
+router.get('/create', (req, res, next) => {
+  res.render('./architects/create')
+})
+
 //Listing and detail view
 
 router.get('/', (req, res, next) => {
@@ -23,5 +29,6 @@ router.get('/:id', (req, res, next) => {
       next(new Error(err))
     })
 })
+
 
 module.exports = router
