@@ -1,19 +1,19 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
-const archSchema = new Schema(
+const trendSchema = new Schema(
 	{
 		name: String,
-		picArch: String,
+		picTrend: String,
 		country: String,
 		description: String,
 		bestWork: String,
-		works: String,
+		year: Number,
 	},
 	{
 		timestamps: true,
 	}
 )
 
-const Archs = mongoose.model('achitect', archSchema)
-module.exports = Archs
+const Trend = mongoose.model('trend', trendSchema)
+module.exports = Trend
