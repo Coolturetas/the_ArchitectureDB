@@ -1,0 +1,32 @@
+<form method="POST" method="/architect" enctype="multipart/form-data">
+
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="name">Nombre</label>
+            <input type="text" class="form-control" id="name" name="name">
+        </div>
+        <div class="form-group col-md-6">
+            <label for="country">País de origen</label>
+            <input type="text" class="form-control" id="country" name="country">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="inputAddress">Obras más representativa</label>
+        <input type="text" class="form-control" id="inputAddress" name="bestWork">
+    </div>
+
+    <div class="form-group">
+        <label for="inputAddress">Descripción</label>
+        <input type="text" class="form-control" id="inputAddress" name="description">
+    </div>
+
+    <div class="custom-file">
+        <label for="customFile">Foto del arquitecto</label>
+        <input type="file" class="custom-file-input" id="customFile" name="picArch">
+        <label class="custom-file-label" for="customFile">Choose file</label>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Añadir</button>
+
+</form>

@@ -1,3 +1,3 @@
-module.exports = app => {
-    app.locals.title = 'Backend generator (auth included!)'
+module.exports = (app) => {
+	app.locals.title = 'the_ArchitectureDB'
 }
