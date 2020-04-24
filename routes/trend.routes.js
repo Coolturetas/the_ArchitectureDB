@@ -3,6 +3,7 @@ const router = express.Router()
 const multer = require('multer')
 const uploadLocal = multer({ dest: './public/uploads/' })
 const Trend = require('../models/trend.model')
+const cloudUploader = require('../configs/cloudinary.config')
 
 //Print Architects DB
 router.get('/', (req, res, next) => {
