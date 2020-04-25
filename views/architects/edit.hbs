@@ -1,24 +1,22 @@
 <div class="row">
   <div class="col-md-6">
 
-    <h2>New architect</h2>
+    <h2>Edit {{name}}</h2>
 
-      <form action="/architects/create" method="POST">
+      <form action="/architects/{{_id}}/edit" method="POST">
         <div class="form-group">
           <label for="name">Name</label>
-          <input name="name" type="text" class="form-control" id="name">
-          <small>This field is required</small>
+          <input name="name" type="text" class="form-control" id="name" value="{{name}}">
         </div>
         <div class="form-group">
           <label for="country">Country</label>
-          <input name="country" type="text" class="form-control" id="country">
+          <input name="country" type="text" class="form-control" id="country" value="{{country}}">
         </div>
         <div class="form-group">
           <label for="flagship-work">Flagship work</label>
-          <input name="flagshipWork" type="text" class="form-control" id="flagship-work">
+          <input name="flagshipWork" type="text" class="form-control" id="flagship-work" value="{{flagshipWork}}">
         </div>
         <button type="submit" class="btn btn-dark btn-block btn-lg">Submit</button>
-
         {{#if errorMsg}}
         <div id="errorMsg">{{{errorMsg}}}</div>
         {{/if}}

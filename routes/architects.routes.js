@@ -42,4 +42,16 @@ router.get('/:id', (req, res, next) => {
     })
 })
 
+//Edition
+
+router.get('/:id/edit', (req, res, next) => {
+  Architect.findById(req.params.id)
+    .then((architect) => {
+      res.render('./architects/edit', architect)
+    })
+    .catch((err) => {
+      next(new Error(err))
+    })
+})
+
 module.exports = router
