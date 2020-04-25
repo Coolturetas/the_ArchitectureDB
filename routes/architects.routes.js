@@ -7,13 +7,6 @@ function checkAuth(req, res, next) {
   return req.isAuthenticated() ? next() : res.redirect('/login')
 }
 
-function checkRoles(role) {
-  return function (req, res, next) {
-    return req.isAuthenticated() && req.user.role === role
-      ? next()
-      : res.redirect('/login')
-  }
-}
 
 //Creation
 
@@ -24,7 +17,10 @@ router.get('/create', checkAuth, (req, res, next) => {
 router.post('/create', checkAuth, (req, res, next) => {
   const { name, country, flagshipWork } = req.body
 
-  Architect.create({ name, country, flagshipWork })
+  let verification = true
+  req.user.role == 'colaborator' ? (verification = false) : null
+
+  Architect.create({ name, country, flagshipWork, isVerified: verification })
     .then(() => {
       res.redirect('/architects')
     })
@@ -48,9 +44,12 @@ router.get('/edit/:id', checkAuth, (req, res, next) => {
 router.post('/edit/:id', checkAuth, (req, res, next) => {
   const { name, country, flagshipWork } = req.body
 
+  let verification = true
+  req.user.role === 'colaborator' ? (verification = false) : null
+
   Architect.findByIdAndUpdate(
     req.params.id,
-    { name, country, flagshipWork },
+    { name, country, flagshipWork, isVerified: verification },
     { new: true }
   )
     .then((architect) => {
@@ -64,19 +63,21 @@ router.post('/edit/:id', checkAuth, (req, res, next) => {
 //Deletion
 
 router.post('/delete/:id', checkAuth, (req, res, next) => {
-  Architect.findByIdAndDelete(req.params.id)
-    .then(() => {
-      res.redirect('/architects')
-    })
-    .catch((err) => {
-      next(new Error(err))
-    })
+  if (req.user.role == 'admin' || req.user.role == 'editor') {
+    Architect.findByIdAndDelete(req.params.id)
+      .then(() => {
+        res.redirect('/architects')
+      })
+      .catch((err) => {
+        next(new Error(err))
+      })
+  }
 })
 
 //Listing and detail view
 
 router.get('/', (req, res, next) => {
-  Architect.find()
+  Architect.find({ isVerified: true })
     .then((architects) => {
       res.render('./architects/index', { architects })
     })
