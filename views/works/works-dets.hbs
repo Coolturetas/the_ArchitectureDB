@@ -1,0 +1,20 @@
+<h2>{{name}}</h2>
+
+<div class="row">
+
+    <div class="col-6">
+        <img src="{{picWork}}" alt="{{name}}">
+        <p>Obra de: {{architect.name}}</p>
+        <p>Tipo de obra: {{workType}}</p>
+        <p>Year: {{finished}}</p>
+        <p>Descripción: {{description}}</p>
+        <p>Corriente arquitectónica: {{trend.name}}</p>
+        <div class="d-flex justify-content-left">
+            <a href="/works/edit/{{_id}}" class="btn btn-dark">Editar</a>
+            <form action="/works/delete/{{_id}}" method="post">
+                <button type="submit" class="btn btn-danger">Borrar</button>
+            </form>
+        </div>
+    </div>
+
+</div>
