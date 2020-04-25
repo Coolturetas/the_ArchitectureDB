@@ -25,6 +25,10 @@ router.get('/', (req, res, next) => {
 //Add new architecht
 router.get('/new', checkAuth, (req, res, next) => res.render('archTrend/at-add'))
 router.post('/', checkAuth, uploadLocal.single('picTrend'), (req, res, next) => {
+
+	let verification = true
+	req.user.role == 'colaborator' ? (verification = false) : null
+	
 	const newTrend = {
 		name: req.body.name,
 		picTrend: `uploads/${req.file.filename}`,
@@ -32,6 +36,7 @@ router.post('/', checkAuth, uploadLocal.single('picTrend'), (req, res, next) => 
 		country: req.body.country,
 		bestWork: req.body.bestWork,
 		year: req.body.year,
+		isVerified: verification
 	}
 	Trend.create(newTrend)
 		.then((data) => res.redirect('/trend'))
