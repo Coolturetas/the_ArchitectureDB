@@ -54,4 +54,20 @@ router.get('/:id/edit', (req, res, next) => {
     })
 })
 
+router.post('/:id/edit', (req, res, next) => {
+  const { name, country, flagshipWork } = req.body
+
+  Architect.findByIdAndUpdate(
+    req.params.id,
+    { name, country, flagshipWork },
+    { new: true }
+  )
+    .then((architect) => {
+      res.redirect(`/architects/${architect._id}`)
+    })
+    .catch((err) => {
+      next(new Error(err))
+    })
+})
+
 module.exports = router
