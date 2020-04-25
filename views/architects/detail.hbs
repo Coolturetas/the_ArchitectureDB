@@ -11,6 +11,11 @@
       <li>{{this}}</li>
       {{/each}}
     </ul>
-    <a href="/architects/{{_id}}/edit" class="btn btn-dark">Edit</a>
+    <div class="d-flex justify-content-left">
+      <a href="/architects/edit/{{_id}}" class="btn btn-dark">Edit</a>
+      <form action="/architects/delete/{{_id}}" method="post">
+        <button type="submit" class="btn btn-danger">Delete</button>
+      </form>
+    </div>
   </div>
 </div>
