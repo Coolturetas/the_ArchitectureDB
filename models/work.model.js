@@ -16,7 +16,7 @@ const workSchema = new Schema(
 		finished: Number,
 		picWork: String,
 		description: String,
-		workType: ['religious', 'housing', 'public building'],
+		workType: String,
 	},
 	{
 		timestamps: true,

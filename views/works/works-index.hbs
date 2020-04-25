@@ -1,0 +1,27 @@
+<h1>Este es el index de Obras</h1>
+
+<a href="/works/new" class="btn btn-info">Añadir Obra</a>
+
+<div class="row">
+    {{#each workFound}}
+    <div class="col-md-4">
+        <div class="card" style="width: 18rem;">
+            <img src="{{ picTrend }}" class="card-img-top" alt="..." />
+            <div class="card-body">
+                <h5 class="card-title">{{ name }}</h5>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                    <h6>Obras más representativa</h6>
+                </li>
+                <li class="list-group-item">{{ bestWork }}</li>
+            </ul>
+            <div class="card-body">
+                <a href="#" class="card-link">Arquitectos</a>
+                <a href="#" class="card-link">Épocas</a>
+            </div>
+            <a href="/works/show/{{ id }}" class="btn btn-info">Ver detalles</a>
+        </div>
+    </div>
+    {{/each}}
+</div>
