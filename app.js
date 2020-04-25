@@ -11,9 +11,9 @@ const express = require('express')
 const app = express()
 
 // Configs
+require('./configs/preformatter.config')(app)
 require('./configs/middleware.config')(app)
 require('./configs/passport.config')(app)
-require('./configs/preformatter.config')(app)
 require('./configs/views.configs')(app)
 require('./configs/locals.config')(app)
 
@@ -21,5 +21,6 @@ require('./configs/locals.config')(app)
 app.use('/', require('./routes/index.routes'))
 app.use('/', require('./routes/auth.routes'))
 app.use('/architects', require('./routes/architects.routes'))
+app.use('/trend', require('./routes/trend.routes'))
 
 module.exports = app
