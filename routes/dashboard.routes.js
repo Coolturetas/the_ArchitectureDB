@@ -46,4 +46,66 @@ router.get('/validate', checkIsInRole('editor', 'admin'), (req, res, next) => {
     })
 })
 
+//Acceptance-Rejection
+
+router.post(
+  '/architects/accept/:id',
+  checkIsInRole('editor', 'admin'),
+  (req, res, next) => {
+    Architect.findByIdAndUpdate(
+      req.params.id,
+      { isVerified: true },
+      { new: true }
+    )
+      .then(() => {
+        res.redirect('/dashboard/validate')
+      })
+      .catch((err) => {
+        next(new Error(err))
+      })
+  }
+)
+
+router.post(
+  '/trends/accept/:id',
+  checkIsInRole('editor', 'admin'),
+  (req, res, next) => {
+    Trend.findByIdAndUpdate(req.params.id, { isVerified: true }, { new: true })
+      .then(() => {
+        res.redirect('/dashboard/validate')
+      })
+      .catch((err) => {
+        next(new Error(err))
+      })
+  }
+)
+
+router.post(
+  '/architects/reject/:id',
+  checkIsInRole('editor', 'admin'),
+  (req, res, next) => {
+    Architect.findByIdAndDelete(req.params.id)
+      .then(() => {
+        res.redirect('/dashboard/validate')
+      })
+      .catch((err) => {
+        next(new Error(err))
+      })
+  }
+)
+
+router.post(
+  '/trends/reject/:id',
+  checkIsInRole('editor', 'admin'),
+  (req, res, next) => {
+    Trend.findByIdAndDelete(req.params.id)
+      .then(() => {
+        res.redirect('/dashboard/validate')
+      })
+      .catch((err) => {
+        next(new Error(err))
+      })
+  }
+)
+
 module.exports = router

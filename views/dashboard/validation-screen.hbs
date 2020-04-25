@@ -17,8 +17,10 @@
         {{/each}}
       </ul>
       <div>
-        <form action="POST"><button type="submit" class="btn btn-dark">Accept</button></form>
-        <form action="POST"><button type="submit" class="btn btn-danger">Reject</button></form>
+        <form action="/dashboard/architects/accept/{{_id}}" method="POST"><button type="submit" class="btn btn-dark">Accept</button>
+        </form>
+        <form action="/dashboard/architects/reject/{{_id}}" method="POST"><button type="submit" class="btn btn-danger">Reject</button>
+        </form>
       </div>
     </article>
     <hr>
@@ -37,9 +39,11 @@
       <p>Flagship work: {{bestWork}}</p>
       <p>Description: {{description}}</p>
       <p>Year: {{year}}</p>
-      <div>
-        <form action="POST"><button type="submit" class="btn btn-dark">Accept</button></form>
-        <form action="POST"><button type="submit" class="btn btn-danger">Reject</button></form>
+      <div class="d-flex justify-content-around">
+        <form action="/dashboard/trends/accept/{{_id}}" method="POST"><button type="submit"
+            class="btn btn-dark">Accept</button></form>
+        <form action="/dashboard/trends/reject/{{_id}}" method="POST"><button type="submit"
+            class="btn btn-danger">Reject</button></form>
       </div>
     </article>
     <hr>
