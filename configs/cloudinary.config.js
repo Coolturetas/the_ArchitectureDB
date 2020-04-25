@@ -11,7 +11,7 @@ cloudinary.config({
 const storage = cloudinaryStorage({
 	cloudinary: cloudinary,
 	folder: 'theArchitectureDB',
-	allowedFormats: ['jpg', 'png'],
+	allowedFormats: ['jpg', 'png', 'gif'],
 	filename: function (req, file, cb) {
 		cb(null, file.originalname)
 	},

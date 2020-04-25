@@ -1,1 +1,16 @@
-holiiiiii
+<h2>{{name}}</h2>
+
+<div class="row">
+    <div class="col-6">
+        <img src="{{picTrend}}" alt="{{name}}">
+        <p>Country: {{country}}</p>
+        <p>Flagship work: {{bestWork}}</p>
+        <p>Year: {{year}}</p>
+        <div class="d-flex justify-content-left">
+            <a href="/trend/edit/{{_id}}" class="btn btn-dark">Edit</a>
+            <form action="/trend/delete/{{_id}}" method="post">
+                <button type="submit" class="btn btn-danger">Delete</button>
+            </form>
+        </div>
+    </div>
+</div>

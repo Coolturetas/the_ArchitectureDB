@@ -1,7 +1,5 @@
 const express = require('express')
 const router = express.Router()
-// const multer = require('multer')
-// const uploadLocal = multer({ dest: './public/uploads/' })
 const Trend = require('../models/trend.model')
 const cloudUploader = require('../configs/cloudinary.config')
 
@@ -11,34 +9,23 @@ router.get('/', (req, res, next) => {
 })
 
 //Add new architecht
-router.get('/new', (req, res, next) => res.render('archTrend/at-add', { dest: 'CDN', path: 'upload' }))
-router.post('/', uploadLocal.single('picTrend'), (req, res, next) => {
+router.get('/new', (req, res, next) => res.render('archTrend/at-add'))
+
+router.post('/', cloudUploader.single('photo-trend'), (req, res, next) => {
 	const newTrend = {
 		name: req.body.name,
-		picTrend: `uploads/${req.file.filename}`,
+		picTrend: req.file.url,
 		description: req.body.description,
 		country: req.body.country,
 		bestWork: req.body.bestWork,
 		year: req.body.year,
 	}
+	console.log(newTrend.picTrend)
+	
 	Trend.create(newTrend)
-		.then((data) => res.redirect('/trend'))
-		.catch((err) => next(new Error('No se ha creado nada, torpe', err)))
+		.then(res.redirect('/trend'))
+		.catch((err) => console.log('nada de nada', err))
 })
-// router.get('/new', (req, res, next) => res.render('archTrend/at-add'))
-// router.post('/', uploadLocal.single('picTrend'), (req, res, next) => {
-// 	const newTrend = {
-// 		name: req.body.name,
-// 		picTrend: `uploads/${req.file.filename}`,
-// 		description: req.body.description,
-// 		country: req.body.country,
-// 		bestWork: req.body.bestWork,
-// 		year: req.body.year,
-// 	}
-// 	Trend.create(newTrend)
-// 		.then((data) => res.redirect('/trend'))
-// 		.catch((err) => next(new Error('No se ha creado nada, torpe', err)))
-// })
 
 //Show details of each architect
 router.get('/show/:id', (req, res, next) => {
