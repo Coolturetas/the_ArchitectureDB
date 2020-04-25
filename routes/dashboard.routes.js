@@ -19,6 +19,8 @@ function checkRoles(role) {
 
 //Access to dashboard
 
-router.get('/', checkAuth, (req, res, next) => res.render('./dashboard/index'))
+router.get('/', checkAuth, (req, res, next) =>
+  res.render('./dashboard/index', { user: req.user })
+)
 
 module.exports = router
