@@ -8,6 +8,18 @@ router.get('/create', (req, res, next) => {
   res.render('./architects/create')
 })
 
+router.post('/create', (req, res, next) => {
+  const { name, country, flagshipWork } = req.body
+
+  Architect.create({ name, country, flagshipWork })
+    .then(() => {
+      res.redirect('/architects')
+    })
+    .catch((err) => {
+      next(new Error(err))
+    })
+})
+
 //Listing and detail view
 
 router.get('/', (req, res, next) => {
@@ -29,6 +41,5 @@ router.get('/:id', (req, res, next) => {
       next(new Error(err))
     })
 })
-
 
 module.exports = router
