@@ -4,11 +4,11 @@
 
     <div class="col-6">
         <img src="{{picWork}}" alt="{{name}}">
-        <p>Obra de: {{architect.name}}</p>
+        <p>Obra de: <a href="/architects/view/{{architect.id}}">{{architect.name}}</a></p>
         <p>Tipo de obra: {{workType}}</p>
         <p>Year: {{finished}}</p>
         <p>Descripción: {{description}}</p>
-        <p>Corriente arquitectónica: {{trend.name}}</p>
+        <p>Corriente arquitectónica: <a href="/trend/show/{{trend.id}}">{{trend.name}}</a></p>
         <div class="d-flex justify-content-left">
             <a href="/works/edit/{{_id}}" class="btn btn-dark">Editar</a>
             <form action="/works/delete/{{_id}}" method="post">

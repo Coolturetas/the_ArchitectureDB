@@ -1,19 +1,19 @@
-<h2>{{name}}</h2>
+<h2>{{arch.name}}</h2>
 
 <div class="row">
   <div class="col-6">
-    <img src="{{photo}}" alt="{{name}}">
-    <p>Country: {{country}}</p>
-    <p>Flagship work: {{flagshipWork}}</p>
+    <img src="{{arch.photo}}" alt="{{arch.name}}">
+    <p>Country: {{arch.country}}</p>
+    <p>Flagship work: {{arch.flagshipWork}}</p>
     <p>Works</p>
     <ul>
       {{#each works}}
-      <li>{{this}}</li>
+      <li><a href="/works/show/{{id}}">{{name}}</a></li>
       {{/each}}
     </ul>
     <div class="d-flex justify-content-left">
-      <a href="/architects/edit/{{_id}}" class="btn btn-dark">Edit</a>
-      <form action="/architects/delete/{{_id}}" method="post">
+      <a href="/architects/edit/{{arch.id}}" class="btn btn-dark">Edit</a>
+      <form action="/architects/delete/{{arch.id}}" method="post">
         <button type="submit" class="btn btn-danger">Delete</button>
       </form>
     </div>

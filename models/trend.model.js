@@ -9,6 +9,7 @@ const trendSchema = new Schema(
 		description: String,
 		bestWork: String,
 		year: Number,
+		works: Array,
 	},
 	{
 		timestamps: true,

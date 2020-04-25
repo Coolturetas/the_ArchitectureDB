@@ -1,11 +1,17 @@
-<h2>{{name}}</h2>
+<h2>{{trend.name}}</h2>
 
 <div class="row">
     <div class="col-6">
-        <img src="{{picTrend}}" alt="{{name}}">
-        <p>Country: {{country}}</p>
-        <p>Flagship work: {{bestWork}}</p>
-        <p>Year: {{year}}</p>
+        <img src="{{trend.picTrend}}" alt="{{trend.name}}">
+        <p>Country: {{trend.country}}</p>
+        <p>Flagship work: {{trend.bestWork}}</p>
+        <p>Year: {{trend.year}}</p>
+        <p>Works:</p>
+        <ul>
+            {{#each works}}
+            <li><a href="/works/show/{{id}}">{{name}}</a></li>
+            {{/each}}
+        </ul>
         <div class="d-flex justify-content-left">
             <a href="/trend/edit/{{_id}}" class="btn btn-dark">Edit</a>
             <form action="/trend/delete/{{_id}}" method="post">

@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const Architect = require('./../models/architect.model')
+const Work = require('../models/work.model')
 const cloudUploader = require('../configs/cloudinary.config')
 
 //Creation
@@ -82,13 +83,12 @@ router.get('/', (req, res, next) => {
 })
 
 router.get('/view/:id', (req, res, next) => {
-	Architect.findById(req.params.id)
-		.then((architect) => {
-			res.render('./architects/detail', architect)
-		})
-		.catch((err) => {
-			next(new Error(err))
-		})
+	const promiseWork = Work.find({ architect: req.params.id })
+	const promiseArch = Architect.findById(req.params.id)
+
+	Promise.all([promiseArch, promiseWork])
+		.then((data) => res.render('architects/detail', { arch: data[0], works: data[1] }))
+		.catch((err) => next(new Error('No se ha encontrado nada', err)))
 })
 
 module.exports = router
