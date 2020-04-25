@@ -5,14 +5,26 @@ const uploadLocal = multer({ dest: './public/uploads/' })
 const Trend = require('../models/trend.model')
 const cloudUploader = require('../configs/cloudinary.config')
 
+function checkAuth(req, res, next) {
+  return req.isAuthenticated() ? next() : res.redirect('/login')
+}
+
+function checkRoles(role) {
+  return function (req, res, next) {
+    return req.isAuthenticated() && req.user.role === role
+      ? next()
+      : res.redirect('/login')
+  }
+}
+
 //Print Architects DB
 router.get('/', (req, res, next) => {
 	Trend.find().then((atFound) => res.render('archTrend/at-index', { atFound }))
 })
 
 //Add new architecht
-router.get('/new', (req, res, next) => res.render('archTrend/at-add'))
-router.post('/', uploadLocal.single('picTrend'), (req, res, next) => {
+router.get('/new', checkAuth, (req, res, next) => res.render('archTrend/at-add'))
+router.post('/', checkAuth, uploadLocal.single('picTrend'), (req, res, next) => {
 	const newTrend = {
 		name: req.body.name,
 		picTrend: `uploads/${req.file.filename}`,
