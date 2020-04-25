@@ -30,8 +30,20 @@ router.get('/', checkAuth, (req, res, next) =>
 
 //access to validation screen
 
-router.get('/validate', checkIsInRole("editor", "admin"), (req, res, next) => {
-  res.render("./dashboard/validation-screen")
+router.get('/validate', checkIsInRole('editor', 'admin'), (req, res, next) => {
+  const architectPromise = Architect.find({ isVerified: false })
+  const trendPromise = Trend.find({ isVerified: false })
+
+  Promise.all([architectPromise, trendPromise])
+    .then((results) => {
+      res.render('./dashboard/validation-screen', {
+        architects: results[0],
+        trends: results[1],
+      })
+    })
+    .catch((err) => {
+      next(new Error(err))
+    })
 })
 
 module.exports = router

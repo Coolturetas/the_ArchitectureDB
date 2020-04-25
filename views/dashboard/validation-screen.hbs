@@ -5,7 +5,21 @@
     <h3>Architects</h3>
     {{#each architects}}
     <article>
+      <img src="{{photo}}" alt="{{name}}">
       <h4>{{name}}</h4>
+      <p>Country: {{country}}</p>
+      <p>Flagship work: {{flagshipWork}}</p>
+      <p>Description: {{description}}</p>
+      <p>Works:</p>
+      <ul>
+        {{#each works}}
+        <li>{{this}}</li>
+        {{/each}}
+      </ul>
+      <div>
+        <form action="POST"><button type="submit" class="btn btn-dark">Accept</button></form>
+        <form action="POST"><button type="submit" class="btn btn-danger">Reject</button></form>
+      </div>
     </article>
     <hr>
     {{/each}}
@@ -17,7 +31,16 @@
     <h3>Trends</h3>
     {{#each trends}}
     <article>
+      <img src="{{picTrend}}" alt="{{name}}">
       <h4>{{name}}</h4>
+      <p>Country: {{country}}</p>
+      <p>Flagship work: {{bestWork}}</p>
+      <p>Description: {{description}}</p>
+      <p>Year: {{year}}</p>
+      <div>
+        <form action="POST"><button type="submit" class="btn btn-dark">Accept</button></form>
+        <form action="POST"><button type="submit" class="btn btn-danger">Reject</button></form>
+      </div>
     </article>
     <hr>
     {{/each}}
