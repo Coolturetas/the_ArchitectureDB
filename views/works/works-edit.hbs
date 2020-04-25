@@ -47,16 +47,17 @@
             <div class="form-group">
                 <label for="trend-arch">Corriente Arquitectónica</label>
                 <select class="custom-select" id="trend-arch" name="trend">
-                    <option selected value="">{{works.trend.name}}</option>
+                    <option selected>{{works.trend.name}}</option>
                     {{#each trends}}
                     <option value="{{id}}">{{name}}</option>
                     {{/each}}
                 </select>
             </div>
+
             <div class="form-group">
                 <label for="architect">Obra de:</label>
                 <select class="custom-select" id="architect" name="architect">
-                    <option selected value="">{{works.architect.name}}</option>
+                    <option selected>{{works.architect.name}}</option>
                     {{#each archs}}
                     <option value="{{id}}">{{name}}</option>
                     {{/each}}

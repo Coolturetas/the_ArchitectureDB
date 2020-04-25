@@ -33,9 +33,11 @@ router.post('/edit/:id', cloudUploader.single('photo-work'), (req, res, next) =>
 		workType: req.body.workType,
 		picWork: req.file.url,
 	}
+	console.log(editWork)
 
 	Work.findByIdAndUpdate(req.params.id, editWork, { new: true })
-		.then(res.redirect('/works'))
+		.then((data) => console.log(data))
+		// .then((data) => res.redirect('/works'))
 		.catch((err) => next(new Error('No se ha editado nada', err)))
 })
 
