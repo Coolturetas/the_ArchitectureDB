@@ -18,8 +18,12 @@ router.post('/create', cloudUploader.single('photo-arch'), (req, res, next) => {
 	}
 
 	Architect.create(newArch)
-		.then(() => {res.redirect('/architects')})
-		.catch((err) => {next(new Error('No se ha creado arquitecto', err))})
+		.then(() => {
+			res.redirect('/architects')
+		})
+		.catch((err) => {
+			next(new Error('No se ha creado arquitecto', err))
+		})
 })
 
 //Edition
@@ -34,10 +38,17 @@ router.get('/edit/:id', (req, res, next) => {
 		})
 })
 
-router.post('/edit/:id', (req, res, next) => {
-	const { name, country, flagshipWork } = req.body
+router.post('/edit/:id', cloudUploader.single('photo-arch'), (req, res, next) => {
+	const editArch = {
+		name: req.body.name,
+		country: req.body.country,
+		flagshipWork: req.body.flagshipWork,
+		photo: req.file.url,
+	}
 
-	Architect.findByIdAndUpdate(req.params.id, { name, country, flagshipWork }, { new: true })
+	console.log(editArch)
+
+	Architect.findByIdAndUpdate(req.params.id, editArch, { new: true })
 		.then((architect) => {
 			res.redirect(`/architects/view/${architect._id}`)
 		})
