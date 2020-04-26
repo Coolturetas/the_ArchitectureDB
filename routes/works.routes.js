@@ -53,6 +53,7 @@ router.post(
       description: req.body.description,
       workType: req.body.workType,
       picWork: req.file.url,
+      address: req.body.address,
       isVerified: verification,
     }
     console.log(editWork)
@@ -98,6 +99,7 @@ router.post(
       description: req.body.description,
       workType: req.body.workType,
       picWork: req.file.url,
+      address: req.body.address,
       isVerified: verification,
     }
     console.log(newWork)
