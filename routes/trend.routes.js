@@ -22,7 +22,9 @@ router.get('/', (req, res, next) => {
 })
 
 //Add new trend
-router.get('/new', (req, res, next) => res.render('archTrend/at-add'))
+router.get('/new', checkAuth, (req, res, next) =>
+  res.render('archTrend/at-add')
+)
 
 router.post(
   '/',
@@ -62,14 +64,16 @@ router.get('/show/:id', (req, res, next) => {
 })
 
 //Delete
-router.post('/delete/:id', (req, res, next) => {
-  Trend.findByIdAndRemove(req.params.id)
-    .then(res.redirect('/trend'))
-    .catch((err) => next(new Error('No se ha borrado nada', err)))
+router.post('/delete/:id', checkAuth, (req, res, next) => {
+  if (req.user.role == 'admin' || req.user.role == 'editor') {
+    Trend.findByIdAndRemove(req.params.id)
+      .then(res.redirect('/trend'))
+      .catch((err) => next(new Error('No se ha borrado nada', err)))
+  }
 })
 
 //Edit
-router.get('/edit/:id', (req, res, next) => {
+router.get('/edit/:id', checkAuth, (req, res, next) => {
   Trend.findById(req.params.id)
     .then((toEdit) => res.render('archTrend/at-edit', toEdit))
     .catch((err) =>
@@ -79,6 +83,7 @@ router.get('/edit/:id', (req, res, next) => {
 
 router.post(
   '/edit/:id',
+  checkAuth,
   cloudUploader.single('photo-trend'),
   (req, res, next) => {
     const editTrend = {
