@@ -1,7 +1,8 @@
 <h2>{{name}}</h2>
 
 <div class="row">
-
+    {{!-- LOL HACKY ASS SHIT --}}
+    <div id="workId" style="display: none;">{{_id}}</div>
     <div class="col-6">
         <p>Obra de: <a href="/architects/view/{{architect.id}}">{{architect.name}}</a></p>
         <p>Tipo de obra: {{workType}}</p>
@@ -24,5 +25,6 @@
 
 </div>
 
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBBCqsxYcgOHcgyFouDoMyFFIFYtj3tHG0&callback=startMap"></script>
