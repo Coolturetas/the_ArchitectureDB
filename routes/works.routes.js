@@ -61,7 +61,7 @@ router.post('/', cloudUploader.single('photo-work'), (req, res, next) => {
 		workType: req.body.workType,
 		picWork: req.file.url,
 	}
-
+	console.log(newWork)
 	Work.create(newWork)
 		.then(res.redirect('/works'))
 		.catch((err) => next(new Error('No se ha creado nada', err)))

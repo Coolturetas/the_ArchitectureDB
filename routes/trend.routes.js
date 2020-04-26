@@ -21,7 +21,7 @@ router.post('/', cloudUploader.single('photo-trend'), (req, res, next) => {
 		bestWork: req.body.bestWork,
 		year: req.body.year,
 	}
-	console.log(newTrend.picTrend)
+	console.log(newTrend)
 
 	Trend.create(newTrend)
 		.then(res.redirect('/trend'))

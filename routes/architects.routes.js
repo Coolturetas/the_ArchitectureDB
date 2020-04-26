@@ -17,7 +17,7 @@ router.post('/create', cloudUploader.single('photo-arch'), (req, res, next) => {
 		flagshipWork: req.body.flagshipWork,
 		photo: req.file.url,
 	}
-
+	console.log(newArch)
 	Architect.create(newArch)
 		.then(() => {
 			res.redirect('/architects')
