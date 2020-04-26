@@ -83,7 +83,7 @@ router.post('/edit/:id', checkAuth, cloudUploader.single('photo-trend'), (req, r
 ///
 ///Comments
 ///
-
+//Create comment
 router.post('/post-comment/:id', checkAuth, (req, res, next) => {
 	const newComment = {
 		subject: req.body.subject,
@@ -95,7 +95,7 @@ router.post('/post-comment/:id', checkAuth, (req, res, next) => {
 		.then(res.redirect(`/trend/show/${newComment.postedIn}`))
 		.catch((err) => next(new Error('No se ha posteado comentario', err)))
 })
-
+//Delete comment
 router.post('/post-comment/delete/:id', checkAuth, (req, res, next) => {
 	Comment.findById(req.params.id)
 		.then((result) => {
@@ -115,9 +115,8 @@ router.get('/show/:id', (req, res, next) => {
 	const promiseWork = Work.find({ trend: req.params.id })
 	const promiseTrend = Trend.findById(req.params.id)
 	const promisePost = Comment.find({ postedIn: req.params.id }).populate('creatorId')
-
 	Promise.all([promiseTrend, promiseWork, promisePost])
-		.then((data) => res.render('archTrend/at-dets', { trend: data[0], works: data[1], posts: [2] }))
+		.then((data) => res.render('archTrend/at-dets', { trend: data[0], works: data[1], posts: data[2] }))
 		.catch((err) => next(new Error('No se ha encontrado nada', err)))
 })
 
