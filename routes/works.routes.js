@@ -15,6 +15,28 @@ router.get('/', (req, res, next) => {
     .catch((err) => next(new Error('No se ha encontrado nada', err)))
 })
 
+//Raw data
+
+router.get('/api', (req, res, next) => {
+  Work.find()
+    .then((allWorks) => {
+      res.json({ allWorks })
+    })
+    .catch((err) => {
+      next(new Error(err))
+    })
+})
+
+router.get('/api/:id', (req, res, next) => {
+  Work.findById(req.params.id)
+    .then((work) => {
+      res.json({ work })
+    })
+    .catch((err) => {
+      next(new Error(err))
+    })
+})
+
 //Edit
 router.get('/edit/:id', checkAuth, (req, res, next) => {
   const workPromise = Work.findById(req.params.id)
