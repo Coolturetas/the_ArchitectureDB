@@ -40,6 +40,7 @@
 </div>
 
 <h2>Otros comentaron...</h2>
+
 <div class="row">
     {{#each posts}}
     <div class="col-md-6">
@@ -47,9 +48,9 @@
         <h6>Dijo esto: {{subject}}</h6>
         <p>{{content}}</p>
         <div class="d-flex justify-content-left align-items-center">
-            <a href="/trend/post-comment/delete/{{id}}" class="btn btn-dark">Edit</a>
-            <form action="/trend/post-comment/delete{{id}}" method="post">
-                <button type="submit" class="btn btn-danger">Delete</button>
+            <a href="/trend/post-comment/edit/{{id}}" class="btn btn-dark">Editar</a>
+            <form action="/trend/post-comment/delete/{{id}}" method="post">
+                <button type="submit" class="btn btn-danger">Borrar</button>
             </form>
         </div>
         {{/each}}

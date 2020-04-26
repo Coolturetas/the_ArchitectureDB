@@ -18,11 +18,18 @@ router.get('/create', checkAuth, (req, res, next) => {
 
 router.post('/create', checkAuth, cloudUploader.single('photo-arch'), (req, res, next) => {
 	const { name, country, flagshipWork } = req.body
+	let pic
+
+	if (req.file === undefined) {
+		pic = 'https://res.cloudinary.com/dxf11hxhh/image/upload/v1587913924/theArchitectureDB/default_dh4el6.jpg'
+	} else {
+		pic = req.file.url
+	}
 
 	let verification = true
 	req.user.role == 'colaborator' ? (verification = false) : null
 
-	Architect.create({ name, country, flagshipWork, isVerified: verification, photo: req.file.url })
+	Architect.create({ name, country, flagshipWork, isVerified: verification, photo: pic })
 		.then(() => {
 			res.redirect('/architects')
 		})
@@ -92,16 +99,6 @@ router.get('/', (req, res, next) => {
 		})
 })
 
-router.get('/view/:id', (req, res, next) => {
-	const promiseWork = Work.find({ architect: req.params.id })
-	const promiseArch = Architect.findById(req.params.id)
-	const promisePost = Comment.find({ postedIn: req.params.id }).populate('creatorId')
-
-	Promise.all([promiseArch, promiseWork, promisePost])
-		.then((data) => res.render('architects/detail', { arch: data[0], works: data[1], posts: data[2] }))
-		.catch((err) => next(new Error('No se ha encontrado nada', err)))
-})
-
 ///
 ///Comments
 ///
@@ -116,6 +113,31 @@ router.post('/post-comment/:id', checkAuth, (req, res, next) => {
 	Comment.create(newComment)
 		.then(res.redirect(`/architects/view/${newComment.postedIn}`))
 		.catch((err) => next(new Error('No se ha posteado comentario', err)))
+})
+
+router.post('/post-comment/delete/:id', checkAuth, (req, res, next) => {
+	Comment.findById(req.params.id)
+		.then((result) => {
+			if (result.creatorId == req.user.id) {
+				return result.id
+			} else {
+				return res.redirect('/architects')
+			}
+		})
+		.then((resultId) => Comment.findByIdAndRemove(resultId))
+		.then(() => res.redirect('/architects'))
+		.catch((err) => next(new Error('No se ha borrado tu comentario', err)))
+})
+
+//Show details of each element
+router.get('/view/:id', (req, res, next) => {
+	const promiseWork = Work.find({ architect: req.params.id })
+	const promiseArch = Architect.findById(req.params.id)
+	const promisePost = Comment.find({ postedIn: req.params.id }).populate('creatorId')
+
+	Promise.all([promiseArch, promiseWork, promisePost])
+		.then((data) => res.render('architects/detail', { arch: data[0], works: data[1], posts: data[2] }))
+		.catch((err) => next(new Error('No se ha encontrado nada', err)))
 })
 
 module.exports = router

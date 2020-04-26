@@ -71,6 +71,13 @@ router.post('/', checkAuth, cloudUploader.single('photo-work'), (req, res, next)
 	let verification = true
 	req.user.role === 'colaborator' ? (verification = false) : null
 
+	let pic
+	if (req.file === undefined) {
+		pic = 'https://res.cloudinary.com/dxf11hxhh/image/upload/v1587913924/theArchitectureDB/default_dh4el6.jpg'
+	} else {
+		pic = req.file.url
+	}
+
 	const newWork = {
 		trend: req.body.trend,
 		architect: req.body.architect,
@@ -79,9 +86,10 @@ router.post('/', checkAuth, cloudUploader.single('photo-work'), (req, res, next)
 		where: req.body.where,
 		description: req.body.description,
 		workType: req.body.workType,
-		picWork: req.file.url,
+		picWork: pic,
 		isVerified: verification,
 	}
+
 	console.log(newWork)
 	Work.create(newWork)
 		.then(res.redirect('/works'))
@@ -114,13 +122,17 @@ router.post('/post-comment/:id', checkAuth, (req, res, next) => {
 })
 
 router.post('/post-comment/delete/:id', checkAuth, (req, res, next) => {
-	// console.log({ id: req.params.id, creatorId: req.user.id })
-	//Find how to delete only the comments made by current user
-
-	Comment.find({ creatorId: req.user.id })
-		.then(() => Comment.findByIdAndRemove(req.params.id))
+	Comment.findById(req.params.id)
+		.then((result) => {
+			if (result.creatorId == req.user.id) {
+				return result.id
+			} else {
+				return res.redirect('/works')
+			}
+		})
+		.then((resultId) => Comment.findByIdAndRemove(resultId))
 		.then(() => res.redirect('/works'))
-		.catch((err) => next(new Error('No has borrado nada', err)))
+		.catch((err) => next(new Error('No se ha borrado tu comentario', err)))
 })
 
 //Find One by ID
