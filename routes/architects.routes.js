@@ -2,6 +2,7 @@ const express = require('express')
 const router = express.Router()
 const Architect = require('./../models/architect.model')
 const passport = require('passport')
+const cloudUploader = require('../configs/cloudinary.config')
 
 function checkAuth(req, res, next) {
   return req.isAuthenticated() ? next() : res.redirect('/login')
