@@ -1,1 +1,23 @@
-holiiiiii
+<h2>{{trend.name}}</h2>
+
+<div class="row">
+    <div class="col-6">
+        <img src="{{trend.picTrend}}" alt="{{trend.name}}">
+        <p>Country: {{trend.country}}</p>
+        <p>Flagship work: {{trend.bestWork}}</p>
+        <p>Year: {{trend.year}}</p>
+        <p>Descripción: {{trend.description}}</p>
+        <p>Works:</p>
+        <ul>
+            {{#each works}}
+            <li><a href="/works/show/{{id}}">{{name}}</a></li>
+            {{/each}}
+        </ul>
+        <div class="d-flex justify-content-left">
+            <a href="/trend/edit/{{trend.id}}" class="btn btn-dark">Edit</a>
+            <form action="/trend/delete/{{trend.id}}" method="post">
+                <button type="submit" class="btn btn-danger">Delete</button>
+            </form>
+        </div>
+    </div>
+</div>

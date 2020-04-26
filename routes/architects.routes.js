@@ -14,13 +14,13 @@ router.get('/create', checkAuth, (req, res, next) => {
   res.render('./architects/create')
 })
 
-router.post('/create', checkAuth, (req, res, next) => {
+router.post('/create', checkAuth, cloudUploader.single('photo-arch'), (req, res, next) => {
   const { name, country, flagshipWork } = req.body
 
   let verification = true
   req.user.role == 'colaborator' ? (verification = false) : null
 
-  Architect.create({ name, country, flagshipWork, isVerified: verification })
+  Architect.create({ name, country, flagshipWork, isVerified: verification, photo: req.file.url })
     .then(() => {
       res.redirect('/architects')
     })
@@ -31,33 +31,38 @@ router.post('/create', checkAuth, (req, res, next) => {
 
 //Edition
 
-router.get('/edit/:id', checkAuth, (req, res, next) => {
-  Architect.findById(req.params.id)
-    .then((architect) => {
-      res.render('./architects/edit', architect)
-    })
-    .catch((err) => {
-      next(new Error(err))
-    })
+router.get('/edit/:id', (req, res, next) => {
+	Architect.findById(req.params.id)
+		.then((architect) => {
+			res.render('./architects/edit', architect)
+		})
+		.catch((err) => {
+			next(new Error(err))
+		})
 })
 
-router.post('/edit/:id', checkAuth, (req, res, next) => {
-  const { name, country, flagshipWork } = req.body
+router.post('/edit/:id', cloudUploader.single('photo-arch'), checkAuth, (req, res, next) => {
 
-  let verification = true
-  req.user.role === 'colaborator' ? (verification = false) : null
+	let verification = true
+	req.user.role === 'colaborator' ? (verification = false) : null
+	
+	const editArch = {
+		name: req.body.name,
+		country: req.body.country,
+		flagshipWork: req.body.flagshipWork,
+		photo: req.file.url,
+		isVerified: verification,
+	}
 
-  Architect.findByIdAndUpdate(
-    req.params.id,
-    { name, country, flagshipWork, isVerified: verification },
-    { new: true }
-  )
-    .then((architect) => {
-      res.redirect(`/architects/view/${architect._id}`)
-    })
-    .catch((err) => {
-      next(new Error(err))
-    })
+	console.log(editArch)
+
+	Architect.findByIdAndUpdate(req.params.id, editArch, { new: true })
+		.then((architect) => {
+			res.redirect(`/architects/view/${architect._id}`)
+		})
+		.catch((err) => {
+			next(new Error(err))
+		})
 })
 
 //Deletion
@@ -87,13 +92,12 @@ router.get('/', (req, res, next) => {
 })
 
 router.get('/view/:id', (req, res, next) => {
-  Architect.findById(req.params.id)
-    .then((architect) => {
-      res.render('./architects/detail', architect)
-    })
-    .catch((err) => {
-      next(new Error(err))
-    })
+	const promiseWork = Work.find({ architect: req.params.id })
+	const promiseArch = Architect.findById(req.params.id)
+
+	Promise.all([promiseArch, promiseWork])
+		.then((data) => res.render('architects/detail', { arch: data[0], works: data[1] }))
+		.catch((err) => next(new Error('No se ha encontrado nada', err)))
 })
 
 module.exports = router

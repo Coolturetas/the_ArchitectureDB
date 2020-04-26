@@ -3,26 +3,32 @@
 
     <h2>New architect</h2>
 
-      <form action="/architects/create" method="POST">
-        <div class="form-group">
-          <label for="name">Name</label>
-          <input name="name" type="text" class="form-control" id="name">
-          <small>This field is required</small>
-        </div>
-        <div class="form-group">
-          <label for="country">Country</label>
-          <input name="country" type="text" class="form-control" id="country">
-        </div>
-        <div class="form-group">
-          <label for="flagship-work">Flagship work</label>
-          <input name="flagshipWork" type="text" class="form-control" id="flagship-work">
-        </div>
-        <button type="submit" class="btn btn-dark btn-block btn-lg">Submit</button>
+    <form action="/architects/create" method="POST" enctype="multipart/form-data">
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input name="name" type="text" class="form-control" id="name">
+        <small>This field is required</small>
+      </div>
+      <div class="form-group">
+        <label for="country">Country</label>
+        <input name="country" type="text" class="form-control" id="country">
+      </div>
+      <div class="form-group">
+        <label for="flagship-work">Flagship work</label>
+        <input name="flagshipWork" type="text" class="form-control" id="flagship-work">
+      </div>
+      <div class="custom-file">
+        <label for="customFile">Foto Obra más famosa</label>
+        <input type="file" class="custom-file-input btn" id="customFile" name="photo-arch">
+        <label class="custom-file-label" for="customFile"></label>
+      </div>
 
-        {{#if errorMsg}}
-        <div id="errorMsg">{{{errorMsg}}}</div>
-        {{/if}}
+      <button type="submit" class="btn btn-dark btn-block btn-lg">Submit</button>
 
-      </form>
+      {{#if errorMsg}}
+      <div id="errorMsg">{{{errorMsg}}}</div>
+      {{/if}}
+
+    </form>
   </div>
 </div>

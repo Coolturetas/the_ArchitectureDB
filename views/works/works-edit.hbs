@@ -1,0 +1,75 @@
+<div class="row">
+    <div class="col-md-6">
+
+        <h2>Editar {{works.name}}</h2>
+
+        <form action="/works/edit/{{works.id}}" method="POST" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input name="name" type="text" class="form-control" id="name" value="{{works.name}}">
+            </div>
+
+            <div class="form-group">
+                <label for="country">Country</label>
+                <input name="where" type="text" class="form-control" id="country" value="{{works.where}}">
+            </div>
+
+            <div class="form-group">
+                <label for="finishedin">Año de finalización</label>
+                <input name="finished" type="text" class="form-control" id="finishedin" value="{{works.finished}}">
+            </div>
+
+            <div class="custom-file form-group">
+                <input type="file" class="custom-file-input btn" id="customFile" name="photo-work"
+                    value="{{works.picWork}}">
+                <label class="custom-file-label" for="customFile">Foto de la obra</label>
+            </div>
+
+            <div class="form-group">
+                <label for="work">Tipo de Obra</label>
+                <select class="custom-select" id="work" name="workType">
+                    <option selected>{{works.workType}}</option>
+                    <option>Parque</option>
+                    <option>Espacio Público</option>
+                    <option>Vivienda</option>
+                    <option>Religiosa</option>
+                    <option>Edificio público</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="description">Descripción</label>
+                <input name="description" type="text" class="form-control" id="description"
+                    value="{{works.description}}">
+            </div>
+
+
+            <div class="form-group">
+                <label for="trend-arch">Corriente Arquitectónica</label>
+                <select class="custom-select" id="trend-arch" name="trend">
+                    <option selected>{{works.trend.name}}</option>
+                    {{#each trends}}
+                    <option value="{{id}}">{{name}}</option>
+                    {{/each}}
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="architect">Obra de:</label>
+                <select class="custom-select" id="architect" name="architect">
+                    <option selected>{{works.architect.name}}</option>
+                    {{#each archs}}
+                    <option value="{{id}}">{{name}}</option>
+                    {{/each}}
+                </select>
+            </div>
+
+            <button type="submit" class="btn btn-dark btn-block btn-lg">Submit</button>
+
+            {{#if errorMsg}}
+            <div id="errorMsg">{{{errorMsg}}}</div>
+            {{/if}}
+
+        </form>
+    </div>
+</div>
