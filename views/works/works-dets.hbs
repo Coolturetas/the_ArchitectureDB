@@ -1,20 +1,54 @@
-<h2>{{name}}</h2>
+<h2>{{works.name}}</h2>
 
 <div class="row">
 
-    <div class="col-6">
-        <img src="{{picWork}}" alt="{{name}}">
-        <p>Obra de: <a href="/architects/view/{{architect.id}}">{{architect.name}}</a></p>
-        <p>Tipo de obra: {{workType}}</p>
-        <p>Year: {{finished}}</p>
-        <p>Descripción: {{description}}</p>
-        <p>Corriente arquitectónica: <a href="/trend/show/{{trend.id}}">{{trend.name}}</a></p>
+    <div class="col-md-9">
+        <img src="{{works.picWork}}" alt="{{works.name}}">
+        <p>Obra de: <a href="/architects/view/{{works.architect.id}}">{{works.architect.name}}</a></p>
+        <p>Tipo de obra: {{works.workType}}</p>
+        <p>Year: {{works.finished}}</p>
+        <p>Descripción: {{works.description}}</p>
+        <p>Corriente arquitectónica: <a href="/trend/show/{{works.trend.id}}">{{works.trend.name}}</a></p>
         <div class="d-flex justify-content-left">
-            <a href="/works/edit/{{_id}}" class="btn btn-dark">Editar</a>
-            <form action="/works/delete/{{_id}}" method="post">
+            <a href="/works/edit/{{works.id}}" class="btn btn-dark">Editar</a>
+            <form action="/works/delete/{{works.id}}" method="post">
                 <button type="submit" class="btn btn-danger">Borrar</button>
             </form>
         </div>
     </div>
 
+</div>
+
+<h2>Comentarios</h2>
+<div class="row">
+
+    <form action="/works/post-comment/{{works.id}}" method="POST">
+
+        <label for="subject">Asunto</label>
+        <input type="text" name="subject" id="subject" class="form-control">
+
+        <label for="comment">Deja tu comentario</label>
+        <textarea class="form-control" id="comment" rows="4" cols="100" name="content"></textarea>
+
+        <button type="submit">Guardar comentario</button>
+
+    </form>
+
+</div>
+
+<h2>Otros comentaron...</h2>
+<div class="row">
+    {{#each posts}}
+    <div class="col-md-6">
+        <h5>By: {{creatorId.username}}</h5>
+        <h6>Dijo esto: {{subject}}</h6>
+        <p>{{content}}</p>
+    </div>
+    <div class="d-flex justify-content-left align-items-center">
+        <a href="/works/post-comment/edit/{{id}}" class="btn btn-dark">Editar</a>
+        <form action="/works/post-comment/delete/{{id}}" method="post">
+            <button type="submit" class="btn btn-danger">Borrar</button>
+        </form>
+    </div>
+    {{/each}}
 </div>
