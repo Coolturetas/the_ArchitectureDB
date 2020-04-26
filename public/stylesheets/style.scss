@@ -2,7 +2,9 @@ body {
   font-weight: 200;
 }
 
-h1, h2, h3 {
+h1,
+h2,
+h3 {
   font-weight: 200;
 }
 
@@ -17,4 +19,13 @@ h1, h2, h3 {
   text-align: center;
   padding: 10px 0;
   margin-top: 5px;
+}
+
+.detail-img {
+  width: 300px;
+}
+
+#workMap {
+  height: 300px;
+  width: 100%;
 }

@@ -3,7 +3,8 @@
 <div class="row">
 
     <div class="col-6">
-        <img src="{{picWork}}" alt="{{name}}">
+        <img src="{{picWork}}" alt="{{name}}" class="detail-img">
+        <figure id="workMap"></figure>
         <p>Obra de: <a href="/architects/view/{{architect.id}}">{{architect.name}}</a></p>
         <p>Tipo de obra: {{workType}}</p>
         <p>Year: {{finished}}</p>
@@ -18,3 +19,6 @@
     </div>
 
 </div>
+
+<script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBBCqsxYcgOHcgyFouDoMyFFIFYtj3tHG0&callback=startMap"></script>
