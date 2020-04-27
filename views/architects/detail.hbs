@@ -19,3 +19,38 @@
     </div>
   </div>
 </div>
+
+<h2>Comentarios</h2>
+<div class="row">
+
+  <form action="/architects/post-comment/{{arch.id}}" method="POST">
+
+    <label for="subject">Asunto</label>
+    <input type="text" name="subject" id="subject" class="form-control">
+
+    <label for="comment">Deja tu comentario</label>
+    <textarea class="form-control" id="comment" rows="4" cols="100" name="content"></textarea>
+
+    <button type="submit">Guardar comentario</button>
+
+  </form>
+
+</div>
+
+<h2>Otros comentaron...</h2>
+<div class="row">
+  {{#each posts}}
+  <div class="col-md-6">
+    <h5>By: {{creatorId.username}}</h5>
+    <h6>Dijo esto: {{subject}}</h6>
+    <p>{{content}}</p>
+    <div class="d-flex justify-content-left align-items-center">
+      <a href="/architects/post-comment/edit/{{id}}" class="btn btn-dark">Editar</a>
+      <form action="/architects/post-comment/delete/{{id}}" method="post">
+        <button type="submit" class="btn btn-danger">Borrar</button>
+      </form>
+    </div>
+  </div>
+
+  {{/each}}
+</div>

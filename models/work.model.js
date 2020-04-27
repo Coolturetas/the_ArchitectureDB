@@ -12,9 +12,12 @@ const workSchema = new Schema(
       ref: 'Architect',
     },
     name: String,
-    where: String,
     finished: Number,
-    picWork: String,
+    picWork: {
+      type: String,
+      default:
+        'https://res.cloudinary.com/dxf11hxhh/image/upload/v1587913924/theArchitectureDB/default_dh4el6.jpg',
+    },
     description: String,
     workType: String,
     address: String,
