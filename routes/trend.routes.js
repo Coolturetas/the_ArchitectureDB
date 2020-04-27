@@ -28,6 +28,7 @@ router.post('/', cloudUploader.single('photo-trend'), checkAuth, (req, res, next
 	req.user.role == 'colaborator' ? (verification = false) : null
 
 	let pic
+	
 	if (req.file === undefined) {
 		pic = 'https://res.cloudinary.com/dxf11hxhh/image/upload/v1587913924/theArchitectureDB/default_dh4el6.jpg'
 	} else {

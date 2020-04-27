@@ -7,41 +7,31 @@
 	<meta http-equiv="X-UA-Compatible" content="ie=edge" />
 	<title>the_ArchitectureDB</title>
 	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" />
+	<link
+		href="https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@0,300;0,400;0,600;0,700;1,300&display=swap"
+		rel="stylesheet">
 	<link rel="stylesheet" href="/stylesheets/style.css" />
 </head>
 
 <body>
-	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-		<div class="container">
-			<a class="navbar-brand" href="/">the_ArchitectureDB</a>
+	<div class="container">
+		<nav>
+			<ul id="first-group">
+				<li><a href="/works">obras</a></li>
+				<li><a href="/architects">arquitectos</a></li>
+				<li><a href="/trend">corrientes arquitectónicas</a></li>
+			</ul>
 
-			<div class="collapse navbar-collapse" id="navbarSupportedContent">
-				<ul class="navbar-nav ml-auto">
-					<li class="nav-item">
-						<a class="nav-link" href="/works">Obras</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="/architects">Arquitectos</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="/trend">Corrientes arquitectónicas</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="/dashboard">Dashboard</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="/login">Iniciar sesión</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="/signup">Registro</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="/logout">Cerrar sesión</a>
-					</li>
-				</ul>
-			</div>
-		</div>
-	</nav>
+			<figure>
+				<a href="/"><img src="/images/logo.png" alt="ArchitectureDB Logo"></a>
+			</figure>
+
+			<ul id="third-group">
+				<li><a href="/signup">registro</a></li>
+				<li><a href="/login">login</a></li>
+			</ul>
+		</nav>
+	</div>
 
 	<main class="container">{{{body}}}</main>
 

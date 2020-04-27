@@ -1,12 +1,132 @@
+$p-color: #666665;
+$dark-blue: #2b3647;
+$red: #FF576F;
+$light-grey: #f5f6f9;
+$link-color: #009CBA;
+
+
 body {
   font-weight: 200;
+  font-family: 'Titillium Web', sans-serif;
+  color: $p-color;
+  background-color: white;
+}
+
+//Texts
+
+.left {
+  text-align: left;
+}
+
+.right {
+  text-align: right;
+}
+
+.center {
+  text-align: center;
+}
+
+p {
+  font-size: 18px;
 }
 
 h1,
 h2,
-h3 {
-  font-weight: 200;
+h4,
+h5,
+h6 {
+  color: $dark-blue;
 }
+
+h1 {
+  font-size: 50px;
+  font-weight: 700;
+}
+
+h2 {
+  font-size: 40px;
+  font-weight: 400;
+}
+
+h3 {
+  color: $red;
+  font-size: 23px;
+  font-weight: 400;
+}
+
+h4 {
+  font-size: 35px;
+  font-weight: 700;
+}
+
+h5 {
+  font-size: 21px;
+  font-weight: 600;
+}
+
+h6 {
+  font-size: 18px;
+  font-weight: 300;
+}
+
+//Nav-bar
+nav {
+  padding: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+
+  #first-group {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+
+  }
+
+  #third-group {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+  }
+
+  li {
+    list-style-type: none;
+
+    a {
+      font-size: 12px;
+      color: $dark-blue;
+      font-weight: 600;
+      text-decoration: none;
+      text-transform: uppercase;
+      padding: 0 8px;
+
+      &:hover {
+        text-decoration: underline;
+        color: $red;
+      }
+    }
+  }
+
+
+  figure {
+    width: 144px;
+    margin-left: -150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+
+    img {}
+  }
+
+
+}
+
 
 img {
   display: block;
@@ -17,10 +137,6 @@ textarea {
   resize: none;
 }
 
-.navbar {
-  margin-bottom: 70px;
-}
-
 #errorMsg {
   background-color: red;
   color: white;
@@ -28,10 +144,6 @@ textarea {
   text-align: center;
   padding: 10px 0;
   margin-top: 5px;
-}
-
-.detail-img {
-  width: 300px;
 }
 
 #workMap {
