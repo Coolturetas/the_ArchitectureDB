@@ -4,12 +4,12 @@
     {{!-- LOL HACKY ASS SHIT --}}
     <div id="workId" style="display: none;">{{_id}}</div>
     <div class="col-6">
-        <p>Obra de: <a href="/architects/view/{{architect.id}}">{{architect.name}}</a></p>
-        <p>Tipo de obra: {{workType}}</p>
-        <p>Year: {{finished}}</p>
-        <p>Descripción: {{description}}</p>
-        <p>Corriente arquitectónica: <a href="/trend/show/{{trend.id}}">{{trend.name}}</a></p>
-        <p>Dirección: {{address}}</p>
+        <p>Obra de: <a href="/architects/view/{{works.architect.id}}">{{works.architect.name}}</a></p>
+        <p>Tipo de obra: {{works.workType}}</p>
+        <p>Year: {{works.finished}}</p>
+        <p>Descripción: {{works.description}}</p>
+        <p>Corriente arquitectónica: <a href="/trend/show/{{works.trend.id}}">{{works.trend.name}}</a></p>
+        <p>Dirección: {{works.address}}</p>
         <div class="d-flex justify-content-left">
             <a href="/works/edit/{{works.id}}" class="btn btn-dark">Editar</a>
             <form action="/works/delete/{{works.id}}" method="post">
@@ -19,7 +19,7 @@
     </div>
 
     <div class="col-6">
-        <img src="{{picWork}}" alt="{{name}}" class="detail-img">
+        <img src="{{works.picWork}}" alt="{{works.name}}" class="detail-img">
         <figure id="workMap"></figure>
     </div>
     <h2>Comentarios</h2>

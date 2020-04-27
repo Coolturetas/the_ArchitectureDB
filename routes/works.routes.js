@@ -11,7 +11,7 @@ function checkAuth(req, res, next) {
 }
 
 router.get('/', (req, res, next) => {
-	Work.find()
+	Work.find({ isVerified: true })
 		.then((workFound) => res.render('works/works-index', { workFound }))
 		.catch((err) => next(new Error('No se ha encontrado nada', err)))
 })
@@ -19,7 +19,7 @@ router.get('/', (req, res, next) => {
 //Raw data
 
 router.get('/api', (req, res, next) => {
-  Work.find()
+  Work.find({ isVerified: true })
     .then((allWorks) => {
       res.json({ allWorks })
     })

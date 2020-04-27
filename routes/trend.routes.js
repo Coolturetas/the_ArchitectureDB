@@ -17,7 +17,7 @@ function checkRoles(role) {
 
 //Print Architects DB
 router.get('/', (req, res, next) => {
-	Trend.find().then((atFound) => res.render('archTrend/at-index', { atFound }))
+	Trend.find({ isVerified: true }).then((atFound) => res.render('archTrend/at-index', { atFound }))
 })
 
 //Add new trend
