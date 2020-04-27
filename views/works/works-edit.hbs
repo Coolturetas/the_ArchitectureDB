@@ -1,34 +1,31 @@
-<div class="row">
-    <div class="col-md-6">
-
+<div class="row justify-content-center">
+    <div class="col-md-8">
         <h2>Editar {{works.name}}</h2>
-
-        <form action="/works/edit/{{works.id}}" method="POST" enctype="multipart/form-data">
+        {{#if errorMsg}}
+        <div id="errorMsg">{{{errorMsg}}}</div>
+        {{/if}}
+    </div>
+</div>
+<form action="/works/edit/{{works.id}}" method="POST" enctype="multipart/form-data">
+    <div class="row justify-content-center">
+        <div class="col-md-5">
             <div class="form-group">
-                <label for="name">Name</label>
+                <label for="name">Nombre de la obra</label>
                 <input name="name" type="text" class="form-control" id="name" value="{{works.name}}">
             </div>
-
             <div class="form-group">
-                <label for="country">Country</label>
-                <input name="country" type="text" class="form-control" id="country" value="{{works.country}}">
+                <label for="trend-arch">Corriente Arquitectónica</label>
+                <select class="custom-select" id="trend-arch" name="trend">
+                    <option selected disabled value="{{works.trend.id}}">{{works.trend.name}}</option>
+                    {{#each trends}}
+                    <option value="{{id}}">{{name}}</option>
+                    {{/each}}
+                </select>
             </div>
-
-            <div class="form-group">
-                <label for="finishedin">Año de finalización</label>
-                <input name="finished" type="text" class="form-control" id="finishedin" value="{{works.finished}}">
-            </div>
-
-            <div class="custom-file form-group">
-                <input type="file" class="custom-file-input btn" id="customFile" name="picWork"
-                    value="{{works.picWork}}" required>
-                <label class="custom-file-label" for="customFile">Foto de la obra</label>
-            </div>
-
             <div class="form-group">
                 <label for="work">Tipo de Obra</label>
                 <select class="custom-select" id="work" name="workType">
-                    <option selected>{{works.workType}}</option>
+                    <option selected disabled>{{works.workType}}</option>
                     <option>Parque</option>
                     <option>Espacio Público</option>
                     <option>Vivienda</option>
@@ -36,44 +33,60 @@
                     <option>Edificio público</option>
                 </select>
             </div>
-
+        </div>
+        <div class="col-md-5">
             <div class="form-group">
-                <label for="description">Descripción</label>
-                <input name="description" type="text" class="form-control" id="description"
-                    value="{{works.description}}">
-            </div>
-
-
-            <div class="form-group">
-                <label for="trend-arch">Corriente Arquitectónica</label>
-                <select class="custom-select" id="trend-arch" name="trend">
-                    <option selected value="{{works.trend.id}}">{{works.trend.name}}</option>
-                    {{#each trends}}
-                    <option value="{{_id}}">{{name}}</option>
-                    {{/each}}
-                </select>
-            </div>
-
-            <div class="form-group">
-                <label for="architect">Obra de:</label>
+                <label for="architect">Arquitecto</label>
                 <select class="custom-select" id="architect" name="architect">
-                    <option selected value="{{works.architect.id}}">{{works.architect.name}}</option>
+                    <option selected disabled value="{{works.architect.id}}">{{works.architect.name}}</option>
                     {{#each archs}}
-                    <option value="{{_id}}">{{name}}</option>
+                    <option value="{{id}}">{{name}}</option>
                     {{/each}}
                 </select>
             </div>
+            <div class="row">
+                <div class="col-md-9">
+                    <div class="form-group">
+                        <label for="country">País</label>
+                        <input name="country" type="text" class="form-control" id="country" value="{{works.country}}">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="finishedin">Año*</label>
+                        <input name="finished" type="text" class="form-control" id="finishedin"
+                            value="{{works.finished}}">
+                    </div>
+                </div>
+            </div>
+            <div class="custom-file form-group">
+                <label class="custom-file-label" for="customFile">Foto de la obra</label>
+                <input type="file" class="custom-file-input btn" id="customFile" name="picWork">
+            </div>
+            {{!-- Small is a placeholder until scripting a popover --}}
+            <small>*Año de finalización</small>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-md-10">
             <div class="form-group">
                 <label for="address">Dirección</label>
                 <input name="address" type="text" class="form-control" id="address" value="{{works.address}}">
             </div>
-
-            <button type="submit" class="btn btn-dark btn-block btn-lg">Submit</button>
-
-            {{#if errorMsg}}
-            <div id="errorMsg">{{{errorMsg}}}</div>
-            {{/if}}
-
-        </form>
+        </div>
     </div>
-</div>
+    <div class="row justify-content-center">
+        <div class="col-md-10">
+            <div class="form-group">
+                <label for="description">Descripción</label>
+                <textarea name="description" id="description" rows="5"
+                    class="form-control">{{works.description}}</textarea>
+            </div>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-md-10">
+            <button type="submit" class="btn btn-dark btn-block btn-lg">Añadir</button>
+        </div>
+    </div>
+</form>
