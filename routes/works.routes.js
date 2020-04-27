@@ -111,7 +111,6 @@ router.post(
   (req, res, next) => {
     let verification = true
     req.user.role === 'colaborator' ? (verification = false) : null
-
     let pic
     if (req.file === undefined) {
       pic =
