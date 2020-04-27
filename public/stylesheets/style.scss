@@ -12,6 +12,10 @@ body {
   background-color: white;
 }
 
+.container {
+  width: 1200px;
+}
+
 //Texts
 
 .left {
@@ -112,19 +116,96 @@ nav {
     }
   }
 
-
   figure {
     width: 144px;
-    margin-left: -150px;
+    margin-left: -200px;
     display: flex;
     justify-content: center;
     align-items: center;
     margin-top: 10px;
 
-    img {}
+    a {
+      display: block;
+    }
   }
 
+}
 
+//buttons
+.my-button {
+  text-transform: uppercase;
+  border-radius: 100px;
+  font-weight: 700;
+
+  &.main {
+    font-size: 18px;
+    padding: 8px 40px;
+    margin-left: 16px;
+  }
+
+  &.filled {
+    border: solid 1px $red;
+    background-color: $red;
+    color: white;
+
+    &:hover {
+      color: $red;
+      background-color: white;
+      text-decoration: none;
+    }
+  }
+
+  &.outlined {
+    border: solid 1px $red;
+    color: $red;
+
+    &:hover {
+      background-color: $red;
+      color: white;
+      text-decoration: none;
+
+    }
+  }
+}
+
+
+//main-page
+#main-page {
+  padding: 150px 0;
+  background-image: url('/images/bkg-image.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: 0 0;
+
+  small {
+    text-align: right;
+    display: block;
+    font-size: 14px;
+
+    a {
+      color: $link-color;
+    }
+  }
+}
+
+#main-gp-btn {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin: 16px 0;
+}
+
+//Footer
+footer {
+  display: flex;
+  background-color: white;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 0;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  left: 0;
 }
 
 

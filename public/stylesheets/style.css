@@ -4,6 +4,9 @@ body {
   color: #666665;
   background-color: white; }
 
+.container {
+  width: 1200px; }
+
 .left {
   text-align: left; }
 
@@ -79,11 +82,67 @@ nav {
         color: #FF576F; }
   nav figure {
     width: 144px;
-    margin-left: -150px;
+    margin-left: -200px;
     display: flex;
     justify-content: center;
     align-items: center;
     margin-top: 10px; }
+    nav figure a {
+      display: block; }
+
+.my-button {
+  text-transform: uppercase;
+  border-radius: 100px;
+  font-weight: 700; }
+  .my-button.main {
+    font-size: 18px;
+    padding: 8px 40px;
+    margin-left: 16px; }
+  .my-button.filled {
+    border: solid 1px #FF576F;
+    background-color: #FF576F;
+    color: white; }
+    .my-button.filled:hover {
+      color: #FF576F;
+      background-color: white;
+      text-decoration: none; }
+  .my-button.outlined {
+    border: solid 1px #FF576F;
+    color: #FF576F; }
+    .my-button.outlined:hover {
+      background-color: #FF576F;
+      color: white;
+      text-decoration: none; }
+
+#main-page {
+  padding: 150px 0;
+  background-image: url("/images/bkg-image.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: 0 0; }
+  #main-page small {
+    text-align: right;
+    display: block;
+    font-size: 14px; }
+    #main-page small a {
+      color: #009CBA; }
+
+#main-gp-btn {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin: 16px 0; }
+
+footer {
+  display: flex;
+  background-color: white;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 0;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  left: 0; }
 
 img {
   display: block;
