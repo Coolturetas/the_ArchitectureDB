@@ -122,6 +122,7 @@ router.post('/post-comment/:id', checkAuth, (req, res, next) => {
 })
 
 router.post('/post-comment/delete/:id', checkAuth, (req, res, next) => {
+	console.log(req.body)
 	Comment.findById(req.params.id)
 		.then((result) => {
 			if (result.creatorId == req.user.id) {
@@ -132,7 +133,7 @@ router.post('/post-comment/delete/:id', checkAuth, (req, res, next) => {
 		})
 		.then((resultId) => Comment.findByIdAndRemove(resultId))
 		.then(() => res.redirect('/works'))
-		.catch((err) => next(new Error('No se ha borrado tu comentario', err)))
+		.catch((err) => console.log(err))
 })
 
 //Find One by ID
