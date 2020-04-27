@@ -12,6 +12,7 @@ function checkAuth(req, res, next) {
 
 router.get('/', (req, res, next) => {
 	Work.find({ isVerified: true })
+		.populate('architect')
 		.then((workFound) => res.render('works/works-index', { workFound }))
 		.catch((err) => next(new Error('No se ha encontrado nada', err)))
 })

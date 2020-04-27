@@ -1,27 +1,31 @@
-<h1>Este es el index de Obras</h1>
+<section id="works-page">
+    <h1 class="center">Índice de obras</h1>
+    <h3 class="center">¿Crees que falta alguna?</h3>
+    <a class="my-button main filled" href="/works/new">Añadir obra</a>
 
-<a href="/works/new" class="btn btn-info">Añadir Obra</a>
+    <div class="row" id="all-cards">
+        {{#each workFound}}
+        <div id="work-card" class="col-md-6">
+            <figure id="work-img">
+                {{!-- <img src="{{ picWork }}" alt="ArchitectureDB {{ name }}" /> --}}
+            </figure>
+            <div id="work-text">
+                <h5 class="left">{{ name }}</h5>
+                <h6 class="left">{{ architect.name }}</h6>
+                <div id="btn-card">
+                    <a class="my-button card filled" href="/works/show/{{ id }}">Ver detalles</a>
+                    <div class="fav-btn">
+                        <a href="#">
+                            <img src="/images/add-fav.svg">
+                        </a>
+                        <a href="#">
+                            <img src="/images/add-more.svg">
+                        </a>
+                    </div>
+                </div>
+            </div>
 
-<div class="row">
-    {{#each workFound}}
-    <div class="col-md-4">
-        <div class="card" style="width: 18rem;">
-            <img src="{{ picWork }}" class="card-img-top" alt="..." />
-            <div class="card-body">
-                <h5 class="card-title">{{ name }}</h5>
-            </div>
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item">
-                    <h6>Obras más representativa</h6>
-                </li>
-                <li class="list-group-item">{{ bestWork }}</li>
-            </ul>
-            <div class="card-body">
-                <a href="#" class="card-link">Arquitectos</a>
-                <a href="#" class="card-link">Épocas</a>
-            </div>
-            <a href="/works/show/{{ id }}" class="btn btn-info">Ver detalles</a>
         </div>
+        {{/each}}
     </div>
-    {{/each}}
-</div>
+</section>
