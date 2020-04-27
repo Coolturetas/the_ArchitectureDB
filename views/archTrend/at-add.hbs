@@ -1,36 +1,52 @@
-<form method="POST" action="/trend" enctype="multipart/form-data">
-
-    <div class="form-row">
-        <div class="form-group col-md-4">
-            <label for="name">Nombre</label>
-            <input type="text" class="form-control" id="name" name="name">
-        </div>
-        <div class="form-group col-md-4">
-            <label for="country">País de origen</label>
-            <input type="text" class="form-control" id="country" name="country">
-        </div>
-        <div class="form-group col-md-4">
-            <label for="year">Años</label>
-            <input type="text" class="form-control" id="year" name="year">
-        </div>
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <h2>Añadir corriente arquitectónica</h2>
     </div>
+</div>
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <form method="POST" action="/trend" enctype="multipart/form-data">
 
-    <div class="form-group">
-        <label for="inputAddress">Descripción</label>
-        <input type="text" class="form-control" id="inputAddress" name="description">
+            <div class="form-group">
+                <label for="name">Nombre</label>
+                <input type="text" class="form-control" id="name" name="name">
+            </div>
+
+            <div class="row justify-content-center">
+                <div class="col-md-7 form-group">
+                    <label for="country">País de origen</label>
+                    <input type="text" class="form-control" id="country" name="country">
+                </div>
+                <div class="col-md-5 form-group">
+                    <label for="year">Años</label>
+                    <input type="text" class="form-control" id="year" name="year">
+                </div>
+            </div>
+
+
+
+            <div class="form-group">
+                <label for="inputAddress">Obra más representativa</label>
+                <input type="text" class="form-control" id="inputAddress" name="bestWork">
+            </div>
+
+            <div class="custom-file">
+                <label for="customFile">Foto Obra más famosa</label>
+                <input type="file" class="custom-file-input btn" id="customFile" name="photo-trend">
+                <label class="custom-file-label" for="customFile"></label>
+            </div>
+
+            <div class="form-group">
+                <label for="inputAddress">Descripción</label>
+                <input type="text" class="form-control" id="inputAddress" name="description">
+            </div>
+
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <button type="submit" class="btn btn-dark btn-block btn-lg">Añadir</button>
+                </div>
+            </div>
+
+        </form>
     </div>
-
-    <div class="form-group">
-        <label for="inputAddress">Obra más representativa</label>
-        <input type="text" class="form-control" id="inputAddress" name="bestWork">
-    </div>
-
-    <div class="custom-file">
-        <label for="customFile">Foto Obra más famosa</label>
-        <input type="file" class="custom-file-input btn" id="customFile" name="photo-trend">
-        <label class="custom-file-label" for="customFile"></label>
-    </div>
-
-    <button type="submit" class="btn btn-primary">Añadir</button>
-
-</form>
+</div>
