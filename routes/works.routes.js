@@ -83,7 +83,7 @@ router.post(
     Work.findOneAndUpdate({ _id: req.params.id }, editWork, { new: true })
       .then((data) => {
         console.log(data)
-        res.redirect('/')
+        res.redirect(`/`)
       })
       .catch((err) => console.log(err))
   }
