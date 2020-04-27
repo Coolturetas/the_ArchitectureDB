@@ -24,10 +24,10 @@
 | **Method** | **Works Route** | **Description**                           |
 | ---------- | --------------- | :---------------------------------------- |
 | GET        | /works          | Main works page route. Renders all works. |
-| GET        | /works          | Main works page route. Renders all works. |
+| GET        | /works/api      | Get JSON                                  |
 | GET        | /works/add      | Renders form to add new                   |
 | POST       | /works/add      | Creates new work                          |
-| GET        | /works/show/:id | Shows especified work                     |
+| GET        | /works/api/:id  | Shows especified work                     |
 | GET        | /works/edit/:id | Renders form to edit                      |
 | POST       | /works/edit/:id | Edit specified work                       |
 
