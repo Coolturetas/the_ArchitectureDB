@@ -97,16 +97,17 @@ router.post('/post-comment/:id', checkAuth, (req, res, next) => {
 })
 //Delete comment
 router.post('/post-comment/delete/:id', checkAuth, (req, res, next) => {
+	const placePosted = req.body.reference
 	Comment.findById(req.params.id)
 		.then((result) => {
 			if (result.creatorId == req.user.id) {
 				return result.id
 			} else {
-				return res.redirect('/trend')
+				return res.redirect(`/trend/show/${placePosted}`)
 			}
 		})
 		.then((resultId) => Comment.findByIdAndRemove(resultId))
-		.then(() => res.redirect('/trend'))
+		.then(() => res.redirect(`/trend/show/${placePosted}`))
 		.catch((err) => next(new Error('No se ha borrado tu comentario', err)))
 })
 

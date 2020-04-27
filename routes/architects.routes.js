@@ -116,16 +116,18 @@ router.post('/post-comment/:id', checkAuth, (req, res, next) => {
 })
 
 router.post('/post-comment/delete/:id', checkAuth, (req, res, next) => {
+	const placePosted = req.body.reference
+
 	Comment.findById(req.params.id)
 		.then((result) => {
 			if (result.creatorId == req.user.id) {
 				return result.id
 			} else {
-				return res.redirect('/architects')
+				return res.redirect(`/architects/view/${placePosted}`)
 			}
 		})
 		.then((resultId) => Comment.findByIdAndRemove(resultId))
-		.then(() => res.redirect('/architects'))
+		.then(() => res.redirect(`/architects/view/${placePosted}`))
 		.catch((err) => next(new Error('No se ha borrado tu comentario', err)))
 })
 
