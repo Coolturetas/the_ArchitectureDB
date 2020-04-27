@@ -59,6 +59,7 @@
     <div class="d-flex justify-content-left align-items-center">
         <a href="/works/post-comment/edit/{{id}}" class="btn btn-dark">Editar</a>
         <form action="/works/post-comment/delete/{{id}}" method="post">
+            <input type="hidden" value="{{works._id}}" name="reference">
             <button type="submit" class="btn btn-danger">Borrar</button>
         </form>
     </div>

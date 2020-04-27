@@ -165,17 +165,18 @@ router.post('/post-comment/:id', checkAuth, (req, res, next) => {
 })
 
 router.post('/post-comment/delete/:id', checkAuth, (req, res, next) => {
-  Comment.findById(req.params.id)
-    .then((result) => {
-      if (result.creatorId == req.user.id) {
-        return result.id
-      } else {
-        return res.redirect('/works')
-      }
-    })
-    .then((resultId) => Comment.findByIdAndRemove(resultId))
-    .then(() => res.redirect('/works'))
-    .catch((err) => next(new Error('No se ha borrado tu comentario', err)))
+	console.log(req.body)
+	Comment.findById(req.params.id)
+		.then((result) => {
+			if (result.creatorId == req.user.id) {
+				return result.id
+			} else {
+				return res.redirect('/works')
+			}
+		})
+		.then((resultId) => Comment.findByIdAndRemove(resultId))
+		.then(() => res.redirect('/works'))
+		.catch((err) => console.log(err))
 })
 
 //Find One by ID
