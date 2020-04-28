@@ -4,6 +4,7 @@ const Work = require('../models/work.model')
 const Trend = require('../models/trend.model')
 const Arch = require('../models/architect.model')
 const Comment = require('../models/comment.model')
+const List = require('../models/list.model')
 const cloudUploader = require('../configs/cloudinary.config')
 
 function checkAuth(req, res, next) {
@@ -54,7 +55,7 @@ router.post('/edit/:id', checkAuth, cloudUploader.single('photo-work'), (req, re
 	Work.findOneAndUpdate({ _id: req.params.id }, editWork, { new: true })
 		.then((data) => {
 			console.log(data)
-			res.redirect(`/`)
+			res.redirect('/works')
 		})
 		.catch((err) => console.log(err))
 })
@@ -72,7 +73,7 @@ router.post('/', checkAuth, cloudUploader.single('photo-work'), (req, res, next)
 	let verification = true
 	req.user.role === 'colaborator' ? (verification = false) : null
 	let pic
-	
+
 	if (req.file === undefined) {
 		pic = 'https://res.cloudinary.com/dxf11hxhh/image/upload/v1587913924/theArchitectureDB/default_dh4el6.jpg'
 	} else {
@@ -145,6 +146,34 @@ router.get('/show/:id', (req, res, next) => {
 	Promise.all([promiseWork, promisePost])
 		.then((data) => res.render('works/works-dets', { works: data[0], posts: data[1] }))
 		.catch((err) => next(new Error('No se ha encontrado nada para ver', err)))
+})
+
+//
+//Likes
+//
+
+router.post('/add-like/:id', checkAuth, (req, res, next) => {
+	console.log('paice que funsiona')
+	const newList = {
+		typeOfList: 'Like',
+		owner: req.user.id,
+		likeId: req.params.id,
+	}
+	List.create(newList)
+		.then(res.redirect('/works'))
+		.catch((err) => console.log('No se ha creado ningun like', err))
+})
+
+router.post('/add-fav/:id', checkAuth, (req, res, next) => {
+	console.log('paice que funsiona')
+	const newList = {
+		typeOfList: 'Fav',
+		owner: req.user.id,
+		likeId: req.params.id,
+	}
+	List.create(newList)
+		.then(res.redirect('/works'))
+		.catch((err) => console.log('No se ha creado ningun fav', err))
 })
 
 module.exports = router

@@ -189,13 +189,23 @@ nav {
     }
   }
 
+  &.nolined {
+    font-size: 16px;
+    color: $dark-blue;
+    border-radius: 0;
+    border: none;
+    text-transform: none;
+    font-weight: 300;
+    text-decoration: underline;
+  }
+
 }
 
 .fav-btn {
   display: flex;
   justify-content: flex-start;
 
-  img {
+  input {
     width: 30px;
     margin: 0 5px;
   }
@@ -228,7 +238,8 @@ nav {
   margin: 16px 0;
 }
 
-//Works Index
+//Each Index
+
 #works-page {
   padding-top: 40px;
   display: flex;
@@ -243,13 +254,13 @@ nav {
     padding: 20px 0;
   }
 
-  #work-card {
+  .work-card {
     display: flex;
     align-items: flex-start;
-    margin: 20px 0;
+    margin: 20px 20px 0 0;
 
-    #work-img {
-      width: 200px;
+    .work-img {
+      width: 180px;
       height: 180px;
 
       img {
@@ -261,16 +272,16 @@ nav {
       }
     }
 
-    #work-text {
+    .work-text {
       width: 368px;
       padding: 10px 16px 16px;
       background-color: $light-grey;
       border-radius: 0px 10px 10px 0;
       display: flex;
       flex-direction: column;
-      // margin-top: 28px;
 
-      #btn-card {
+
+      .btn-card {
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -281,6 +292,7 @@ nav {
   }
 }
 
+#likes-page,
 #arch-page,
 #trend-page {
   padding-top: 40px;
@@ -295,8 +307,8 @@ nav {
 
 
   .card-dsg {
-    // width: 168px;
-    margin-top: 40px;
+    width: 168px;
+    margin: 40px 20px 0 0;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -324,6 +336,15 @@ nav {
       align-items: center;
       border-radius: 0 0 10px 10px;
 
+      &.fav {
+        background-color: pink;
+      }
+
+      &.like {
+        background-color: goldenrod;
+      }
+
+
       h5 {
         font-size: 18px;
       }
@@ -331,6 +352,47 @@ nav {
 
   }
 
+  .my-list1,
+  .my-list2 {
+    background-color: $light-grey;
+    border-radius: 20px;
+    padding: 20px 10px;
+    margin-top: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .ordering {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 0 20px 40px;
+    }
+  }
+
+}
+
+//Dets page
+
+#work-dets {
+  padding-bottom: 60px;
+
+  .my-button {
+    margin-left: 0;
+  }
+
+  .first-part {
+    margin: 48px 0;
+
+    a {
+      color: $link-color;
+    }
+
+    img {
+      border-radius: 10px;
+    }
+  }
 }
 
 
@@ -347,6 +409,7 @@ footer {
   left: 0;
 }
 
+//Drag and Drop
 
 
 #errorMsg {

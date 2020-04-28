@@ -13,24 +13,24 @@
 
     <div class="row" id="all-cards">
         {{#each workFound}}
-        <div id="work-card" class="col-md-6">
+        <div class="work-card">
 
-            <figure id="work-img">
+            <figure class="work-img">
                 <img src="{{ picWork }}" alt="ArchitectureDB {{ name }}" />
             </figure>
 
-            <div id="work-text">
+            <div class="work-text">
                 <h5 class="left">{{ name }}</h5>
                 <h6 class="left">{{ architect.name }}</h6>
-                <div id="btn-card">
+                <div class="btn-card">
                     <a class="my-button card filled" href="/works/show/{{ id }}">Ver detalles</a>
                     <div class="fav-btn">
-                        <a href="#">
-                            <img src="/images/add-fav.svg">
-                        </a>
-                        <a href="#">
-                            <img src="/images/add-more.svg">
-                        </a>
+                        <form action="/works/add-like/{{id}}" method="post">
+                            <input type="image" name="submit" src="/images/add-more.svg" s>
+                        </form>
+                        <form action="/works/add-fav/{{id}}" method="post">
+                            <input type="image" name="submit" src="/images/add-fav.svg" s>
+                        </form>
                     </div>
                 </div>
             </div>

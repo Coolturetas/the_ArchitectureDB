@@ -127,11 +127,19 @@ nav {
       background-color: #FF576F;
       color: white;
       text-decoration: none; }
+  .my-button.nolined {
+    font-size: 16px;
+    color: #2b3647;
+    border-radius: 0;
+    border: none;
+    text-transform: none;
+    font-weight: 300;
+    text-decoration: underline; }
 
 .fav-btn {
   display: flex;
   justify-content: flex-start; }
-  .fav-btn img {
+  .fav-btn input {
     width: 30px;
     margin: 0 5px; }
 
@@ -163,31 +171,32 @@ nav {
     margin: 8px 0 8px; }
   #works-page #all-cards {
     padding: 20px 0; }
-  #works-page #work-card {
+  #works-page .work-card {
     display: flex;
     align-items: flex-start;
-    margin: 20px 0; }
-    #works-page #work-card #work-img {
-      width: 200px;
+    margin: 20px 20px 0 0; }
+    #works-page .work-card .work-img {
+      width: 180px;
       height: 180px; }
-      #works-page #work-card #work-img img {
+      #works-page .work-card .work-img img {
         border-radius: 10px 0 10px 10px;
         width: 100%;
         height: 100%;
         object-fit: cover;
         overflow: hidden; }
-    #works-page #work-card #work-text {
+    #works-page .work-card .work-text {
       width: 368px;
       padding: 10px 16px 16px;
       background-color: #f5f6f9;
       border-radius: 0px 10px 10px 0;
       display: flex;
       flex-direction: column; }
-      #works-page #work-card #work-text #btn-card {
+      #works-page .work-card .work-text .btn-card {
         display: flex;
         justify-content: space-between;
         align-items: center; }
 
+#likes-page,
 #arch-page,
 #trend-page {
   padding-top: 40px;
@@ -195,20 +204,25 @@ nav {
   flex-direction: column;
   align-items: center;
   padding-bottom: 60px; }
+  #likes-page .my-button,
   #arch-page .my-button,
   #trend-page .my-button {
     margin: 8px 0 8px; }
+  #likes-page .card-dsg,
   #arch-page .card-dsg,
   #trend-page .card-dsg {
-    margin-top: 40px;
+    width: 168px;
+    margin: 40px 20px 0 0;
     display: flex;
     flex-direction: column;
     align-items: center; }
+    #likes-page .card-dsg .card-img,
     #arch-page .card-dsg .card-img,
     #trend-page .card-dsg .card-img {
       width: inherit;
       height: 145px;
       margin-bottom: 0; }
+      #likes-page .card-dsg .card-img img,
       #arch-page .card-dsg .card-img img,
       #trend-page .card-dsg .card-img img {
         border-radius: 10px 10px 0 0;
@@ -216,6 +230,7 @@ nav {
         height: 100%;
         object-fit: cover;
         overflow: hidden; }
+    #likes-page .card-dsg .card-text,
     #arch-page .card-dsg .card-text,
     #trend-page .card-dsg .card-text {
       background-color: #f5f6f9;
@@ -225,9 +240,53 @@ nav {
       flex-direction: column;
       align-items: center;
       border-radius: 0 0 10px 10px; }
+      #likes-page .card-dsg .card-text.fav,
+      #arch-page .card-dsg .card-text.fav,
+      #trend-page .card-dsg .card-text.fav {
+        background-color: pink; }
+      #likes-page .card-dsg .card-text.like,
+      #arch-page .card-dsg .card-text.like,
+      #trend-page .card-dsg .card-text.like {
+        background-color: goldenrod; }
+      #likes-page .card-dsg .card-text h5,
       #arch-page .card-dsg .card-text h5,
       #trend-page .card-dsg .card-text h5 {
         font-size: 18px; }
+  #likes-page .my-list1,
+  #likes-page .my-list2,
+  #arch-page .my-list1,
+  #arch-page .my-list2,
+  #trend-page .my-list1,
+  #trend-page .my-list2 {
+    background-color: #f5f6f9;
+    border-radius: 20px;
+    padding: 20px 10px;
+    margin-top: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; }
+    #likes-page .my-list1 .ordering,
+    #likes-page .my-list2 .ordering,
+    #arch-page .my-list1 .ordering,
+    #arch-page .my-list2 .ordering,
+    #trend-page .my-list1 .ordering,
+    #trend-page .my-list2 .ordering {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 0 20px 40px; }
+
+#work-dets {
+  padding-bottom: 60px; }
+  #work-dets .my-button {
+    margin-left: 0; }
+  #work-dets .first-part {
+    margin: 48px 0; }
+    #work-dets .first-part a {
+      color: #009CBA; }
+    #work-dets .first-part img {
+      border-radius: 10px; }
 
 footer {
   display: flex;

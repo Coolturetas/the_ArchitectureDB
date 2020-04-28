@@ -26,5 +26,6 @@ app.use('/dashboard', require('./routes/dashboard.routes'))
 app.use('/user', require('./routes/user.routes'))
 app.use('/works', require('./routes/works.routes'))
 app.use('/api', require('./routes/api.routes'))
+app.use('/list', require('./routes/list.routes'))
 
 module.exports = app
