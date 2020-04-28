@@ -1,68 +1,75 @@
-<div class="row justify-content-center">
-    <div class="col-md-6 ">
-        <header class="header d-flex flex-column justify-content-center align-items-center">
-            <h1>{{works.name}}</h1>
-            <h3>¿Crees que falta algo o que algo está mal?</h3>
-            <a href="/works/edit/{{works.id}}" class="my-button main filled">Editar</a>
-            <form action="/works/delete/{{works.id}}" method="post">
-                <button type="submit" class="my-button outlined">Borrar</button>
-            </form>
-        </header>
-    </div>
-</div>
+<section id="work-dets">
 
-<div class="row">
-    {{!-- LOL HACKY ASS SHIT --}}
-    <div id="workId" style="display: none;">{{works._id}}</div>
+    <header class="d-flex flex-column justify-content-center align-items-center">
+        <h1>{{works.name}}</h1>
+        <h3>¿Crees que falta algo o que algo está mal?</h3>
 
-    <div class="col-4">
-        <img src="{{works.picWork}}" alt="{{works.name}}" class="detail-img">
-    </div>
+        <a href="/works/edit/{{works.id}}" class="my-button main filled">Editar</a>
+        <form action="/works/delete/{{works.id}}" method="post">
+            <input type="submit" class="my-button nolined" value="Borrar">
+        </form>
 
-    <div class="col-8">
-        <h4>Obra de <a href="/architects/view/{{works.architect.id}}">{{works.architect.name}}</a></h4>
-        <h5>{{works.workType}}, {{works.finished}}</h5>
-        <h6><a href="/trend/show/{{works.trend.id}}">{{works.trend.name}}</a></h6>
-        <p>Descripción: {{works.description}}</p>
-    </div>
-</div>
-<div class="row">
-    <div class="col-md-12">
-        <h5>{{works.address}}</h5>
-        <figure id="workMap"></figure>
-    </div>
-</div>
+        {{!-- {{#unless user}}
+        <a class="my-button main disabled" href="/login">Editar</a>
+        <small>Para poder editar, es necesario iniciar sesión.</small>
+        {{/unless}} --}}
+    </header>
 
-<div class="row">
-    <div class="col-md-8">
-        <h2>Comentarios</h2>
-        {{#each posts}}
-        <p>{{subject}}</p>
-        <p>{{creatorId.username}}</p>
-        <p>{{content}}</p>
-        <div class="d-flex justify-content-left align-items-center">
-            <form action="/works/post-comment/delete/{{id}}" method="post">
-                <input type="hidden" value="{{postedIn}}" name="reference">
-                <button type="submit" class="my-button outlined">Borrar</button>
+
+    <article class="row first-part">
+        {{!-- LOL HACKY ASS SHIT --}}
+        <div id="workId" style="display: none;">{{works._id}}</div>
+
+        <div class="col-4">
+            <img src="{{works.picWork}}" alt="{{works.name}}" class="detail-img">
+        </div>
+
+        <div class="col-8">
+            <h4>Obra de <a href="/architects/view/{{works.architect.id}}">{{works.architect.name}}</a></h4>
+            <h5>{{works.workType}}, {{works.finished}}</h5>
+            <h6><a href="/trend/show/{{works.trend.id}}"><em>{{works.trend.name}}</em></a></h6>
+            <p>Descripción: {{works.description}}</p>
+        </div>
+    </article>
+
+    <article class="row">
+        <div class="col-md-12">
+            <h5>{{works.address}}</h5>
+            <figure id="workMap"></figure>
+        </div>
+    </article>
+
+    <article class="row">
+        <div class="col-md-8">
+            <h2>Comentarios</h2>
+            {{#each posts}}
+            <p>{{subject}}</p>
+            <p>{{creatorId.username}}</p>
+            <p>{{content}}</p>
+            <div class="d-flex justify-content-left align-items-center">
+                <form action="/works/post-comment/delete/{{id}}" method="post">
+                    <input type="hidden" value="{{postedIn}}" name="reference">
+                    <button type="submit" class="my-button outlined">Borrar</button>
+                </form>
+            </div>
+            {{/each}}
+        </div>
+        <div class="col-md-4">
+            <form action="/works/post-comment/{{works.id}}" method="POST">
+
+                <label for="subject">Asunto</label>
+                <input type="text" name="subject" id="subject" class="form-control">
+
+                <label for="comment">Deja tu comentario</label>
+                <textarea class="form-control" id="comment" rows="4" cols="100" name="content"></textarea>
+
+                <button type="submit">Publicar comentario</button>
+
             </form>
         </div>
-        {{/each}}
-    </div>
-    <div class="col-md-4">
-        <form action="/works/post-comment/{{works.id}}" method="POST">
+    </article>
 
-            <label for="subject">Asunto</label>
-            <input type="text" name="subject" id="subject" class="form-control">
-
-            <label for="comment">Deja tu comentario</label>
-            <textarea class="form-control" id="comment" rows="4" cols="100" name="content"></textarea>
-
-            <button type="submit">Guardar comentario</button>
-
-        </form>
-    </div>
-</div>
-
-<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-<script
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBBCqsxYcgOHcgyFouDoMyFFIFYtj3tHG0&callback=startMap"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBBCqsxYcgOHcgyFouDoMyFFIFYtj3tHG0&callback=startMap"></script>
+</section>

@@ -127,6 +127,14 @@ nav {
       background-color: #FF576F;
       color: white;
       text-decoration: none; }
+  .my-button.nolined {
+    font-size: 16px;
+    color: #2b3647;
+    border-radius: 0;
+    border: none;
+    text-transform: none;
+    font-weight: 300;
+    text-decoration: underline; }
 
 .fav-btn {
   display: flex;
@@ -163,27 +171,27 @@ nav {
     margin: 8px 0 8px; }
   #works-page #all-cards {
     padding: 20px 0; }
-  #works-page #work-card {
+  #works-page .work-card {
     display: flex;
     align-items: flex-start;
-    margin: 20px 0; }
-    #works-page #work-card #work-img {
-      width: 200px;
+    margin: 20px 20px 0 0; }
+    #works-page .work-card .work-img {
+      width: 180px;
       height: 180px; }
-      #works-page #work-card #work-img img {
+      #works-page .work-card .work-img img {
         border-radius: 10px 0 10px 10px;
         width: 100%;
         height: 100%;
         object-fit: cover;
         overflow: hidden; }
-    #works-page #work-card #work-text {
+    #works-page .work-card .work-text {
       width: 368px;
       padding: 10px 16px 16px;
       background-color: #f5f6f9;
       border-radius: 0px 10px 10px 0;
       display: flex;
       flex-direction: column; }
-      #works-page #work-card #work-text #btn-card {
+      #works-page .work-card .work-text .btn-card {
         display: flex;
         justify-content: space-between;
         align-items: center; }
@@ -200,7 +208,8 @@ nav {
     margin: 8px 0 8px; }
   #arch-page .card-dsg,
   #trend-page .card-dsg {
-    margin-top: 40px;
+    width: 168px;
+    margin: 40px 20px 0 0;
     display: flex;
     flex-direction: column;
     align-items: center; }
@@ -228,6 +237,17 @@ nav {
       #arch-page .card-dsg .card-text h5,
       #trend-page .card-dsg .card-text h5 {
         font-size: 18px; }
+
+#work-dets {
+  padding-bottom: 60px; }
+  #work-dets .my-button {
+    margin-left: 0; }
+  #work-dets .first-part {
+    margin: 48px 0; }
+    #work-dets .first-part a {
+      color: #009CBA; }
+    #work-dets .first-part img {
+      border-radius: 10px; }
 
 footer {
   display: flex;

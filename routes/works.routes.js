@@ -76,7 +76,7 @@ router.post('/edit/:id', checkAuth, cloudUploader.single('photo-work'), (req, re
 	Work.findOneAndUpdate({ _id: req.params.id }, editWork, { new: true })
 		.then((data) => {
 			console.log(data)
-			res.redirect(`/`)
+			res.redirect('/works')
 		})
 		.catch((err) => console.log(err))
 })
@@ -94,7 +94,7 @@ router.post('/', checkAuth, cloudUploader.single('photo-work'), (req, res, next)
 	let verification = true
 	req.user.role === 'colaborator' ? (verification = false) : null
 	let pic
-	
+
 	if (req.file === undefined) {
 		pic = 'https://res.cloudinary.com/dxf11hxhh/image/upload/v1587913924/theArchitectureDB/default_dh4el6.jpg'
 	} else {
