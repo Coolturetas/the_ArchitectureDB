@@ -256,10 +256,10 @@ nav {
   .work-card {
     display: flex;
     align-items: flex-start;
-    margin: 20px 0;
+    margin: 20px 20px 0 0;
 
     .work-img {
-      width: 200px;
+      width: 180px;
       height: 180px;
 
       img {
@@ -305,8 +305,8 @@ nav {
 
 
   .card-dsg {
-    // width: 168px;
-    margin-top: 40px;
+    width: 168px;
+    margin: 40px 20px 0 0;
     display: flex;
     flex-direction: column;
     align-items: center;

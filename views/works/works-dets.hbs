@@ -3,16 +3,16 @@
     <header class="d-flex flex-column justify-content-center align-items-center">
         <h1>{{works.name}}</h1>
         <h3>¿Crees que falta algo o que algo está mal?</h3>
-        {{#if user}}
+
         <a href="/works/edit/{{works.id}}" class="my-button main filled">Editar</a>
         <form action="/works/delete/{{works.id}}" method="post">
             <input type="submit" class="my-button nolined" value="Borrar">
         </form>
-        {{/if}}
-        {{#unless user}}
+
+        {{!-- {{#unless user}}
         <a class="my-button main disabled" href="/login">Editar</a>
         <small>Para poder editar, es necesario iniciar sesión.</small>
-        {{/unless}}
+        {{/unless}} --}}
     </header>
 
 
