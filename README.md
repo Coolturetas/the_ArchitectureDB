@@ -21,14 +21,17 @@
 
 #### Raw data routes:
 
-| **Method** | **Route**           | **Description**                         |
-|------------|---------------------|-----------------------------------------|
-| GET        | /api/works          | Returns all Work documents as JSON      |
-| GET        | /api/works/:id      | Returns a specific Work as JSON         |
-| GET        | /api/architects     | Returns all Architect documents as JSON |
-| GET        | /api/architects/:id | Returns a specific Architect as JSON    |
-| GET        | /api/trend          | Returns all Trend documents as JSON     |
-| GET        | /api/trend/:id      | Returns a specific Trend as JSON        |
+| **Method** | **Route**                       | **Description**                                 |
+|------------|---------------------------------|-------------------------------------------------|
+| GET        | /api/works                      | Returns all Work documents as JSON              |
+| GET        | /api/works/:id                  | Returns a specific Work as JSON                 |
+| GET        | /api/works/search?foo=bar       | Allows refining search by queries, outputs JSON |
+| GET        | /api/architects                 | Returns all Architect documents as JSON         |
+| GET        | /api/architects/:id             | Returns a specific Architect as JSON            |
+| GET        | /api/architects/search?foo=bar  | Allows refining search by queries, outputs JSON |
+| GET        | /api/trend                      | Returns all Trend documents as JSON             |
+| GET        | /api/trend/:id                  | Returns a specific Trend as JSON                |
+| GET        | /api/trend/search?foo=bar       | Allows refining search by queries, outputs JSON |
 
 #### Works Routes:
 
