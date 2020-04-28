@@ -3,7 +3,6 @@ const router = express.Router()
 const Work = require('../models/work.model')
 const Trend = require('../models/trend.model')
 const Arch = require('../models/architect.model')
-const Comment = require('../models/comment.model')
 
 router.get('/works', (req, res, next) => {
   Work.find({ isVerified: true })
@@ -45,6 +44,24 @@ router.get('/architects/:id', (req, res, next) => {
     })
 })
 
-// router.get("/trend")
+router.get('/trend', (req, res, next) => {
+  Trend.find({ isVerified: true })
+    .then((allTrends) => {
+      res.json({ allTrends })
+    })
+    .catch((err) => {
+      next(new Error(err))
+    })
+})
+
+router.get('/trend/:id', (req, res, next) => {
+  Trend.findById(req.params.id)
+    .then((trend) => {
+      res.json({ trend })
+    })
+    .catch((err) => {
+      next(new Error(err))
+    })
+})
 
 module.exports = router
