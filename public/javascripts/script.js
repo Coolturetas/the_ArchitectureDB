@@ -32,7 +32,7 @@ function pinMarker(place, targetMap) {
 
 function getPlaces() {
   axios
-    .get(`/works/api/${workId}`)
+    .get(`/api/works/${workId}`)
     .then((result) => {
       pinMarker(result.data.work, renderedMap)
     })
