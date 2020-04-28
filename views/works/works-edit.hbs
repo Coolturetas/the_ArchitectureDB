@@ -16,7 +16,7 @@
             <div class="form-group">
                 <label for="trend-arch">Corriente Arquitectónica</label>
                 <select class="custom-select" id="trend-arch" name="trend">
-                    <option selected disabled value="{{works.trend.id}}">{{works.trend.name}}</option>
+                    <option selected value="{{works.trend.id}}">{{works.trend.name}}</option>
                     {{#each trends}}
                     <option value="{{id}}">{{name}}</option>
                     {{/each}}
@@ -25,7 +25,7 @@
             <div class="form-group">
                 <label for="work">Tipo de Obra</label>
                 <select class="custom-select" id="work" name="workType">
-                    <option selected disabled>{{works.workType}}</option>
+                    <option selected>{{works.workType}}</option>
                     <option>Parque</option>
                     <option>Espacio Público</option>
                     <option>Vivienda</option>
@@ -61,7 +61,7 @@
             </div>
             <div class="custom-file form-group">
                 <label class="custom-file-label" for="customFile">Foto de la obra</label>
-                <input type="file" class="custom-file-input btn" id="customFile" name="picWork">
+                <input type="file" class="custom-file-input btn" id="customFile" name="photo-work">
             </div>
             {{!-- Small is a placeholder until scripting a popover --}}
             <small>*Año de finalización</small>
