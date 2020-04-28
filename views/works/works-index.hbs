@@ -6,9 +6,11 @@
     <div class="row" id="all-cards">
         {{#each workFound}}
         <div id="work-card" class="col-md-6">
+
             <figure id="work-img">
-                {{!-- <img src="{{ picWork }}" alt="ArchitectureDB {{ name }}" /> --}}
+                <img src="{{ picWork }}" alt="ArchitectureDB {{ name }}" />
             </figure>
+
             <div id="work-text">
                 <h5 class="left">{{ name }}</h5>
                 <h6 class="left">{{ architect.name }}</h6>
