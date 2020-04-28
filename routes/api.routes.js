@@ -4,14 +4,16 @@ const Work = require('../models/work.model')
 const Trend = require('../models/trend.model')
 const Arch = require('../models/architect.model')
 
-router.get('/works', (req, res, next) => {
-  Work.find({ isVerified: true })
-    .then((allWorks) => {
-      res.json({ allWorks })
-    })
-    .catch((err) => {
-      next(new Error(err))
-    })
+//WORKS
+
+router.get('/works/search', (req, res, next) => {
+  console.log(req.query)
+  Work.find(req.query)
+  .then((works) => {
+    res.json({works})
+  }).catch((err) => {
+    next(new Error(err))
+  });
 })
 
 router.get('/works/:id', (req, res, next) => {
@@ -23,6 +25,18 @@ router.get('/works/:id', (req, res, next) => {
       next(new Error(err))
     })
 })
+
+router.get('/works', (req, res, next) => {
+  Work.find({ isVerified: true })
+    .then((allWorks) => {
+      res.json({ allWorks })
+    })
+    .catch((err) => {
+      next(new Error(err))
+    })
+})
+
+//ARCHITECTS
 
 router.get('/architects', (req, res, next) => {
   Arch.find({ isVerified: true })
@@ -43,6 +57,8 @@ router.get('/architects/:id', (req, res, next) => {
       next(new Error(err))
     })
 })
+
+//TRENDS
 
 router.get('/trend', (req, res, next) => {
   Trend.find({ isVerified: true })
