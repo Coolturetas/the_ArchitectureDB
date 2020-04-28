@@ -1,11 +1,15 @@
+$p-color: #666665;
+$dark-blue: #2b3647;
+$red: #FF576F;
+$light-grey: #f5f6f9;
+$link-color: #009CBA;
+
+
 body {
   font-weight: 200;
-}
-
-h1,
-h2,
-h3 {
-  font-weight: 200;
+  font-family: 'Titillium Web', sans-serif;
+  color: $p-color;
+  background-color: white;
 }
 
 img {
@@ -17,9 +21,275 @@ textarea {
   resize: none;
 }
 
-.navbar {
-  margin-bottom: 70px;
+//Texts
+
+.left {
+  text-align: left;
 }
+
+.right {
+  text-align: right;
+}
+
+.center {
+  text-align: center;
+}
+
+p {
+  font-size: 18px;
+}
+
+h1,
+h2,
+h4,
+h5,
+h6 {
+  color: $dark-blue;
+}
+
+h1 {
+  font-size: 50px;
+  font-weight: 700;
+  margin: 8px 0;
+
+}
+
+h2 {
+  font-size: 40px;
+  font-weight: 400;
+  margin: 8px 0;
+
+}
+
+h3 {
+  color: $red;
+  font-size: 23px;
+  font-weight: 400;
+  margin: 8px 0;
+}
+
+h4 {
+  font-size: 35px;
+  font-weight: 700;
+  margin: 8px 0;
+
+}
+
+h5 {
+  font-size: 21px;
+  font-weight: 600;
+}
+
+h6 {
+  font-size: 18px;
+  font-weight: 300;
+}
+
+//Nav-bar
+nav {
+  padding: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+
+  #first-group {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+
+  }
+
+  #third-group {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+  }
+
+  li {
+    list-style-type: none;
+
+    a {
+      font-size: 12px;
+      color: $dark-blue;
+      font-weight: 600;
+      text-decoration: none;
+      text-transform: uppercase;
+      padding: 0 8px;
+
+      &:hover {
+        text-decoration: underline;
+        color: $red;
+      }
+    }
+  }
+
+  figure {
+    width: 144px;
+    margin-left: -200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+
+    a {
+      display: block;
+    }
+  }
+
+}
+
+//buttons
+.my-button {
+  text-transform: uppercase;
+  border-radius: 100px;
+  font-weight: 700;
+
+  &.main {
+    font-size: 18px;
+    padding: 8px 40px;
+    margin-left: 16px;
+  }
+
+  &.card {
+    font-size: 16px;
+    padding: 8px 16px;
+  }
+
+  &.filled {
+    border: solid 1px $red;
+    background-color: $red;
+    color: white;
+
+    &:hover {
+      color: $red;
+      background-color: white;
+      text-decoration: none;
+    }
+  }
+
+  &.outlined {
+    border: solid 1px $red;
+    color: $red;
+
+    &:hover {
+      background-color: $red;
+      color: white;
+      text-decoration: none;
+
+    }
+  }
+
+}
+
+.fav-btn {
+  display: flex;
+  justify-content: flex-start;
+
+  img {
+    width: 30px;
+    margin: 0 5px;
+  }
+}
+
+
+//main-page
+#main-page {
+  padding: 150px 0;
+  background-image: url('/images/bkg-image.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: 0 0;
+
+  small {
+    text-align: right;
+    display: block;
+    font-size: 14px;
+
+    a {
+      color: $link-color;
+    }
+  }
+}
+
+#main-gp-btn {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin: 16px 0;
+}
+
+//Works Index
+#works-page {
+  padding-top: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .my-button {
+    margin: 8px 0 8px;
+  }
+
+  #all-cards {
+    padding: 20px 0;
+  }
+
+  #work-card {
+    display: flex;
+    align-items: center;
+    margin: 20px 0;
+
+    #work-img {
+      border-radius: 10px 10px 0 10px;
+      width: 200px;
+      height: 200px;
+      background-color: $link-color;
+
+      img {
+        object-fit: contain;
+      }
+    }
+
+    #work-text {
+      width: 368px;
+      padding: 10px 16px 16px;
+      background-color: $light-grey;
+      border-radius: 0px 10px 10px 0;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      margin-top: 28px;
+
+      #btn-card {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+    }
+
+  }
+}
+
+
+//Footer
+footer {
+  display: flex;
+  background-color: white;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 0;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  left: 0;
+}
+
+
 
 #errorMsg {
   background-color: red;
@@ -28,10 +298,6 @@ textarea {
   text-align: center;
   padding: 10px 0;
   margin-top: 5px;
-}
-
-.detail-img {
-  width: 300px;
 }
 
 #workMap {

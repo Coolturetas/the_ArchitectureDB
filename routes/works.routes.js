@@ -11,31 +11,32 @@ function checkAuth(req, res, next) {
 }
 
 router.get('/', (req, res, next) => {
-  Work.find({ isVerified: true })
-    .then((workFound) => res.render('works/works-index', { workFound }))
-    .catch((err) => next(new Error('No se ha encontrado nada', err)))
+	Work.find({ isVerified: true })
+		.populate('architect')
+		.then((workFound) => res.render('works/works-index', { workFound }))
+		.catch((err) => next(new Error('No se ha encontrado nada', err)))
 })
 
 //Raw data
 
 router.get('/api', (req, res, next) => {
-  Work.find({ isVerified: true })
-    .then((allWorks) => {
-      res.json({ allWorks })
-    })
-    .catch((err) => {
-      next(new Error(err))
-    })
+	Work.find({ isVerified: true })
+		.then((allWorks) => {
+			res.json({ allWorks })
+		})
+		.catch((err) => {
+			next(new Error(err))
+		})
 })
 
 router.get('/api/:id', (req, res, next) => {
-  Work.findById(req.params.id)
-    .then((work) => {
-      res.json({ work })
-    })
-    .catch((err) => {
-      next(new Error(err))
-    })
+	Work.findById(req.params.id)
+		.then((work) => {
+			res.json({ work })
+		})
+		.catch((err) => {
+			next(new Error(err))
+		})
 })
 
 //Edit
@@ -164,17 +165,17 @@ router.post('/post-comment/:id', checkAuth, (req, res, next) => {
 })
 
 router.post('/post-comment/delete/:id', checkAuth, (req, res, next) => {
-	console.log(req.body)
+	const placePosted = req.body.reference
 	Comment.findById(req.params.id)
 		.then((result) => {
 			if (result.creatorId == req.user.id) {
 				return result.id
 			} else {
-				return res.redirect('/works')
+				return res.redirect(`/works/show/${placePosted}`)
 			}
 		})
 		.then((resultId) => Comment.findByIdAndRemove(resultId))
-		.then(() => res.redirect('/works'))
+		.then(() => res.redirect(`/works/show/${placePosted}`))
 		.catch((err) => console.log(err))
 })
 
