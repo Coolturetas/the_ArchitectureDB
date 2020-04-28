@@ -38,14 +38,14 @@ router.get('/works', (req, res, next) => {
 
 //ARCHITECTS
 
-router.get('/architects', (req, res, next) => {
-  Arch.find({ isVerified: true })
-    .then((allArchs) => {
-      res.json({ allArchs })
-    })
-    .catch((err) => {
-      next(new Error(err))
-    })
+router.get('/architects/search', (req, res, next) => {
+  console.log(req.query)
+  Arch.find(req.query)
+  .then((architects) => {
+    res.json({architects})
+  }).catch((err) => {
+    next(new Error(err))
+  });
 })
 
 router.get('/architects/:id', (req, res, next) => {
@@ -58,6 +58,15 @@ router.get('/architects/:id', (req, res, next) => {
     })
 })
 
+router.get('/architects', (req, res, next) => {
+  Arch.find({ isVerified: true })
+    .then((allArchs) => {
+      res.json({ allArchs })
+    })
+    .catch((err) => {
+      next(new Error(err))
+    })
+})
 //TRENDS
 
 router.get('/trend', (req, res, next) => {
