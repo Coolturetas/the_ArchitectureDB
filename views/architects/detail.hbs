@@ -1,56 +1,58 @@
-<h2>{{arch.name}}</h2>
+<div class="row justify-content-center">
+  <div class="col-md-6 ">
+    <header class="header d-flex flex-column justify-content-center align-items-center">
+      <h1>{{arch.name}}</h1>
+      <h3>¿Crees que falta algo o que algo está mal?</h3>
+      <a href="/works/edit/{{arch.id}}" class="my-button main filled">Editar</a>
+      <form action="/works/delete/{{arch.id}}" method="post">
+        <button type="submit" class="my-button outlined">Borrar</button>
+      </form>
+    </header>
+  </div>
+</div>
 
 <div class="row">
-  <div class="col-6">
+  <div class="col-md-4">
     <img src="{{arch.photo}}" alt="{{arch.name}}">
-    <p>Country: {{arch.country}}</p>
-    <p>Flagship work: {{arch.flagshipWork}}</p>
-    <p>Works</p>
-    <ul>
+  </div>
+  <div class="col-md-8">
+    <h4>{{arch.name}}</h4>
+    <h5>{{arch.country}}</h5>
+    <h6>{{arch.flagshipWork}}</h6>
+    <ul class="b-flex">
       {{#each works}}
-      <li><a href="/works/show/{{id}}">{{name}}</a></li>
+      <li><a href="/works/show/{{id}}">{{name}} |</a></li>
       {{/each}}
     </ul>
-    <div class="d-flex justify-content-left">
-      <a href="/architects/edit/{{arch.id}}" class="btn btn-dark">Edit</a>
-      <form action="/architects/delete/{{arch.id}}" method="post">
-        <button type="submit" class="btn btn-danger">Delete</button>
-      </form>
-    </div>
   </div>
 </div>
 
-<h2>Comentarios</h2>
 <div class="row">
-
-  <form action="/architects/post-comment/{{arch.id}}" method="POST">
-
-    <label for="subject">Asunto</label>
-    <input type="text" name="subject" id="subject" class="form-control">
-
-    <label for="comment">Deja tu comentario</label>
-    <textarea class="form-control" id="comment" rows="4" cols="100" name="content"></textarea>
-
-    <button type="submit">Guardar comentario</button>
-
-  </form>
-
-</div>
-
-<h2>Otros comentaron...</h2>
-<div class="row">
-  {{#each posts}}
-  <div class="col-md-6">
-    <h5>By: {{creatorId.username}}</h5>
-    <h6>Dijo esto: {{subject}}</h6>
+  <div class="col-md-8">
+    <h2>Comentarios</h2>
+    {{#each posts}}
+    <p>{{subject}}</p>
+    <p>{{creatorId.username}}</p>
     <p>{{content}}</p>
     <div class="d-flex justify-content-left align-items-center">
-      <form action="/architects/post-comment/delete/{{id}}" method="post">
+      <form action="/works/post-comment/delete/{{id}}" method="post">
         <input type="hidden" value="{{postedIn}}" name="reference">
-        <button type="submit" class="btn btn-danger">Borrar</button>
+        <button type="submit" class="my-button outlined">Borrar</button>
       </form>
     </div>
+    {{/each}}
   </div>
+  <div class="col-md-4">
+    <form action="/architects/post-comment/{{arch.id}}" method="POST">
 
-  {{/each}}
+      <label for="subject">Asunto</label>
+      <input type="text" name="subject" id="subject" class="form-control">
+
+      <label for="comment">Deja tu comentario</label>
+      <textarea class="form-control" id="comment" rows="4" cols="100" name="content"></textarea>
+
+      <button type="submit">Guardar comentario</button>
+
+    </form>
+  </div>
 </div>
