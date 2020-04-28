@@ -1,14 +1,24 @@
 <section id="works-page">
     <h1 class="center">Índice de obras</h1>
     <h3 class="center">¿Crees que falta alguna?</h3>
+
+    {{#if user}}
     <a class="my-button main filled" href="/works/new">Añadir obra</a>
+    {{/if}}
+
+    {{#unless user}}
+    <a class="my-button main disabled" href="/login">Añadir</a>
+    <small>Para poder añadir, es necesario iniciar sesión.</small>
+    {{/unless}}
 
     <div class="row" id="all-cards">
         {{#each workFound}}
         <div id="work-card" class="col-md-6">
+
             <figure id="work-img">
-                {{!-- <img src="{{ picWork }}" alt="ArchitectureDB {{ name }}" /> --}}
+                <img src="{{ picWork }}" alt="ArchitectureDB {{ name }}" />
             </figure>
+
             <div id="work-text">
                 <h5 class="left">{{ name }}</h5>
                 <h6 class="left">{{ architect.name }}</h6>

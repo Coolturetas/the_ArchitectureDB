@@ -130,7 +130,7 @@ nav {
 
   figure {
     width: 144px;
-    margin-left: -200px;
+    margin-left: -50px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -170,6 +170,11 @@ nav {
       background-color: white;
       text-decoration: none;
     }
+  }
+
+  &.disabled {
+    background-color: $light-grey;
+    color: $link-color;
   }
 
   &.outlined {
@@ -240,17 +245,19 @@ nav {
 
   #work-card {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     margin: 20px 0;
 
     #work-img {
-      border-radius: 10px 10px 0 10px;
       width: 200px;
-      height: 200px;
-      background-color: $link-color;
+      height: 180px;
 
       img {
-        object-fit: contain;
+        border-radius: 10px 0 10px 10px;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        overflow: hidden;
       }
     }
 
@@ -261,8 +268,7 @@ nav {
       border-radius: 0px 10px 10px 0;
       display: flex;
       flex-direction: column;
-      align-items: flex-start;
-      margin-top: 28px;
+      // margin-top: 28px;
 
       #btn-card {
         display: flex;
@@ -273,6 +279,58 @@ nav {
     }
 
   }
+}
+
+#arch-page,
+#trend-page {
+  padding-top: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 60px;
+
+  .my-button {
+    margin: 8px 0 8px;
+  }
+
+
+  .card-dsg {
+    // width: 168px;
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .card-img {
+      width: inherit;
+      height: 145px;
+      margin-bottom: 0;
+
+      img {
+        border-radius: 10px 10px 0 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        overflow: hidden;
+      }
+    }
+
+    .card-text {
+      background-color: $light-grey;
+      width: inherit;
+      padding: 16px 8px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      border-radius: 0 0 10px 10px;
+
+      h5 {
+        font-size: 18px;
+      }
+    }
+
+  }
+
 }
 
 

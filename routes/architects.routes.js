@@ -92,7 +92,7 @@ router.post('/delete/:id', checkAuth, (req, res, next) => {
 router.get('/', (req, res, next) => {
 	Architect.find({ isVerified: true })
 		.then((architects) => {
-			res.render('./architects/index', { architects })
+			res.render('./architects/index', { architects, user: req.user })
 		})
 		.catch((err) => {
 			next(new Error(err))
