@@ -25,4 +25,26 @@ router.get('/works/:id', (req, res, next) => {
     })
 })
 
+router.get('/architects', (req, res, next) => {
+  Arch.find({ isVerified: true })
+    .then((allArchs) => {
+      res.json({ allArchs })
+    })
+    .catch((err) => {
+      next(new Error(err))
+    })
+})
+
+router.get('/architects/:id', (req, res, next) => {
+  Arch.findById(req.params.id)
+    .then((arch) => {
+      res.json({ arch })
+    })
+    .catch((err) => {
+      next(new Error(err))
+    })
+})
+
+// router.get("/trend")
+
 module.exports = router
