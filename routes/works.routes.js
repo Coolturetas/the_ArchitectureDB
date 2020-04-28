@@ -13,7 +13,7 @@ function checkAuth(req, res, next) {
 router.get('/', (req, res, next) => {
 	Work.find({ isVerified: true })
 		.populate('architect')
-		.then((workFound) => res.render('works/works-index', { workFound }))
+		.then((workFound) => res.render('works/works-index', { workFound, user: req.user }))
 		.catch((err) => next(new Error('No se ha encontrado nada', err)))
 })
 
@@ -94,6 +94,7 @@ router.post('/', checkAuth, cloudUploader.single('photo-work'), (req, res, next)
 	let verification = true
 	req.user.role === 'colaborator' ? (verification = false) : null
 	let pic
+	
 	if (req.file === undefined) {
 		pic = 'https://res.cloudinary.com/dxf11hxhh/image/upload/v1587913924/theArchitectureDB/default_dh4el6.jpg'
 	} else {

@@ -1,7 +1,15 @@
 <section id="works-page">
     <h1 class="center">Índice de obras</h1>
     <h3 class="center">¿Crees que falta alguna?</h3>
+
+    {{#if user}}
     <a class="my-button main filled" href="/works/new">Añadir obra</a>
+    {{/if}}
+
+    {{#unless user}}
+    <a class="my-button main disabled" href="/login">Añadir</a>
+    <small>Para poder añadir, es necesario iniciar sesión.</small>
+    {{/unless}}
 
     <div class="row" id="all-cards">
         {{#each workFound}}

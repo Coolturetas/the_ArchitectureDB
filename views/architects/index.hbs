@@ -1,18 +1,32 @@
-<h2>Architects</h2>
+<section id="arch-page">
+  <h1 class="center">Índice de arquitectos</h1>
+  <h3 class="center">¿Crees que falta algun@?</h3>
+  {{#if user}}
+  <a class="my-button main filled" href="/architects/create">Añadir arquitecto</a>
+  {{/if}}
 
-<div class="row">
-  <div class="col-8"><a href="/architects/create" class="btn btn-dark">Create Architect</a></div>
-</div>
+  {{#unless user}}
+  <a class="my-button main disabled" href="/login">Añadir</a>
+  <small>Para poder añadir, es necesario iniciar sesión.</small>
+  {{/unless}}
 
-<div class="row">
-  <div class="col-8">
+
+  <div class="row" id="all-cards">
     {{#each architects}}
-    <article>
-      <h3>{{name}}</h3>
-      <p>Flagship work: {{flagshipWork}}</p>
-      <a href="/architects/view/{{_id}}">Details</a>
-    </article>
-    <hr>
+    <div class="card-dsg col-2">
+
+      <figure class="card-img">
+        <img src="{{photo}}" alt="{{name}}">
+      </figure>
+
+      <div class="card-text">
+        <h5 class="center">{{name}}</h5>
+        <small><em>{{country}}</em></small>
+        <a class="my-button card filled" href="/architects/view/{{_id}}">Ver detalles</a>
+      </div>
+
+    </div>
     {{/each}}
   </div>
-</div>
+
+</section>

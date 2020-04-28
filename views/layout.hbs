@@ -27,21 +27,25 @@
 			</figure>
 
 			<ul id="third-group">
+				{{#if user}}
 				<li><a href="/dashboard">dashboard</a></li>
+				<li><a href="/logout">cerrar sesión</a></li>
+				{{/if}}
+				{{#unless user}}
 				<li><a href="/signup">registro</a></li>
 				<li><a href="/login">login</a></li>
-				<li><a href="/logout">cerrar sesión</a></li>
+				{{/unless}}
 			</ul>
 		</nav>
-
-		<main>{{{body}}}</main>
-
-		<footer>
-			<small>© Copyright the_ArchitectureDB 2020</small>
-		</footer>
-
-
 	</div>
+
+	<main class="container">{{{body}}}</main>
+
+	<footer>
+		<small>© Copyright the_ArchitectureDB 2020</small>
+	</footer>
+
+
 	<script src="/javascripts/script.js"></script>
 </body>
 
