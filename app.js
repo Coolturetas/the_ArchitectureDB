@@ -23,6 +23,7 @@ app.use('/', require('./routes/auth.routes'))
 app.use('/architects', require('./routes/architects.routes'))
 app.use('/trend', require('./routes/trend.routes'))
 app.use('/dashboard', require('./routes/dashboard.routes'))
+app.use('/user', require('./routes/user.routes'))
 app.use('/works', require('./routes/works.routes'))
 app.use('/api', require('./routes/api.routes'))
 
