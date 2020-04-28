@@ -7,7 +7,6 @@ const Arch = require('../models/architect.model')
 //WORKS
 
 router.get('/works/search', (req, res, next) => {
-  console.log(req.query)
   Work.find(req.query)
   .then((works) => {
     res.json({works})
@@ -39,7 +38,6 @@ router.get('/works', (req, res, next) => {
 //ARCHITECTS
 
 router.get('/architects/search', (req, res, next) => {
-  console.log(req.query)
   Arch.find(req.query)
   .then((architects) => {
     res.json({architects})
@@ -69,20 +67,29 @@ router.get('/architects', (req, res, next) => {
 })
 //TRENDS
 
-router.get('/trend', (req, res, next) => {
-  Trend.find({ isVerified: true })
-    .then((allTrends) => {
-      res.json({ allTrends })
-    })
-    .catch((err) => {
-      next(new Error(err))
-    })
+router.get('/trend/search', (req, res, next) => {
+  Trend.find(req.query)
+  .then((trends) => {
+    res.json({trends})
+  }).catch((err) => {
+    next(new Error(err))
+  });
 })
 
 router.get('/trend/:id', (req, res, next) => {
   Trend.findById(req.params.id)
     .then((trend) => {
       res.json({ trend })
+    })
+    .catch((err) => {
+      next(new Error(err))
+    })
+})
+
+router.get('/trend', (req, res, next) => {
+  Trend.find({ isVerified: true })
+    .then((allTrends) => {
+      res.json({ allTrends })
     })
     .catch((err) => {
       next(new Error(err))
