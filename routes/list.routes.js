@@ -1,7 +1,5 @@
 const express = require('express')
 const router = express.Router()
-const Work = require('../models/work.model')
-const User = require('../models/user.model')
 const List = require('../models/list.model')
 
 router.get('/', (req, res, next) => {
