@@ -144,7 +144,7 @@ router.get('/show/:id', (req, res, next) => {
 	const promiseWork = Work.findById(req.params.id).populate('trend').populate('architect')
 
 	Promise.all([promiseWork, promisePost])
-		.then((data) => res.render('works/works-dets', { works: data[0], posts: data[1] }))
+		.then((data) => res.render('works/works-dets', { works: data[0], posts: data[1], user: req.user }))
 		.catch((err) => next(new Error('No se ha encontrado nada para ver', err)))
 })
 

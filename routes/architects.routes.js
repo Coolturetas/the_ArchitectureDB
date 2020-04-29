@@ -138,7 +138,7 @@ router.get('/view/:id', (req, res, next) => {
 	const promisePost = Comment.find({ postedIn: req.params.id }).populate('creatorId')
 
 	Promise.all([promiseArch, promiseWork, promisePost])
-		.then((data) => res.render('architects/detail', { arch: data[0], works: data[1], posts: data[2] }))
+		.then((data) => res.render('architects/detail', { arch: data[0], works: data[1], posts: data[2], user: req.user }))
 		.catch((err) => next(new Error('No se ha encontrado nada', err)))
 })
 

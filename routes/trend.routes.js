@@ -118,7 +118,7 @@ router.get('/show/:id', (req, res, next) => {
 	const promiseTrend = Trend.findById(req.params.id)
 	const promisePost = Comment.find({ postedIn: req.params.id }).populate('creatorId')
 	Promise.all([promiseTrend, promiseWork, promisePost])
-		.then((data) => res.render('archTrend/at-dets', { trend: data[0], works: data[1], posts: data[2] }))
+		.then((data) => res.render('archTrend/at-dets', { trend: data[0], works: data[1], posts: data[2], user: req.user }))
 		.catch((err) => next(new Error('No se ha encontrado nada', err)))
 })
 
