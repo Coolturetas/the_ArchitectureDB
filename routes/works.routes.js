@@ -155,28 +155,28 @@ router.get('/show/:id', (req, res, next) => {
 //Likes
 //
 
-router.post('/add-like/:id', checkAuth, (req, res, next) => {
-	console.log('paice que funsiona')
-	const newList = {
-		typeOfList: 'Like',
-		owner: req.user.id,
-		likeId: req.params.id,
-	}
-	List.create(newList)
-		.then(res.redirect('/works'))
-		.catch((err) => console.log('No se ha creado ningun like', err))
-})
+// router.post('/add-like/:id', checkAuth, (req, res, next) => {
+// 	console.log('paice que funsiona')
+// 	const newList = {
+// 		typeOfList: 'Like',
+// 		owner: req.user.id,
+// 		likeId: req.params.id,
+// 	}
+// 	List.create(newList)
+// 		.then(res.redirect('/works'))
+// 		.catch((err) => console.log('No se ha creado ningun like', err))
+// })
 
-router.post('/add-fav/:id', checkAuth, (req, res, next) => {
-	console.log('paice que funsiona')
-	const newList = {
-		typeOfList: 'Fav',
-		owner: req.user.id,
-		likeId: req.params.id,
-	}
-	List.create(newList)
-		.then(res.redirect('/works'))
-		.catch((err) => console.log('No se ha creado ningun fav', err))
-})
+// router.post('/add-fav/:id', checkAuth, (req, res, next) => {
+// 	console.log('paice que funsiona')
+// 	const newList = {
+// 		typeOfList: 'Fav',
+// 		owner: req.user.id,
+// 		likeId: req.params.id,
+// 	}
+// 	List.create(newList)
+// 		.then(res.redirect('/works'))
+// 		.catch((err) => console.log('No se ha creado ningun fav', err))
+// })
 
 module.exports = router
