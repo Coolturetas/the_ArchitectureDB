@@ -48,3 +48,20 @@ axios
   .catch((err) => {
     console.log(err)
   })
+
+  axios
+  .get('/api/works')
+  .then((works) => {
+    data = works.data.allWorks
+    console.log(data)
+    printDonutChart(
+      data,
+      d3.interpolatePuRd,
+      [0, 1],
+      'workType',
+      'works-per-type'
+    )
+  })
+  .catch((err) => {
+    console.log(err)
+  })
