@@ -157,16 +157,25 @@ router.get('/show/:id', (req, res, next) => {
 //
 
 router.post('/add-visited/:id', checkAuth, (req, res, next) => {
-	List.findByIdAndUpdate(req.user.visitedList, { $push: { likesId: req.params.id } })
-		.then(res.redirect('/works'))
-		.catch((err) => console.log('No se ha añadido nada a la lista', err))
+	const workId = req.params.id
+	if (!req.user.visitedList.likesId.includes(workId)) {
+		List.findByIdAndUpdate(req.user.visitedList, { $push: { likesId: workId } })
+			.then(res.redirect('/works'))
+			.catch((err) => console.log('No se ha añadido nada a la lista', err))
+	} else {
+		res.redirect('/works')
+	}
 })
 
 router.post('/add-wish/:id', checkAuth, (req, res, next) => {
-	List.findByIdAndUpdate(req.user.wishList, { $push: { likesId: req.params.id } })
-		.then(res.redirect('/works'))
-		.catch((err) => console.log('No se ha añadido nada a la lista', err))
+	const workId = req.params.id
+	if (!req.user.woshList.likesId.includes(workId)) {
+		List.findByIdAndUpdate(req.user.woshList, { $push: { likesId: workId } })
+			.then(res.redirect('/works'))
+			.catch((err) => console.log('No se ha añadido nada a la lista', err))
+	} else {
+		res.redirect('/works')
+	}
 })
-
 
 module.exports = router
