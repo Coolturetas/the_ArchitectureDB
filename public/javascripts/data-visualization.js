@@ -1,24 +1,24 @@
-function printWorksPerCountry(data, colorScale, colorRangeInfo) {
-  const countries = data.map((object) => object.country)
-  let unduplicatedCountries = []
+function printDonutChart(data, colorScale, colorRangeInfo, field, canvas) {
+  const fields = data.map((object) => object[field])
+  let unduplicatedEntries = []
   let workCount = {}
 
-  countries.forEach((elm) => {
-    if (unduplicatedCountries.indexOf(elm) == -1) {
-      unduplicatedCountries.push(elm)
+  fields.forEach((elm) => {
+    if (unduplicatedEntries.indexOf(elm) == -1) {
+      unduplicatedEntries.push(elm)
       workCount[elm] = 1
     } else {
       workCount[elm]++
     }
   })
 
-  const datasetCountries = Object.keys(workCount)
-  const worksPerCountry = datasetCountries.map((country) => workCount[country])
+  const datasetEntries = Object.keys(workCount)
+  const worksPerEntry = datasetEntries.map((field) => workCount[field])
 
-  const ctx = document.getElementById('works-per-country').getContext('2d')
+  const ctx = document.getElementById(canvas).getContext('2d')
 
   const colors = interpolateColors(
-    worksPerCountry.length,
+    worksPerEntry.length,
     colorScale,
     colorRangeInfo
   )
@@ -26,8 +26,8 @@ function printWorksPerCountry(data, colorScale, colorRangeInfo) {
   new Chart(ctx, {
     type: 'doughnut',
     data: {
-      datasets: [{ backgroundColor: colors, data: worksPerCountry }],
-      labels: datasetCountries,
+      datasets: [{ backgroundColor: colors, data: worksPerEntry }],
+      labels: datasetEntries,
     },
   })
 }
@@ -36,7 +36,14 @@ axios
   .get('/api/works')
   .then((works) => {
     data = works.data.allWorks
-    printWorksPerCountry(data, d3.interpolatePuRd, [0, 1])
+    console.log(data)
+    printDonutChart(
+      data,
+      d3.interpolatePuRd,
+      [0, 1],
+      'country',
+      'works-per-country'
+    )
   })
   .catch((err) => {
     console.log(err)
