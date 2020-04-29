@@ -54,17 +54,21 @@ router.post('/edit/:id', cloudUploader.single('photo-arch'), checkAuth, (req, re
 	let verification = true
 	req.user.role === 'colaborator' ? (verification = false) : null
 
+	let pic
+	if (req.file !== undefined) {
+		pic = req.file.url
+	}
+
 	const editArch = {
 		name: req.body.name,
 		country: req.body.country,
 		flagshipWork: req.body.flagshipWork,
-		photo: req.file.url,
 		isVerified: verification,
 	}
 
 	console.log(editArch)
 
-	Architect.findByIdAndUpdate(req.params.id, editArch, { new: true })
+	Architect.findByIdAndUpdate(req.params.id, editArch, { photo: pic, new: true })
 		.then((architect) => {
 			res.redirect(`/architects/view/${architect._id}`)
 		})

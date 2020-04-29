@@ -39,20 +39,24 @@ router.post('/edit/:id', checkAuth, cloudUploader.single('photo-work'), (req, re
 	let verification = true
 	req.user.role === 'colaborator' ? (verification = false) : null
 
+	let pic
+	if (req.file !== undefined) {
+		pic = req.file.url
+	}
+
 	const editWork = {
 		trend: req.body.trend,
 		country: req.body.country,
 		finished: req.body.finished,
 		architect: req.body.architect,
 		name: req.body.name,
-		picWork: req.file.url,
 		description: req.body.description,
 		workType: req.body.workType,
 		address: req.body.address,
 		isVerified: verification,
 	}
 
-	Work.findOneAndUpdate({ _id: req.params.id }, editWork, { new: true })
+	Work.findByIdAndUpdate(req.params.id, editWork, { picWork: pic, new: true })
 		.then((data) => {
 			console.log(data)
 			res.redirect('/works')
@@ -86,14 +90,13 @@ router.post('/', checkAuth, cloudUploader.single('photo-work'), (req, res, next)
 		finished: req.body.finished,
 		architect: req.body.architect,
 		name: req.body.name,
-		picWork: pic,
 		description: req.body.description,
 		workType: req.body.workType,
 		address: req.body.address,
 		isVerified: verification,
 	}
 
-	Work.create(newWork)
+	Work.create(newWork, { picWork: pic })
 		.then(res.redirect('/works'))
 		.catch((err) => next(new Error('No se ha creado nada', err)))
 })

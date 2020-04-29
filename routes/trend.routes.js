@@ -37,16 +37,14 @@ router.post('/', cloudUploader.single('photo-trend'), checkAuth, (req, res, next
 
 	const newTrend = {
 		name: req.body.name,
-		picTrend: pic,
 		description: req.body.description,
 		country: req.body.country,
 		bestWork: req.body.bestWork,
 		year: req.body.year,
 		isVerified: verification,
 	}
-	console.log(newTrend)
 
-	Trend.create(newTrend)
+	Trend.create(newTrend, { picTrend: pic })
 		.then(res.redirect('/trend'))
 		.catch((err) => console.log('No se ha creado nada', err))
 })
@@ -68,15 +66,21 @@ router.get('/edit/:id', checkAuth, (req, res, next) => {
 })
 
 router.post('/edit/:id', checkAuth, cloudUploader.single('photo-trend'), (req, res, next) => {
+	
+	let pic
+	if (req.file !== undefined) {
+		pic = req.file.url
+	}
+
 	const editTrend = {
 		name: req.body.name,
-		picTrend: req.file.url,
 		description: req.body.description,
 		country: req.body.country,
 		bestWork: req.body.bestWork,
 		year: req.body.year,
 	}
-	Trend.findByIdAndUpdate(req.params.id, editTrend, { new: true })
+
+	Trend.findByIdAndUpdate(req.params.id, editTrend, { picTrend: pic, new: true })
 		.then(res.redirect('/trend'))
 		.catch((err) => next(new Error('No se ha editado nada', err)))
 })

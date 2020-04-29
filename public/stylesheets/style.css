@@ -319,7 +319,7 @@ nav {
       font-weight: 200;
       font-size: 14px;
       margin: 8px 0;
-      border: #666665 solid 0.5px; }
+      border: #666665 solid 1px; }
     .comment-section form .my-button {
       margin-top: 16px; }
   .comment-section .post-area .each-post {
