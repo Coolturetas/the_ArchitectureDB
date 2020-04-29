@@ -3,6 +3,7 @@ const router = express.Router()
 const Work = require('../models/work.model')
 const Trend = require('../models/trend.model')
 const Arch = require('../models/architect.model')
+const List = require('../models/list.model')
 
 //WORKS
 
@@ -97,6 +98,18 @@ router.get('/trend', (req, res, next) => {
 		.catch((err) => {
 			next(new Error(err))
 		})
+})
+
+//LISTS
+
+router.get('/list/mylists/:type', (req, res, next) => {
+  List.find({ owner: req.user.id, typeOfList: req.params.type })
+    .then((list) => {
+      res.json({ list })
+    })
+    .catch((err) => {
+      next(new Error(err))
+    })
 })
 
 module.exports = router

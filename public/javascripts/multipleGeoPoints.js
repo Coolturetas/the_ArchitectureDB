@@ -30,7 +30,7 @@ function pinMarker(place, targetMap) {
 	})
 }
 
-function getPlaces() {
+function getSinglePlace() {
   axios
     .get(`/api/works/${workId}`)
     .then((result) => {
@@ -41,7 +41,7 @@ function getPlaces() {
     })
 }
 
-function startMap() {
+function startMapMulti() {
 	const ironhackBCN = {
 		lat: 41.3977381,
 		lng: 2.190471916,
@@ -50,7 +50,7 @@ function startMap() {
 		zoom: 15,
 		center: ironhackBCN,
 	})
-	getPlaces()
+	getSinglePlace()
 }
 
 startMap()
