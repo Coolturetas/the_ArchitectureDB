@@ -5,8 +5,8 @@ const User = require('../models/user.model')
 const List = require('../models/list.model')
 
 router.get('/', (req, res, next) => {
-	const wishes = req.user.wishList.likesId
-	const visites = req.user.visitedList.likesId
+	const wishes = req.user.wishList
+	const visites = req.user.visitedList
 
 	Promise.all([wishes, visites])
 		.then((data) => res.render('list/my-lists', { wishes: data[0], visites: data[1] }))

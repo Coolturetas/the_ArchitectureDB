@@ -7,7 +7,7 @@
             <h5>Lugares en los que estuve</h5>
 
             <div class="row ordering">
-                {{#each visites}}
+                {{#each visites.likesId}}
                 <div class="list-card like" id="{{id}}" draggable="true" ondragstart="return dragStart(event)">
                     <h5 class="center">{{ name }}</h5>
                     <form action="/list/delete/{{id}}" method="post">
@@ -17,6 +17,8 @@
                 {{/each}}
             </div>
 
+            <button class="my-button outlined show-map" data-id="{{visites._id}}">Mostrar mapa</button>
+
         </div>
 
         <article id="favs" class="my-list" ondragenter="return dragEnter(event)" ondrop="return dragDrop(event)"
@@ -25,7 +27,7 @@
             <h5>Dónde me gustaría ir</h5>
             <div class="row ordering">
 
-                {{#each wishes}}
+                {{#each wishes.likesId}}
                 <div class="list-card fav" id="{{id}}" draggable="true" ondragstart="return dragStart(event)">
                     <h5 class="center">{{ name }}</h5>
                     <form action="/list/delete/{{id}}" method="post">
@@ -35,8 +37,19 @@
                 {{/each}}
             </div>
 
+            <button class="my-button outlined show-map" data-id="{{wishes._id}}">Mostrar mapa</button>
+
+        </article>
+
+        <article>
+            <div id="workMap" style="background-color: rebeccapurple; height: 500px; width: 600px;"></div>
         </article>
 
     </div>
 
 </section>
+
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBBCqsxYcgOHcgyFouDoMyFFIFYtj3tHG0&callback=startMapMulti"></script>
+<script src="/javascripts/multipleGeoPoints.js"></script>
