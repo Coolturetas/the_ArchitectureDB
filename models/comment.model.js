@@ -5,7 +5,7 @@ const postSchema = new Schema(
 	{
 		subject: String,
 		content: String,
-		creatorId: { type: Schema.Types.ObjectId, ref: 'user' },
+		creatorId: { type: Schema.Types.ObjectId, ref: 'User' },
 		postedIn: String,
 	},
 	{
