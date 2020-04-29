@@ -359,7 +359,6 @@ nav {
 
 
   .my-list {
-    width: 546px;
     border: $light-grey 3px solid;
     border-radius: 20px;
     padding: 20px 32px;
@@ -370,16 +369,22 @@ nav {
 
     .ordering {
 
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+
       .my-button {
         margin-left: 16px;
       }
 
       .list-card {
         background-color: $light-grey;
+        min-width: 310px;
         border-radius: 10px;
         padding: 10px;
         display: flex;
-        align-items: flex-end;
+        align-items: center;
+        justify-content: space-between;
         margin: 8px 0;
 
         &.fav {

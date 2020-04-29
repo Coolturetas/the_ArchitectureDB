@@ -253,7 +253,6 @@ nav {
   #likes-page .my-list,
   #arch-page .my-list,
   #trend-page .my-list {
-    width: 546px;
     border: #f5f6f9 3px solid;
     border-radius: 20px;
     padding: 20px 32px;
@@ -261,27 +260,35 @@ nav {
     display: flex;
     flex-direction: column;
     align-items: flex-start; }
-    #likes-page .my-list .ordering .my-button,
-    #arch-page .my-list .ordering .my-button,
-    #trend-page .my-list .ordering .my-button {
-      margin-left: 16px; }
-    #likes-page .my-list .ordering .list-card,
-    #arch-page .my-list .ordering .list-card,
-    #trend-page .my-list .ordering .list-card {
-      background-color: #f5f6f9;
-      border-radius: 10px;
-      padding: 10px;
+    #likes-page .my-list .ordering,
+    #arch-page .my-list .ordering,
+    #trend-page .my-list .ordering {
       display: flex;
-      align-items: flex-end;
-      margin: 8px 0; }
-      #likes-page .my-list .ordering .list-card.fav,
-      #arch-page .my-list .ordering .list-card.fav,
-      #trend-page .my-list .ordering .list-card.fav {
-        border-left: #FF576F 3px solid; }
-      #likes-page .my-list .ordering .list-card.like,
-      #arch-page .my-list .ordering .list-card.like,
-      #trend-page .my-list .ordering .list-card.like {
-        border-left: #009CBA 3px solid; }
+      flex-direction: column;
+      align-items: flex-start; }
+      #likes-page .my-list .ordering .my-button,
+      #arch-page .my-list .ordering .my-button,
+      #trend-page .my-list .ordering .my-button {
+        margin-left: 16px; }
+      #likes-page .my-list .ordering .list-card,
+      #arch-page .my-list .ordering .list-card,
+      #trend-page .my-list .ordering .list-card {
+        background-color: #f5f6f9;
+        min-width: 310px;
+        border-radius: 10px;
+        padding: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin: 8px 0; }
+        #likes-page .my-list .ordering .list-card.fav,
+        #arch-page .my-list .ordering .list-card.fav,
+        #trend-page .my-list .ordering .list-card.fav {
+          border-left: #FF576F 3px solid; }
+        #likes-page .my-list .ordering .list-card.like,
+        #arch-page .my-list .ordering .list-card.like,
+        #trend-page .my-list .ordering .list-card.like {
+          border-left: #009CBA 3px solid; }
 
 #work-dets,
 #trend-dets,
