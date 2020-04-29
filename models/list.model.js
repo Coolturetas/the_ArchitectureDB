@@ -5,7 +5,7 @@ const listSchema = new Schema(
 	{
 		nameList: {
 			type: String,
-			default: 'Quiero Visitar',
+			default: 'Mi lista',
 		},
 		typeOfList: {
 			type: String,

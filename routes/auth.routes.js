@@ -27,8 +27,8 @@ router.post('/signup', (req, res, next) => {
 			const salt = bcrypt.genSaltSync(bcryptSalt)
 			const hashPass = bcrypt.hashSync(password, salt)
 
-			const createVisitedList = {}
-			const createWishList = {}
+			const createVisitedList = { nameList: 'Lugares que visité', typeOfList: 'visited' }
+			const createWishList = { nameList: 'Me muero por ir', typeOfList: 'whish' }
 
 			List.create([createVisitedList, createWishList]).then((listsCreated) => {
 				User.create({ username, password: hashPass, visitedList: listsCreated[0], wishList: listsCreated[1] })

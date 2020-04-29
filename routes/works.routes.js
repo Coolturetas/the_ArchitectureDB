@@ -5,6 +5,7 @@ const Trend = require('../models/trend.model')
 const Arch = require('../models/architect.model')
 const Comment = require('../models/comment.model')
 const List = require('../models/list.model')
+const User = require('../models/user.model')
 const cloudUploader = require('../configs/cloudinary.config')
 
 function checkAuth(req, res, next) {
@@ -155,28 +156,17 @@ router.get('/show/:id', (req, res, next) => {
 //Likes
 //
 
-// router.post('/add-like/:id', checkAuth, (req, res, next) => {
-// 	console.log('paice que funsiona')
-// 	const newList = {
-// 		typeOfList: 'Like',
-// 		owner: req.user.id,
-// 		likeId: req.params.id,
-// 	}
-// 	List.create(newList)
-// 		.then(res.redirect('/works'))
-// 		.catch((err) => console.log('No se ha creado ningun like', err))
-// })
+router.post('/add-visited/:id', checkAuth, (req, res, next) => {
+	List.findByIdAndUpdate(req.user.visitedList, { $push: { likesId: req.params.id } })
+		.then(res.redirect('/works'))
+		.catch((err) => console.log('No se ha añadido nada a la lista', err))
+})
 
-// router.post('/add-fav/:id', checkAuth, (req, res, next) => {
-// 	console.log('paice que funsiona')
-// 	const newList = {
-// 		typeOfList: 'Fav',
-// 		owner: req.user.id,
-// 		likeId: req.params.id,
-// 	}
-// 	List.create(newList)
-// 		.then(res.redirect('/works'))
-// 		.catch((err) => console.log('No se ha creado ningun fav', err))
-// })
+router.post('/add-wish/:id', checkAuth, (req, res, next) => {
+	List.findByIdAndUpdate(req.user.wishList, { $push: { likesId: req.params.id } })
+		.then(res.redirect('/works'))
+		.catch((err) => console.log('No se ha añadido nada a la lista', err))
+})
+
 
 module.exports = router
