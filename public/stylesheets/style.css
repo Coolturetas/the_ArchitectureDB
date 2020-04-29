@@ -21,7 +21,7 @@ textarea {
   text-align: center; }
 
 p {
-  font-size: 18px; }
+  font-size: 16px; }
 
 h1,
 h2,
@@ -104,10 +104,9 @@ nav {
   font-weight: 700; }
   .my-button.main {
     font-size: 18px;
-    padding: 8px 40px;
-    margin-left: 16px; }
+    padding: 8px 32px; }
   .my-button.card {
-    font-size: 16px;
+    font-size: 12px;
     padding: 8px 16px; }
   .my-button.filled {
     border: solid 1px #FF576F;
@@ -127,6 +126,9 @@ nav {
       background-color: #FF576F;
       color: white;
       text-decoration: none; }
+    .my-button.outlined.mini {
+      font-size: 10px;
+      padding: 4px 8px; }
   .my-button.nolined {
     font-size: 16px;
     color: #2b3647;
@@ -155,20 +157,21 @@ nav {
     font-size: 14px; }
     #main-page small a {
       color: #009CBA; }
-
-#main-gp-btn {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  margin: 16px 0; }
+  #main-page #main-gp-btn {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin: 16px 0; }
+  #main-page .my-button.main {
+    margin-left: 16px; }
 
 #works-page {
-  padding-top: 40px;
+  padding: 40px 0;
   display: flex;
   flex-direction: column;
   align-items: center; }
   #works-page .my-button {
-    margin: 8px 0 8px; }
+    margin: 8px 0; }
   #works-page #all-cards {
     padding: 20px 0; }
   #works-page .work-card {
@@ -207,7 +210,7 @@ nav {
   #likes-page .my-button,
   #arch-page .my-button,
   #trend-page .my-button {
-    margin: 8px 0 8px; }
+    margin: 8px 0; }
   #likes-page .card-dsg,
   #arch-page .card-dsg,
   #trend-page .card-dsg {
@@ -277,16 +280,57 @@ nav {
       align-items: center;
       padding: 0 20px 40px; }
 
-#work-dets {
+#work-dets,
+#trend-dets,
+#arch-dets {
   padding-bottom: 60px; }
-  #work-dets .my-button {
-    margin-left: 0; }
-  #work-dets .first-part {
+  #work-dets .first-part,
+  #trend-dets .first-part,
+  #arch-dets .first-part {
     margin: 48px 0; }
-    #work-dets .first-part a {
+    #work-dets .first-part a,
+    #trend-dets .first-part a,
+    #arch-dets .first-part a {
       color: #009CBA; }
-    #work-dets .first-part img {
+    #work-dets .first-part img,
+    #trend-dets .first-part img,
+    #arch-dets .first-part img {
       border-radius: 10px; }
+  #work-dets #workMap,
+  #trend-dets #workMap,
+  #arch-dets #workMap {
+    border-radius: 20px;
+    opacity: 0.8;
+    margin-top: 24px; }
+
+.comment-section {
+  padding: 40px 0;
+  margin-top: 40px; }
+  .comment-section form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    margin-top: 74px; }
+    .comment-section form input,
+    .comment-section form textarea {
+      font-weight: 200;
+      font-size: 14px;
+      margin: 8px 0;
+      border: #666665 solid 0.5px; }
+    .comment-section form .my-button {
+      margin-top: 16px; }
+  .comment-section .post-area .each-post {
+    background-color: #f5f6f9;
+    border-radius: 20px;
+    padding: 20px;
+    margin: 32px 0; }
+    .comment-section .post-area .each-post h5 {
+      text-transform: uppercase; }
+    .comment-section .post-area .each-post h6 {
+      text-decoration: underline;
+      font-size: 18px; }
+  .comment-section .post-area form {
+    margin-top: 0; }
 
 footer {
   display: flex;

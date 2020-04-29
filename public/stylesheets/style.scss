@@ -36,7 +36,7 @@ textarea {
 }
 
 p {
-  font-size: 18px;
+  font-size: 16px;
 }
 
 h1,
@@ -151,12 +151,11 @@ nav {
 
   &.main {
     font-size: 18px;
-    padding: 8px 40px;
-    margin-left: 16px;
+    padding: 8px 32px;
   }
 
   &.card {
-    font-size: 16px;
+    font-size: 12px;
     padding: 8px 16px;
   }
 
@@ -186,6 +185,11 @@ nav {
       color: white;
       text-decoration: none;
 
+    }
+
+    &.mini {
+      font-size: 10px;
+      padding: 4px 8px;
     }
   }
 
@@ -229,25 +233,30 @@ nav {
       color: $link-color;
     }
   }
+
+  #main-gp-btn {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin: 16px 0;
+  }
+
+  .my-button.main {
+    margin-left: 16px;
+  }
 }
 
-#main-gp-btn {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  margin: 16px 0;
-}
 
 //Each Index
 
 #works-page {
-  padding-top: 40px;
+  padding: 40px 0;
   display: flex;
   flex-direction: column;
   align-items: center;
 
   .my-button {
-    margin: 8px 0 8px;
+    margin: 8px 0;
   }
 
   #all-cards {
@@ -302,7 +311,7 @@ nav {
   padding-bottom: 60px;
 
   .my-button {
-    margin: 8px 0 8px;
+    margin: 8px 0;
   }
 
 
@@ -375,12 +384,10 @@ nav {
 
 //Dets page
 
-#work-dets {
+#work-dets,
+#trend-dets,
+#arch-dets {
   padding-bottom: 60px;
-
-  .my-button {
-    margin-left: 0;
-  }
 
   .first-part {
     margin: 48px 0;
@@ -393,8 +400,62 @@ nav {
       border-radius: 10px;
     }
   }
+
+  #workMap {
+    border-radius: 20px;
+    opacity: 0.8;
+    margin-top: 24px;
+  }
 }
 
+//Comments
+.comment-section {
+  padding: 40px 0;
+  margin-top: 40px;
+
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    margin-top: 74px;
+
+    input,
+    textarea {
+      font-weight: 200;
+      font-size: 14px;
+      margin: 8px 0;
+      border: $p-color solid 0.5px;
+    }
+
+    .my-button {
+      margin-top: 16px;
+    }
+  }
+
+  .post-area {
+
+    .each-post {
+      background-color: $light-grey;
+      border-radius: 20px;
+      padding: 20px;
+
+      margin: 32px 0;
+
+      h5 {
+        text-transform: uppercase;
+      }
+
+      h6 {
+        text-decoration: underline;
+        font-size: 18px;
+      }
+    }
+
+    form {
+      margin-top: 0;
+    }
+  }
+}
 
 //Footer
 footer {
