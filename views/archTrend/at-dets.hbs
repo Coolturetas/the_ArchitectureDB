@@ -1,59 +1,73 @@
-<div class="row justify-content-center">
-    <div class="col-md-6 ">
-        <header class="header d-flex flex-column justify-content-center align-items-center">
-            <h1>{{trend.name}}</h1>
-            <h3>¿Crees que falta algo o que algo está mal?</h3>
-            <a href="/trend/edit/{{trend.id}}" class="my-button main filled">Editar</a>
-            <form action="/trend/delete/{{trend.id}}" method="post">
-                <button type="submit" class="my-button outlined">Borrar</button>
-            </form>
-        </header>
-    </div>
-</div>
+<section id="trend-dets">
 
-<div class="row">
-    <div class="col-md-4">
-        <img src="{{trend.picTrend}}" alt="{{trend.name}}">
+    <header class="header d-flex flex-column justify-content-center align-items-center">
+        <h1>{{trend.name}}</h1>
+        <h3>¿Crees que falta algo o que algo está mal?</h3>
+        {{#if user}}
+        <a href="/trend/edit/{{trend.id}}" class="my-button main filled">Editar</a>
+        <form action="/trend/delete/{{trend.id}}" method="post">
+            <button type="submit" class="my-button nolined">Borrar</button>
+        </form>
+        {{/if}}
+
+        {{#unless user}}
+        <a class="my-button main disabled" href="/login">Editar</a>
+        <small>Para poder editar, es necesario iniciar sesión.</small>
+        {{/unless}}
+
+
+    </header>
+
+    <div class="row first-part">
+
+        <figure class="col-md-4">
+            <img src="{{trend.picTrend}}" alt="{{trend.name}}">
+        </figure>
+
+        <div class="col-md-8">
+            <h4>{{trend.name}}</h4>
+            <h5>{{trend.country}}, {{trend.year}}</h5>
+            <h6>{{trend.bestWork}}</h6>
+            <p>Descripción: {{trend.description}}</p>
+            <p>
+                {{#each works}}
+                <a href="/works/show/{{id}}">{{name}}</a> |
+                {{/each}}
+            </p>
+        </div>
     </div>
-    <div class="col-md-8">
-        <h4>{{trend.name}}</h4>
-        <h5>{{trend.country}}, {{trend.year}}</h5>
-        <h6>{{trend.bestWork}}</h6>
-        <p>Descripción: {{trend.description}}</p>
-        <ul>
-            {{#each works}}
-            <li><a href="/works/show/{{id}}">{{name}}</a></li>
+
+    <div class="row comment-section">
+        <div class="col-md-8 post-area">
+            <h2>Comentarios</h2>
+
+            {{#each posts}}
+            <div class="each-post">
+                <h5>{{subject}}</h5>
+                <h6><em>By: {{creatorId.username}}</em></h6>
+                <p>{{content}}</p>
+
+                <div class="d-flex justify-content-left align-items-center">
+                    <form action="/trend/post-comment/delete/{{id}}" method="post">
+                        <input type="hidden" value="{{postedIn}}" name="reference">
+                        <button type="submit" class="my-button outlined mini">Borrar</button>
+                    </form>
+                </div>
+            </div>
             {{/each}}
-        </ul>
-    </div>
-</div>
+        </div>
 
-<div class="row">
-    <div class="col-md-8">
-        <h2>Comentarios</h2>
-        {{#each posts}}
-        <p>{{subject}}</p>
-        <p>{{creatorId.username}}</p>
-        <p>{{content}}</p>
-        <div class="d-flex justify-content-left align-items-center">
-            <form action="/works/post-comment/delete/{{id}}" method="post">
-                <input type="hidden" value="{{postedIn}}" name="reference">
-                <button type="submit" class="my-button outlined">Borrar</button>
+        <div class="col-md-4">
+            <form action="/trend/post-comment/{{trend.id}}" method="POST">
+
+                <input type="text" name="subject" id="subject" class="form-control" placeholder="Asunto">
+
+                <textarea class="form-control" id="comment" rows="4" cols="100" name="content"
+                    placeholder="Cuéntanos qué opinas..."></textarea>
+
+                <button type="submit" class="my-button card filled">Publicar comentario</button>
+
             </form>
         </div>
-        {{/each}}
     </div>
-    <div class="col-md-4">
-        <form action="/trend/post-comment/{{trend.id}}" method="POST">
-
-            <label for="subject">Asunto</label>
-            <input type="text" name="subject" id="subject" class="form-control">
-
-            <label for="comment">Deja tu comentario</label>
-            <textarea class="form-control" id="comment" rows="4" cols="100" name="content"></textarea>
-
-            <button type="submit">Guardar comentario</button>
-
-        </form>
-    </div>
-</div>
+</section>

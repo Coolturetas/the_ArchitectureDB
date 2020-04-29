@@ -36,7 +36,7 @@ textarea {
 }
 
 p {
-  font-size: 18px;
+  font-size: 16px;
 }
 
 h1,
@@ -151,12 +151,11 @@ nav {
 
   &.main {
     font-size: 18px;
-    padding: 8px 40px;
-    margin-left: 16px;
+    padding: 8px 32px;
   }
 
   &.card {
-    font-size: 16px;
+    font-size: 12px;
     padding: 8px 16px;
   }
 
@@ -187,6 +186,11 @@ nav {
       text-decoration: none;
 
     }
+
+    &.mini {
+      font-size: 10px;
+      padding: 4px 8px;
+    }
   }
 
   &.nolined {
@@ -197,6 +201,11 @@ nav {
     text-transform: none;
     font-weight: 300;
     text-decoration: underline;
+    background-color: transparent;
+
+    &:hover {
+      color: $red;
+    }
   }
 
 }
@@ -229,25 +238,30 @@ nav {
       color: $link-color;
     }
   }
+
+  #main-gp-btn {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin: 16px 0;
+  }
+
+  .my-button.main {
+    margin-left: 16px;
+  }
 }
 
-#main-gp-btn {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  margin: 16px 0;
-}
 
 //Each Index
 
 #works-page {
-  padding-top: 40px;
+  padding: 40px 0;
   display: flex;
   flex-direction: column;
   align-items: center;
 
   .my-button {
-    margin: 8px 0 8px;
+    margin: 8px 0;
   }
 
   #all-cards {
@@ -302,7 +316,7 @@ nav {
   padding-bottom: 60px;
 
   .my-button {
-    margin: 8px 0 8px;
+    margin: 8px 0;
   }
 
 
@@ -336,15 +350,6 @@ nav {
       align-items: center;
       border-radius: 0 0 10px 10px;
 
-      &.fav {
-        background-color: pink;
-      }
-
-      &.like {
-        background-color: goldenrod;
-      }
-
-
       h5 {
         font-size: 18px;
       }
@@ -352,22 +357,39 @@ nav {
 
   }
 
-  .my-list1,
-  .my-list2 {
-    background-color: $light-grey;
+
+  .my-list {
+    width: 546px;
+    border: $light-grey 3px solid;
     border-radius: 20px;
-    padding: 20px 10px;
-    margin-top: 60px;
+    padding: 20px 32px;
+    margin: 60px 24px 60px 0;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    align-items: flex-start;
 
     .ordering {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 0 20px 40px;
+
+      .my-button {
+        margin-left: 16px;
+      }
+
+      .list-card {
+        background-color: $light-grey;
+        border-radius: 10px;
+        padding: 10px;
+        display: flex;
+        align-items: flex-end;
+        margin: 8px 0;
+
+        &.fav {
+          border-left: $red 3px solid;
+        }
+
+        &.like {
+          border-left: $link-color 3px solid;
+        }
+      }
     }
   }
 
@@ -375,12 +397,10 @@ nav {
 
 //Dets page
 
-#work-dets {
+#work-dets,
+#trend-dets,
+#arch-dets {
   padding-bottom: 60px;
-
-  .my-button {
-    margin-left: 0;
-  }
 
   .first-part {
     margin: 48px 0;
@@ -393,8 +413,62 @@ nav {
       border-radius: 10px;
     }
   }
+
+  #workMap {
+    border-radius: 20px;
+    opacity: 0.8;
+    margin-top: 24px;
+  }
 }
 
+//Comments
+.comment-section {
+  padding: 40px 0;
+  margin-top: 40px;
+
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    margin-top: 74px;
+
+    input,
+    textarea {
+      font-weight: 200;
+      font-size: 14px;
+      margin: 8px 0;
+      border: $p-color solid 1px;
+    }
+
+    .my-button {
+      margin-top: 16px;
+    }
+  }
+
+  .post-area {
+
+    .each-post {
+      background-color: $light-grey;
+      border-radius: 20px;
+      padding: 20px;
+
+      margin: 32px 0;
+
+      h5 {
+        text-transform: uppercase;
+      }
+
+      h6 {
+        text-decoration: underline;
+        font-size: 18px;
+      }
+    }
+
+    form {
+      margin-top: 0;
+    }
+  }
+}
 
 //Footer
 footer {

@@ -3,19 +3,20 @@ const Schema = mongoose.Schema
 
 const listSchema = new Schema(
 	{
-		nameList: String,
+		nameList: {
+			type: String,
+			default: 'Mi lista',
+		},
 		typeOfList: {
 			type: String,
-			enum: ['Like', 'Fav'],
+			enum: ['wish', 'visited', 'custom'],
 		},
-		owner: { type: Schema.Types.ObjectId, ref: 'user' },
-		likeId: { type: Schema.Types.ObjectId, ref: 'Work' },
-		myLikes: Array,
+		likesId: [{ type: Schema.Types.ObjectId, ref: 'Work' }],
 	},
 	{
 		timestamps: true,
 	}
 )
 
-const List = mongoose.model('list', listSchema)
+const List = mongoose.model('List', listSchema)
 module.exports = List

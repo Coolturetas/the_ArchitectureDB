@@ -1,18 +1,34 @@
 const express = require('express')
 const router = express.Router()
 const Work = require('../models/work.model')
-const Trend = require('../models/trend.model')
-const Arch = require('../models/architect.model')
-const Comment = require('../models/comment.model')
+const User = require('../models/user.model')
 const List = require('../models/list.model')
 
 router.get('/', (req, res, next) => {
-	const promiseFav = List.find({ owner: req.user.id, typeOfList: 'Fav' }).populate('owner').populate('likeId')
-	const promiseLike = List.find({ owner: req.user.id, typeOfList: 'Like' }).populate('owner').populate('likeId')
+	const wishes = req.user.wishList.likesId
+	const visites = req.user.visitedList.likesId
 
-	Promise.all([promiseFav, promiseLike])
-		.then((data) => res.render('list/my-lists', { favs: data[0], likes: data[1], lists: data[2], user: req.user }))
-		.catch((err) => console.log('No se ha encontrado lista alguna', err))
+	Promise.all([wishes, visites])
+		.then((data) => res.render('list/my-lists', { wishes: data[0], visites: data[1] }))
+		.catch((err) => console.log('No se ha encontrado nada', err))
 })
+router.post('/delete/:id', (req, res, next) => {
+	const wishes = req.user.wishList.likesId
+	const visites = req.user.visitedList.likesId
 
+	visites.forEach((elm) => {
+		if (elm.id === req.params.id) {
+			List.findByIdAndUpdate(req.user.visitedList, { $pull: { likesId: req.params.id } })
+				.then(res.redirect('/list'))
+				.catch((err) => console.log('No se ha borrado de visitas', err))
+		}
+	})
+	wishes.forEach((elm) => {
+		if (elm.id === req.params.id) {
+			List.findByIdAndUpdate(req.user.wishList, { $pull: { likesId: req.params.id } })
+				.then(res.redirect('/list'))
+				.catch((err) => console.log('No se ha borrado de deseos', err))
+		}
+	})
+})
 module.exports = router

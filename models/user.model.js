@@ -16,8 +16,10 @@ const userSchema = new Schema({
 		enum: ['admin', 'editor', 'colaborator'],
 		default: 'colaborator',
 	},
-	list: { type: Schema.Types.ObjectId, ref: 'list' },
+	visitedList: { type: Schema.Types.ObjectId, ref: 'List' },
+	wishList: { type: Schema.Types.ObjectId, ref: 'List' },
+	myLists: [{ type: Schema.Types.ObjectId, ref: 'List' }],
 })
 
-const User = mongoose.model('user', userSchema)
+const User = mongoose.model('User', userSchema)
 module.exports = User
