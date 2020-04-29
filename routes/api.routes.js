@@ -3,16 +3,18 @@ const router = express.Router()
 const Work = require('../models/work.model')
 const Trend = require('../models/trend.model')
 const Arch = require('../models/architect.model')
+const List = require('../models/list.model')
 
 //WORKS
 
 router.get('/works/search', (req, res, next) => {
   Work.find(req.query)
-  .then((works) => {
-    res.json({works})
-  }).catch((err) => {
-    next(new Error(err))
-  });
+    .then((works) => {
+      res.json({ works })
+    })
+    .catch((err) => {
+      next(new Error(err))
+    })
 })
 
 router.get('/works/:id', (req, res, next) => {
@@ -39,11 +41,12 @@ router.get('/works', (req, res, next) => {
 
 router.get('/architects/search', (req, res, next) => {
   Arch.find(req.query)
-  .then((architects) => {
-    res.json({architects})
-  }).catch((err) => {
-    next(new Error(err))
-  });
+    .then((architects) => {
+      res.json({ architects })
+    })
+    .catch((err) => {
+      next(new Error(err))
+    })
 })
 
 router.get('/architects/:id', (req, res, next) => {
@@ -69,11 +72,12 @@ router.get('/architects', (req, res, next) => {
 
 router.get('/trend/search', (req, res, next) => {
   Trend.find(req.query)
-  .then((trends) => {
-    res.json({trends})
-  }).catch((err) => {
-    next(new Error(err))
-  });
+    .then((trends) => {
+      res.json({ trends })
+    })
+    .catch((err) => {
+      next(new Error(err))
+    })
 })
 
 router.get('/trend/:id', (req, res, next) => {
@@ -90,6 +94,18 @@ router.get('/trend', (req, res, next) => {
   Trend.find({ isVerified: true })
     .then((allTrends) => {
       res.json({ allTrends })
+    })
+    .catch((err) => {
+      next(new Error(err))
+    })
+})
+
+//LISTS
+
+router.get('/list/mylists/:type', (req, res, next) => {
+  List.find({ owner: req.user.id, typeOfList: req.params.type })
+    .then((list) => {
+      res.json({ list })
     })
     .catch((err) => {
       next(new Error(err))
