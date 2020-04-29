@@ -4,6 +4,7 @@ const Work = require('../models/work.model')
 const Trend = require('../models/trend.model')
 const Arch = require('../models/architect.model')
 const Comment = require('../models/comment.model')
+const List = require('../models/list.model')
 const cloudUploader = require('../configs/cloudinary.config')
 
 function checkAuth(req, res, next) {
@@ -15,28 +16,6 @@ router.get('/', (req, res, next) => {
 		.populate('architect')
 		.then((workFound) => res.render('works/works-index', { workFound, user: req.user }))
 		.catch((err) => next(new Error('No se ha encontrado nada', err)))
-})
-
-//Raw data
-
-router.get('/api', (req, res, next) => {
-	Work.find({ isVerified: true })
-		.then((allWorks) => {
-			res.json({ allWorks })
-		})
-		.catch((err) => {
-			next(new Error(err))
-		})
-})
-
-router.get('/api/:id', (req, res, next) => {
-	Work.findById(req.params.id)
-		.then((work) => {
-			res.json({ work })
-		})
-		.catch((err) => {
-			next(new Error(err))
-		})
 })
 
 //Edit
@@ -165,8 +144,36 @@ router.get('/show/:id', (req, res, next) => {
 	const promiseWork = Work.findById(req.params.id).populate('trend').populate('architect')
 
 	Promise.all([promiseWork, promisePost])
-		.then((data) => res.render('works/works-dets', { works: data[0], posts: data[1] }))
+		.then((data) => res.render('works/works-dets', { works: data[0], posts: data[1], user: req.user }))
 		.catch((err) => next(new Error('No se ha encontrado nada para ver', err)))
+})
+
+//
+//Likes
+//
+
+router.post('/add-like/:id', checkAuth, (req, res, next) => {
+	console.log('paice que funsiona')
+	const newList = {
+		typeOfList: 'Like',
+		owner: req.user.id,
+		likeId: req.params.id,
+	}
+	List.create(newList)
+		.then(res.redirect('/works'))
+		.catch((err) => console.log('No se ha creado ningun like', err))
+})
+
+router.post('/add-fav/:id', checkAuth, (req, res, next) => {
+	console.log('paice que funsiona')
+	const newList = {
+		typeOfList: 'Fav',
+		owner: req.user.id,
+		likeId: req.params.id,
+	}
+	List.create(newList)
+		.then(res.redirect('/works'))
+		.catch((err) => console.log('No se ha creado ningun fav', err))
 })
 
 module.exports = router

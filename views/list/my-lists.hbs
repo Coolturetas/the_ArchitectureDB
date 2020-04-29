@@ -1,0 +1,56 @@
+<section id="likes-page">
+    <h1 class="center">Mis listas</h1>
+
+    <div class="my-list1" ondragenter="return dragEnter(event)" ondrop="return dragDrop(event)"
+        ondragover="return dragOver(event)">
+        <h5>Mis likes</h5>
+
+        <div class="row ordering">
+            {{#each likes}}
+            <div class="card-dsg" id="{{id}}" draggable="true" ondragstart="return dragStart(event)">
+
+                <figure class="card-img">
+                    <img src="{{ likeId.picWork }}" alt="{{ likeId.name }}">
+                </figure>
+
+                <div class="card-text like">
+                    <h5 class="center">{{ likeId.name }}</h5>
+                    <small><em>{{ likeId.country }}</em></small>
+                    <a class="my-button card filled" href="/works/show/{{_id}}">Ver detalles</a>
+                </div>
+
+            </div>
+
+            {{/each}}
+        </div>
+
+    </div>
+
+    <article class="my-list2" ondragenter="return dragEnter(event)" ondrop="return dragDrop(event)"
+        ondragover="return dragOver(event)">
+
+        <h5>Dónde me gustaría ir</h5>
+        <div class="row ordering">
+
+            {{#each favs}}
+            <div class="card-dsg" draggable="true" ondragstart="return dragStart(event)">
+
+                <figure class="card-img">
+                    <img src="{{ likeId.picWork }}" alt="{{ likeId.name }}">
+                </figure>
+
+                <div class="card-text fav">
+                    <h5 class="center">{{ likeId.name }}</h5>
+                    <small><em>{{ likeId.country }}</em></small>
+                    <a class="my-button card filled" href="/works/show/{{_id}}">Ver detalles</a>
+                </div>
+
+            </div>
+            {{/each}}
+        </div>
+
+    </article>
+    {{#each lists}}
+    <h4>{{nameList}}</h4>
+    {{/each}}
+</section>

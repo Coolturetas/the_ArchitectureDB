@@ -31,14 +31,14 @@ function pinMarker(place, targetMap) {
 }
 
 function getPlaces() {
-	axios
-		.get(`/works/api/${workId}`)
-		.then((result) => {
-			pinMarker(result.data.work, renderedMap)
-		})
-		.catch((err) => {
-			console.log(err)
-		})
+  axios
+    .get(`/api/works/${workId}`)
+    .then((result) => {
+      pinMarker(result.data.work, renderedMap)
+    })
+    .catch((err) => {
+      console.log(err)
+    })
 }
 
 function startMap() {

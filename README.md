@@ -19,15 +19,27 @@
 | ---------- | --------- | :---------------------------------------- |
 | GET        | /         | Main page route. Renders home index view. |
 
+#### Raw data routes:
+
+| **Method** | **Route**                       | **Description**                                 |
+|------------|---------------------------------|-------------------------------------------------|
+| GET        | /api/works                      | Returns all Work documents as JSON              |
+| GET        | /api/works/:id                  | Returns a specific Work as JSON                 |
+| GET        | /api/works/search?foo=bar       | Allows refining search by queries, outputs JSON |
+| GET        | /api/architects                 | Returns all Architect documents as JSON         |
+| GET        | /api/architects/:id             | Returns a specific Architect as JSON            |
+| GET        | /api/architects/search?foo=bar  | Allows refining search by queries, outputs JSON |
+| GET        | /api/trend                      | Returns all Trend documents as JSON             |
+| GET        | /api/trend/:id                  | Returns a specific Trend as JSON                |
+| GET        | /api/trend/search?foo=bar       | Allows refining search by queries, outputs JSON |
+
 #### Works Routes:
 
 | **Method** | **Works Route** | **Description**                           |
 | ---------- | --------------- | :---------------------------------------- |
 | GET        | /works          | Main works page route. Renders all works. |
-| GET        | /works/api      | Get JSON                                  |
 | GET        | /works/add      | Renders form to add new                   |
 | POST       | /works/add      | Creates new work                          |
-| GET        | /works/api/:id  | Shows especified work                     |
 | GET        | /works/edit/:id | Renders form to edit                      |
 | POST       | /works/edit/:id | Edit specified work                       |
 
