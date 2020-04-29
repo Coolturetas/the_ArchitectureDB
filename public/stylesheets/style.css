@@ -136,7 +136,10 @@ nav {
     border: none;
     text-transform: none;
     font-weight: 300;
-    text-decoration: underline; }
+    text-decoration: underline;
+    background-color: transparent; }
+    .my-button.nolined:hover {
+      color: #FF576F; }
 
 .fav-btn {
   display: flex;
@@ -243,42 +246,42 @@ nav {
       flex-direction: column;
       align-items: center;
       border-radius: 0 0 10px 10px; }
-      #likes-page .card-dsg .card-text.fav,
-      #arch-page .card-dsg .card-text.fav,
-      #trend-page .card-dsg .card-text.fav {
-        background-color: pink; }
-      #likes-page .card-dsg .card-text.like,
-      #arch-page .card-dsg .card-text.like,
-      #trend-page .card-dsg .card-text.like {
-        background-color: goldenrod; }
       #likes-page .card-dsg .card-text h5,
       #arch-page .card-dsg .card-text h5,
       #trend-page .card-dsg .card-text h5 {
         font-size: 18px; }
-  #likes-page .my-list1,
-  #likes-page .my-list2,
-  #arch-page .my-list1,
-  #arch-page .my-list2,
-  #trend-page .my-list1,
-  #trend-page .my-list2 {
-    background-color: #f5f6f9;
+  #likes-page .my-list,
+  #arch-page .my-list,
+  #trend-page .my-list {
+    width: 546px;
+    border: #f5f6f9 3px solid;
     border-radius: 20px;
-    padding: 20px 10px;
-    margin-top: 60px;
+    padding: 20px 32px;
+    margin: 60px 24px 60px 0;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center; }
-    #likes-page .my-list1 .ordering,
-    #likes-page .my-list2 .ordering,
-    #arch-page .my-list1 .ordering,
-    #arch-page .my-list2 .ordering,
-    #trend-page .my-list1 .ordering,
-    #trend-page .my-list2 .ordering {
+    align-items: flex-start; }
+    #likes-page .my-list .ordering .my-button,
+    #arch-page .my-list .ordering .my-button,
+    #trend-page .my-list .ordering .my-button {
+      margin-left: 16px; }
+    #likes-page .my-list .ordering .list-card,
+    #arch-page .my-list .ordering .list-card,
+    #trend-page .my-list .ordering .list-card {
+      background-color: #f5f6f9;
+      border-radius: 10px;
+      padding: 10px;
       display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 0 20px 40px; }
+      align-items: flex-end;
+      margin: 8px 0; }
+      #likes-page .my-list .ordering .list-card.fav,
+      #arch-page .my-list .ordering .list-card.fav,
+      #trend-page .my-list .ordering .list-card.fav {
+        border-left: #FF576F 3px solid; }
+      #likes-page .my-list .ordering .list-card.like,
+      #arch-page .my-list .ordering .list-card.like,
+      #trend-page .my-list .ordering .list-card.like {
+        border-left: #009CBA 3px solid; }
 
 #work-dets,
 #trend-dets,

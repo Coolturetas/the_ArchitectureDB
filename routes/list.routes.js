@@ -15,4 +15,10 @@ router.get('/', (req, res, next) => {
 		.catch((err) => console.log('No se ha encontrado lista alguna', err))
 })
 
+router.post('/delete/:id', (req, res, next) => {
+	List.findByIdAndRemove(req.params.id)
+		.then(res.redirect('/list'))
+		.catch((err) => HTMLFormControlsCollection.log('No se ha borrado la lista seleccionada', err))
+})
+
 module.exports = router
