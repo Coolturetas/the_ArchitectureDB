@@ -169,8 +169,8 @@ router.post('/add-visited/:id', checkAuth, (req, res, next) => {
 
 router.post('/add-wish/:id', checkAuth, (req, res, next) => {
 	const workId = req.params.id
-	if (!req.user.woshList.likesId.includes(workId)) {
-		List.findByIdAndUpdate(req.user.woshList, { $push: { likesId: workId } })
+	if (!req.user.wishList.likesId.includes(workId)) {
+		List.findByIdAndUpdate(req.user.wishList, { $push: { likesId: workId } })
 			.then(res.redirect('/works'))
 			.catch((err) => console.log('No se ha añadido nada a la lista', err))
 	} else {

@@ -18,8 +18,24 @@ module.exports = (app) => {
 	passport.serializeUser((user, next) => next(null, user._id))
 	passport.deserializeUser((id, next) => {
 		User.findById(id)
-			.populate('visitedList')
-			.populate('wishList')
+			.populate([
+				{
+					path: 'visitedList',
+					model: 'List',
+					populate: {
+						path: 'likesId',
+						model: 'Work',
+					},
+				},
+				{
+					path: 'wishList',
+					model: 'List',
+					populate: {
+						path: 'likesId',
+						model: 'Work',
+					},
+				},
+			])
 			.then((theUser) => next(null, theUser))
 			.catch((err) => next(err))
 	})

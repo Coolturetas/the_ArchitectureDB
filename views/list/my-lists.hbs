@@ -7,9 +7,9 @@
             <h5>Lugares en los que estuve</h5>
 
             <div class="row ordering">
-                {{#each likes}}
+                {{#each visites}}
                 <div class="list-card like" id="{{id}}" draggable="true" ondragstart="return dragStart(event)">
-                    <h5 class="center">{{ likeId.name }}</h5>
+                    <h5 class="center">{{ name }}</h5>
                     <form action="/list/delete/{{id}}" method="post">
                         <button type="submit" class="my-button outlined mini">Quitar</button>
                     </form>
@@ -25,9 +25,9 @@
             <h5>Dónde me gustaría ir</h5>
             <div class="row ordering">
 
-                {{#each favs}}
+                {{#each wishes}}
                 <div class="list-card fav" id="{{id}}" draggable="true" ondragstart="return dragStart(event)">
-                    <h5 class="center">{{ likeId.name }}</h5>
+                    <h5 class="center">{{ name }}</h5>
                     <form action="/list/delete/{{id}}" method="post">
                         <button type="submit" class="my-button outlined mini">Quitar</button>
                     </form>

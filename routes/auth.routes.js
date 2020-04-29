@@ -28,9 +28,10 @@ router.post('/signup', (req, res, next) => {
 			const hashPass = bcrypt.hashSync(password, salt)
 
 			const createVisitedList = { nameList: 'Lugares que visité', typeOfList: 'visited' }
-			const createWishList = { nameList: 'Me muero por ir', typeOfList: 'whish' }
+			const createWishList = { nameList: 'Me muero por ir', typeOfList: 'wish' }
 
-			List.create([createVisitedList, createWishList]).then((listsCreated) => {
+			List.create([createVisitedList, createWishList])
+				.then((listsCreated) => {
 				User.create({ username, password: hashPass, visitedList: listsCreated[0], wishList: listsCreated[1] })
 					.then(() => res.redirect('/'))
 					.catch(() => res.render('auth/signup', { errorMsg: 'No se pudo crear el usuario' }))

@@ -9,7 +9,7 @@ const listSchema = new Schema(
 		},
 		typeOfList: {
 			type: String,
-			enum: ['whish', 'visited', 'custom'],
+			enum: ['wish', 'visited', 'custom'],
 		},
 		likesId: [{ type: Schema.Types.ObjectId, ref: 'Work' }],
 	},
