@@ -2,13 +2,12 @@
     <h1 class="center">Mis listas</h1>
 
     <div class="row">
-        <div id="likes" class="my-list" ondragenter="return dragEnter(event)" ondrop="return dragDrop(event)"
-            ondragover="return dragOver(event)">
+        <div id="visites" class="my-list">
             <h5>Lugares en los que estuve</h5>
 
-            <div class="row ordering">
+            <div class="row ordering is-left">
                 {{#each visites}}
-                <div class="list-card like" id="{{id}}" draggable="true" ondragstart="return dragStart(event)">
+                <div class="list-card like" draggable="true">
                     <h5 class="center">{{ name }}</h5>
                     <form action="/list/delete/{{id}}" method="post">
                         <button type="submit" class="my-button outlined mini">Quitar</button>
@@ -19,14 +18,13 @@
 
         </div>
 
-        <article id="favs" class="my-list" ondragenter="return dragEnter(event)" ondrop="return dragDrop(event)"
-            ondragover="return dragOver(event)">
+        <article id="wishes" class="my-list">
 
             <h5>Dónde me gustaría ir</h5>
-            <div class="row ordering">
+            <div class="row ordering is-right">
 
                 {{#each wishes}}
-                <div class="list-card fav" id="{{id}}" draggable="true" ondragstart="return dragStart(event)">
+                <div class="list-card fav" draggable="true">
                     <h5 class="center">{{ name }}</h5>
                     <form action="/list/delete/{{id}}" method="post">
                         <button type="submit" class="my-button outlined mini">Quitar</button>
