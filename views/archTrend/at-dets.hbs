@@ -37,12 +37,24 @@
         </div>
     </div>
 
-    <div class="row comment-section">
-        <div class="col-md-8 post-area">
-            <h2>Comentarios</h2>
+    <div class="comment-section">
 
+        <h4>¿Qué opinas de esta corriente?</h4>
+
+        <form action="/trend/post-comment/{{trend.id}}" method="POST">
+
+            <input type="text" name="subject" id="subject" class="form-control" placeholder="Asunto">
+
+            <textarea class="form-control" id="comment" rows="4" cols="100" name="content"
+                placeholder="Cuéntanos qué opinas..."></textarea>
+
+            <button type="submit" class="my-button card filled">Publicar comentario</button>
+        </form>
+        <div class="post-area">
+            <h4>Lo que otros opinan...</h4>
             {{#each posts}}
             <div class="each-post">
+
                 <h5>{{subject}}</h5>
                 <h6><em>By: {{creatorId.username}}</em></h6>
                 <p>{{content}}</p>
@@ -53,21 +65,14 @@
                         <button type="submit" class="my-button outlined mini">Borrar</button>
                     </form>
                 </div>
+
             </div>
             {{/each}}
+
         </div>
 
-        <div class="col-md-4">
-            <form action="/trend/post-comment/{{trend.id}}" method="POST">
 
-                <input type="text" name="subject" id="subject" class="form-control" placeholder="Asunto">
 
-                <textarea class="form-control" id="comment" rows="4" cols="100" name="content"
-                    placeholder="Cuéntanos qué opinas..."></textarea>
 
-                <button type="submit" class="my-button card filled">Publicar comentario</button>
-
-            </form>
-        </div>
     </div>
 </section>
