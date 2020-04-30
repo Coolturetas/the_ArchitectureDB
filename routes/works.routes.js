@@ -8,8 +8,19 @@ const List = require('../models/list.model')
 const User = require('../models/user.model')
 const cloudUploader = require('../configs/cloudinary.config')
 
-function checkAuth(req, res, next) {
-	return req.isAuthenticated() ? next() : res.redirect('/login')
+const checkAuth = (req, res, next) => (req.isAuthenticated() ? next() : res.redirect('/login'))
+
+const checkIsInRole = (...roles) => (req, res, next) => {
+	if (!req.user) {
+		return res.redirect('/login')
+	}
+
+	const hasRole = roles.find((role) => req.user.role === role)
+	if (!hasRole) {
+		return res.redirect('/login')
+	}
+
+	return next()
 }
 
 router.get('/', (req, res, next) => {
@@ -80,11 +91,7 @@ router.post('/', checkAuth, cloudUploader.single('photo-work'), (req, res, next)
 	req.user.role === 'colaborator' ? (verification = false) : null
 	let pic
 
-	if (req.file === undefined) {
-		pic = 'https://res.cloudinary.com/dxf11hxhh/image/upload/v1587913924/theArchitectureDB/default_dh4el6.jpg'
-	} else {
-		pic = req.file.url
-	}
+	req.file ? (pic = req.file.url) : (pic = 'https://res.cloudinary.com/dxf11hxhh/image/upload/v1587913924/theArchitectureDB/default_dh4el6.jpg')
 
 	const newWork = {
 		trend: req.body.trend,
@@ -132,7 +139,7 @@ router.post('/post-comment/delete/:id', checkAuth, (req, res, next) => {
 	const placePosted = req.body.reference
 	Comment.findById(req.params.id)
 		.then((result) => {
-			if (result.creatorId == req.user.id) {
+			if (result.creatorId == req.user.id || checkIsInRole('editor', 'admin')) {
 				return result.id
 			} else {
 				return res.redirect(`/works/show/${placePosted}`)

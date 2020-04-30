@@ -124,7 +124,7 @@ router.post('/post-comment/delete/:id', checkAuth, (req, res, next) => {
 
 	Comment.findById(req.params.id)
 		.then((result) => {
-			if (result.creatorId == req.user.id) {
+			if (result.creatorId == req.user.id || checkIsInRole('editor', 'admin')) {
 				return result.id
 			} else {
 				return res.redirect(`/architects/view/${placePosted}`)
