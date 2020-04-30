@@ -161,22 +161,14 @@ router.post('/add-visited/:id', checkAuth, (req, res, next) => {
 	const workId = req.params.id
 	const visites = req.user.visitedList.likesId
 
-	if (visites.length === 0) {
+	if (!visites.some((elm) => elm.id === workId)) {
+		console.log('nole')
 		List.findByIdAndUpdate(req.user.visitedList, { $push: { likesId: workId } })
 			.then(res.redirect('/works'))
 			.catch((err) => next(err))
 	} else {
-		visites.forEach((elm) => {
-			if (elm.id !== workId) {
-				console.log('nole')
-				List.findByIdAndUpdate(req.user.visitedList, { $push: { likesId: workId } })
-					.then(res.redirect('/works'))
-					.catch((err) => next(err))
-			} else {
-				console.log('sile')
-				res.redirect('/works')
-			}
-		})
+		console.log('sile')
+		res.redirect('/works')
 	}
 })
 
@@ -184,22 +176,14 @@ router.post('/add-wish/:id', checkAuth, (req, res, next) => {
 	const workId = req.params.id
 	const wishes = req.user.wishList.likesId
 
-	if (wishes.length === 0) {
+	if (!wishes.some((elm) => elm.id === workId)) {
+		console.log('nole')
 		List.findByIdAndUpdate(req.user.wishList, { $push: { likesId: workId } })
 			.then(res.redirect('/works'))
 			.catch((err) => next(err))
 	} else {
-		wishes.forEach((elm) => {
-			if (elm.id !== workId) {
-				console.log('nole')
-				List.findByIdAndUpdate(req.user.wishList, { $push: { likesId: workId } })
-					.then(res.redirect('/works'))
-					.catch((err) => next(err))
-			} else {
-				console.log('sile')
-				res.redirect('/works')
-			}
-		})
+		console.log('sile')
+		res.redirect('/works')
 	}
 })
 
