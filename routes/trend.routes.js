@@ -28,12 +28,7 @@ router.post('/', cloudUploader.single('photo-trend'), checkAuth, (req, res, next
 	req.user.role == 'colaborator' ? (verification = false) : null
 
 	let pic
-
-	if (req.file === undefined) {
-		pic = 'https://res.cloudinary.com/dxf11hxhh/image/upload/v1587913924/theArchitectureDB/default_dh4el6.jpg'
-	} else {
-		pic = req.file.url
-	}
+	req.file ? (pic = req.file.url) : (pic = 'https://res.cloudinary.com/dxf11hxhh/image/upload/v1587913924/theArchitectureDB/default_dh4el6.jpg')
 
 	const newTrend = {
 		name: req.body.name,
@@ -66,10 +61,7 @@ router.get('/edit/:id', checkAuth, (req, res, next) => {
 })
 
 router.post('/edit/:id', checkAuth, cloudUploader.single('photo-trend'), (req, res, next) => {
-	let pic
-	if (req.file !== undefined) {
-		pic = req.file.url
-	}
+	let pic = req.file && req.file.url
 
 	const editTrend = {
 		name: req.body.name,
@@ -103,13 +95,7 @@ router.post('/post-comment/:id', checkAuth, (req, res, next) => {
 router.post('/post-comment/delete/:id', checkAuth, (req, res, next) => {
 	const placePosted = req.body.reference
 	Comment.findById(req.params.id)
-		.then((result) => {
-			if (result.creatorId == req.user.id || checkIsInRole('editor', 'admin')) {
-				return result.id
-			} else {
-				return res.redirect(`/trend/show/${placePosted}`)
-			}
-		})
+		.then((result) => (result.creatorId == req.user.id || checkIsInRole('editor', 'admin') ? result.id : res.redirect(`/architects/view/${placePosted}`)))
 		.then((resultId) => Comment.findByIdAndRemove(resultId))
 		.then(() => res.redirect(`/trend/show/${placePosted}`))
 		.catch((err) => next(new Error('No se ha borrado tu comentario', err)))

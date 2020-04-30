@@ -39,10 +39,7 @@ router.post('/edit/:id', checkAuth, cloudUploader.single('photo-work'), (req, re
 	let verification = true
 	req.user.role === 'colaborator' ? (verification = false) : null
 
-	let pic
-	if (req.file) {
-		pic = req.file.url
-	}
+	let pic = req.file && req.file.url
 
 	const editWork = {
 		trend: req.body.trend,
@@ -122,13 +119,7 @@ router.post('/post-comment/:id', checkAuth, (req, res, next) => {
 router.post('/post-comment/delete/:id', checkAuth, (req, res, next) => {
 	const placePosted = req.body.reference
 	Comment.findById(req.params.id)
-		.then((result) => {
-			if (result.creatorId == req.user.id || checkIsInRole('editor', 'admin')) {
-				return result.id
-			} else {
-				return res.redirect(`/works/show/${placePosted}`)
-			}
-		})
+		.then((result) => (result.creatorId == req.user.id || checkIsInRole('editor', 'admin') ? result.id : res.redirect(`/architects/view/${placePosted}`)))
 		.then((resultId) => Comment.findByIdAndRemove(resultId))
 		.then(res.redirect(`/works/show/${placePosted}`))
 		.catch((err) => next(new Error(err)))

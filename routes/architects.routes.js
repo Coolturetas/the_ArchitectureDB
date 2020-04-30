@@ -38,10 +38,7 @@ router.post('/edit/:id', cloudUploader.single('photo-arch'), checkAuth, (req, re
 	let verification = true
 	req.user.role === 'colaborator' ? (verification = false) : null
 
-	let pic
-	if (req.file !== undefined) {
-		pic = req.file.url
-	}
+	let pic = req.file && req.file.url
 
 	const editArch = {
 		name: req.body.name,
@@ -95,13 +92,7 @@ router.post('/post-comment/delete/:id', checkAuth, (req, res, next) => {
 	const placePosted = req.body.reference
 
 	Comment.findById(req.params.id)
-		.then((result) => {
-			if (result.creatorId == req.user.id || checkIsInRole('editor', 'admin')) {
-				return result.id
-			} else {
-				return res.redirect(`/architects/view/${placePosted}`)
-			}
-		})
+		.then((result) => (result.creatorId == req.user.id || checkIsInRole('editor', 'admin') ? result.id : res.redirect(`/architects/view/${placePosted}`)))
 		.then((resultId) => Comment.findByIdAndRemove(resultId))
 		.then(() => res.redirect(`/architects/view/${placePosted}`))
 		.catch((err) => next(new Error(err)))

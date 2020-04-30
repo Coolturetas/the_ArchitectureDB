@@ -5,10 +5,11 @@
         <div id="visites" class="my-list">
             <h5>Lugares en los que estuve</h5>
 
-            <div id="to-wish" class="row ordering">
+            <div id="to-wish" class="row ordering list">
+                <input type="hidden" class="listId" value={{visites.id}}>
                 {{#each visites.likesId}}
                 <div class="list-card like">
-                    <input type="hidden" id="occult-id" value="{{id}}">
+                    <input type="hidden" class="card-id" value="{{id}}">
                     <h5 class="center">{{ name }}</h5>
                     <form action="/list/delete/{{id}}" method="post">
                         <button type="submit" class="my-button outlined mini">Quitar</button>
@@ -24,7 +25,7 @@
         <article id="wishes" class="my-list">
 
             <h5>Dónde me gustaría ir</h5>
-            <div id="to-visited" class="row ordering">
+            <div id="to-visited" class="row ordering list">
 
                 {{#each wishes.likesId}}
                 <div class="list-card fav">
@@ -40,11 +41,12 @@
 
         </article>
 
-        <article>
-            <div id="workMap" style="background-color: rebeccapurple; height: 500px; width: 600px;"></div>
-        </article>
-
     </div>
+    <button class="my-button main filled" id="send-changes">Guardar listas</button>
+    <article>
+        <div id="workMap" style="background-color: rebeccapurple; height: 500px; width: 600px;"></div>
+    </article>
+
 
 </section>
 

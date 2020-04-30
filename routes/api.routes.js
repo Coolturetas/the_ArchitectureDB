@@ -136,16 +136,12 @@ router.get('/user/visitedList', (req, res, next) => {
 		})
 })
 
-router.get('/user/wishList', (req, res, next) => {
+router.get('/user/visitedList/likes', (req, res, next) => {
 	User.findById(req.user.id)
-		.then((result) => {
-			List.findById(result.wishList)
-				.then((list) => res.json({ list }))
-				.catch((err) => new Error(err))
-		})
-		.catch((err) => {
-			next(new Error(err))
-		})
+		.then((result) => List.findById(result.visitedList))
+		.then((data) => data.likesId)
+		.then((likesId) => res.json({ likesId }))
+		.catch((err) => next(new Error(err)))
 })
 
 module.exports = router
