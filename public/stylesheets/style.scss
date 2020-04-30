@@ -547,7 +547,7 @@ footer {
 
 
 #errorMsg {
-  background-color: $p-color;
+  background-color: $light-grey;
   color: $red;
   font-weight: 400;
   text-align: center;
@@ -559,4 +559,8 @@ footer {
 #workMap {
   height: 300px;
   width: 100%;
+}
+
+.prueba {
+  background-color: #FF576F;
 }

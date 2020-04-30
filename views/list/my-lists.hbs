@@ -8,6 +8,7 @@
             <div id="to-wish" class="row ordering">
                 {{#each visites.likesId}}
                 <div class="list-card like">
+                    <input type="hidden" id="occult-id" value="{{id}}">
                     <h5 class="center">{{ name }}</h5>
                     <form action="/list/delete/{{id}}" method="post">
                         <button type="submit" class="my-button outlined mini">Quitar</button>
@@ -52,3 +53,5 @@
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBBCqsxYcgOHcgyFouDoMyFFIFYtj3tHG0&callback=startMapMulti"></script>
 <script src="/javascripts/mapStyles.js"></script>
 <script src="/javascripts/multipleGeoPoints.js"></script>
+<script src="https://raw.githack.com/SortableJS/Sortable/master/Sortable.js"></script>
+<script src="/javascripts/drag.js"></script>

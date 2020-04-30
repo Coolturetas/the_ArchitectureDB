@@ -18,7 +18,6 @@ const userSchema = new Schema({
 	},
 	visitedList: { type: Schema.Types.ObjectId, ref: 'List' },
 	wishList: { type: Schema.Types.ObjectId, ref: 'List' },
-	myLists: [{ type: Schema.Types.ObjectId, ref: 'List' }],
 })
 
 const User = mongoose.model('User', userSchema)

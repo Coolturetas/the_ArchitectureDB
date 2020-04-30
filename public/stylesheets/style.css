@@ -386,7 +386,7 @@ footer {
   left: 0; }
 
 #errorMsg {
-  background-color: #666665;
+  background-color: #f5f6f9;
   color: #FF576F;
   font-weight: 400;
   text-align: center;
@@ -397,5 +397,8 @@ footer {
 #workMap {
   height: 300px;
   width: 100%; }
+
+.prueba {
+  background-color: #FF576F; }
 
 /*# sourceMappingURL=style.css.map */

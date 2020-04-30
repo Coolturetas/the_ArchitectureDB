@@ -7,7 +7,7 @@ router.get('/', (req, res, next) => {
 	const visites = req.user.visitedList
 
 	Promise.all([wishes, visites])
-		.then((data) => res.render('list/my-lists', { wishes: data[0], visites: data[1] }))
+		.then((data) => res.render('list/my-lists', { wishes: data[0], visites: data[1], user: req.user }))
 		.catch((err) => console.log('No se ha encontrado nada', err))
 })
 router.post('/delete/:id', (req, res, next) => {
