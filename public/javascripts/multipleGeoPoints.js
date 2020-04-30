@@ -76,6 +76,7 @@ function startMapMulti() {
   renderedMap = new google.maps.Map(workMap, {
     zoom: 15,
     center: ironhackBCN,
+    styles: mapStyles.silver
   })
 }
 
