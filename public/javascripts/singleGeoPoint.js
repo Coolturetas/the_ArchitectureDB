@@ -38,7 +38,7 @@ function startMapSingle() {
 		lat: 41.3977381,
 		lng: 2.190471916,
 	}
-	renderedMap = new google.maps.Map(workMap, {
+	renderedMapSingle = new google.maps.Map(workMap, {
 		zoom: 15,
 		center: ironhackBCN,
 	})
