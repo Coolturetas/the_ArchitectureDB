@@ -5,7 +5,7 @@
         <div id="visites" class="my-list">
             <h5>Lugares en los que estuve</h5>
 
-            <div class="row ordering">
+            <div id="to-wish" class="row ordering">
                 {{#each visites.likesId}}
                 <div class="list-card like">
                     <h5 class="center">{{ name }}</h5>
@@ -23,7 +23,7 @@
         <article id="wishes" class="my-list">
 
             <h5>Dónde me gustaría ir</h5>
-            <div class="row ordering is-right">
+            <div id="to-visited" class="row ordering">
 
                 {{#each wishes.likesId}}
                 <div class="list-card fav">
@@ -45,12 +45,10 @@
 
     </div>
 
-    <<<<<<< HEAD </section>
 
-        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-        <script
-            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBBCqsxYcgOHcgyFouDoMyFFIFYtj3tHG0&callback=startMapMulti"></script>
-        <script src="/javascripts/multipleGeoPoints.js"></script>
-        =======
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBBCqsxYcgOHcgyFouDoMyFFIFYtj3tHG0&callback=startMapMulti"></script>
+    <script src="/javascripts/multipleGeoPoints.js"></script>
+
 </section>
->>>>>>> yai
