@@ -40,7 +40,8 @@ function generateRouteUrl() {
     i < waypointAddresses.length - 2 ? urlWaypoints += encodeURIComponent(`|`) : null
   }
 
-  return urlStart + origin + '&' + destination + '&' + urlWaypoints
+  return `${urlStart}${origin}&${destination}&${urlWaypoints}`
+  
 }
 
 function setMapOnAll(map) {
