@@ -21,7 +21,7 @@ router.get('/', (req, res, next) => {
 })
 
 //Add new trend
-router.get('/new', checkAuth, (req, res, next) => res.render('archTrend/at-add'))
+router.get('/new', checkAuth, (req, res, next) => res.render('archTrend/at-add', { user: req.user }))
 
 router.post('/', cloudUploader.single('photo-trend'), checkAuth, (req, res, next) => {
 	let verification = true
@@ -61,12 +61,11 @@ router.post('/delete/:id', checkAuth, (req, res, next) => {
 //Edit
 router.get('/edit/:id', checkAuth, (req, res, next) => {
 	Trend.findById(req.params.id)
-		.then((toEdit) => res.render('archTrend/at-edit', toEdit))
+		.then((toEdit) => res.render('archTrend/at-edit', { toEdit, user: req.user }))
 		.catch((err) => next(new Error('No se ha encontrado nada para editar', err)))
 })
 
 router.post('/edit/:id', checkAuth, cloudUploader.single('photo-trend'), (req, res, next) => {
-	
 	let pic
 	if (req.file !== undefined) {
 		pic = req.file.url

@@ -31,6 +31,7 @@ router.get('/edit/:id', checkAuth, (req, res, next) => {
 				works: results[0],
 				archs: results[1],
 				trends: results[2],
+				user: req.user,
 			})
 		)
 		.catch((err) => next(new Error('No se ha encontrado nada para editar', err)))
@@ -70,7 +71,7 @@ router.get('/new', checkAuth, (req, res, next) => {
 	const allPromise = [Arch.find(), Trend.find()]
 
 	Promise.all(allPromise)
-		.then((results) => res.render('works/works-add', { archs: results[0], trends: results[1] }))
+		.then((results) => res.render('works/works-add', { archs: results[0], trends: results[1], user: req.user }))
 		.catch((err) => next(new Error('No se han encontrado las opciones para el formulario', err)))
 })
 

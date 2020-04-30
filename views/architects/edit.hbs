@@ -1,19 +1,20 @@
 <section class="form-page">
 
-  <h2>Editar "{{name}}"</h2>
+  <h2>Editar "{{architect.name}}"</h2>
 
-  <form action="/architects/edit/{{_id}}" method="POST" enctype="multipart/form-data">
+  <form action="/architects/edit/{{architect._id}}" method="POST" enctype="multipart/form-data">
 
     <label for="name">Nombre</label>
-    <input name="name" type="text" class="form-control" id="name" value="{{name}}">
+    <input name="name" type="text" class="form-control" id="name" value="{{architect.name}}">
 
     <label for="country">País de procedencia</label>
-    <input name="country" type="text" class="form-control" id="country" value="{{country}}">
+    <input name="country" type="text" class="form-control" id="country" value="{{architect.country}}">
 
     <label for="flagship-work">Obra más conocida</label>
-    <input name="flagshipWork" type="text" class="form-control" id="flagship-work" value="{{flagshipWork}}">
+    <input name="flagshipWork" type="text" class="form-control" id="flagship-work" value="{{architect.flagshipWork}}">
 
-    <input type="file" class="upload-file" name="photo-arch" value="{{photo}}">
+    <input type="file" class="upload-file" name="photo-arch" value="{{architect.photo}}">
+    
     <div class="row justify-content-center">
       <button type="submit" class="my-button main filled">Guardar cambios</button>
     </div>
