@@ -98,6 +98,38 @@ nav {
     nav figure a {
       display: block; }
 
+.form-page {
+  padding: 120px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; }
+  .form-page h2 {
+    margin: 0 0 16px;
+    font-weight: 700; }
+  .form-page form {
+    width: 500px; }
+    .form-page form.complex-form {
+      width: 1000px; }
+      .form-page form.complex-form .upload-file {
+        margin-top: 44px; }
+    .form-page form .upload-file {
+      background-color: #f5f6f9;
+      width: 100%;
+      margin: 32px 0 0;
+      padding: 8px 16px;
+      border-radius: 10px; }
+    .form-page form label {
+      margin: 24px 0 0;
+      text-align: left;
+      display: block; }
+    .form-page form .my-button {
+      margin: 40px 0 24px 0px; }
+  .form-page p {
+    text-align: center; }
+    .form-page p a {
+      color: #009CBA; }
+
 .my-button {
   text-transform: uppercase;
   border-radius: 100px;
@@ -354,12 +386,13 @@ footer {
   left: 0; }
 
 #errorMsg {
-  background-color: red;
-  color: white;
+  background-color: #666665;
+  color: #FF576F;
   font-weight: 400;
   text-align: center;
   padding: 10px 0;
-  margin-top: 5px; }
+  margin-top: 16px;
+  border-radius: 10px; }
 
 #workMap {
   height: 300px;
