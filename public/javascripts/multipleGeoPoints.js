@@ -20,6 +20,28 @@ let waypointAddresses = []
 let waypoints = []
 let marker
 let selectedMode
+let urlStart
+let origin
+let destination
+let urlWaypoints
+
+function generateRouteUrl() {
+  urlStart = `https://www.google.com/maps/dir/?api=1&`
+  origin = `origin=${encodeURIComponent(waypointAddresses[1])}`
+  destination = `destination=${encodeURIComponent(
+    waypointAddresses[waypointAddresses.length - 1]
+  )}`
+
+  urlWaypoints = 'waypoints='
+
+  for (let i = 1; i < waypointAddresses.length - 1; i++) {
+    console.log(encodeURIComponent(waypointAddresses[i]))
+    urlWaypoints += encodeURIComponent(waypointAddresses[i])
+    i < waypointAddresses.length - 2 ? urlWaypoints += encodeURIComponent(`|`) : null
+  }
+
+  return urlStart + origin + '&' + destination + '&' + urlWaypoints
+}
 
 function setMapOnAll(map) {
   for (let i = 0; i < markers.length; i++) {
@@ -117,7 +139,7 @@ function calculateRoutes() {
         directionsRenderer.setMap(renderedMap)
         directionsRenderer.setDirections(response)
         const route = response.routes[0]
-        console.log(route)
+        console.log(generateRouteUrl())
       } else {
         console.log(status)
       }
