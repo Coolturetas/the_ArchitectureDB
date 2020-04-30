@@ -19,6 +19,7 @@ let markers = []
 let waypointAddresses = []
 let waypoints = []
 let marker
+let selectedMode
 
 function setMapOnAll(map) {
   for (let i = 0; i < markers.length; i++) {
@@ -100,7 +101,7 @@ function calculateRoutes() {
     })
   }
 
-  console.log(waypoints)
+  selectedMode = document.getElementById('travel-mode').value
 
   directionsService.route(
     {
@@ -108,7 +109,7 @@ function calculateRoutes() {
       destination: waypoints[waypoints.length - 1].location,
       waypoints: waypoints,
       optimizeWaypoints: true,
-      travelMode: 'DRIVING',
+      travelMode: selectedMode,
     },
     (response, status) => {
       if (status === 'OK') {
