@@ -59,6 +59,9 @@ h6 {
   font-size: 18px;
   font-weight: 300; }
 
+.graph-titles {
+  margin: 16px 0px; }
+
 nav {
   padding: 0;
   display: flex;
@@ -185,7 +188,8 @@ nav {
   background-image: url("/images/bkg-image.png");
   background-size: contain;
   background-repeat: no-repeat;
-  background-position: 0 0; }
+  background-position: 0 0;
+  height: 100vh; }
   #main-page small {
     text-align: right;
     display: block;
@@ -199,6 +203,9 @@ nav {
     margin: 16px 0; }
   #main-page .my-button.main {
     margin-left: 16px; }
+
+#graphs {
+  margin-bottom: 48px; }
 
 #works-page {
   padding: 40px 0;

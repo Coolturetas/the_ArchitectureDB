@@ -85,6 +85,10 @@ h6 {
   font-weight: 300;
 }
 
+.graph-titles {
+  margin: 16px 0px;
+}
+
 //Nav-bar
 nav {
   padding: 0;
@@ -285,6 +289,7 @@ nav {
   background-size: contain;
   background-repeat: no-repeat;
   background-position: 0 0;
+  height: 100vh;
 
   small {
     text-align: right;
@@ -308,6 +313,9 @@ nav {
   }
 }
 
+#graphs {
+  margin-bottom: 48px;
+}
 
 //Each Index
 
