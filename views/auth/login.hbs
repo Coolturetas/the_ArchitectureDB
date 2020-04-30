@@ -1,26 +1,23 @@
-<div class="row justify-content-center">
-    <div class="col-md-6">
+<section class="form-page">
 
-        <h1>Inicio de sesión</h1>
+    <h1 class="center">Inicio de sesión</h1>
 
-        <form action="/login" method="POST">
-            <div class="form-group">
-                <label for="field1">Nombre de usuario</label>
-                <input name="username" type="text" class="form-control" id="field1">
-            </div>
-            <div class="form-group">
-                <label for="field2">Contraseña</label>
-                <input name="password" type="password" class="form-control" id="field2">
-            </div>
+    <form action="/login" method="POST">
 
-            <button type="submit" class="btn btn-dark btn-block btn-lg">Iniciar sesión</button>
+        <label for="field1">Nombre de usuario</label>
+        <input name="username" type="text" class="form-control" id="field1">
 
-            {{#if errorMsg}}
-            <div id="errorMsg">{{{errorMsg}}}</div>
-            {{/if}}
+        <label for="field2">Contraseña</label>
+        <input name="password" type="password" class="form-control" id="field2">
 
-        </form>
+        <div class="row justify-content-center">
+            <button type="submit" class="my-button main filled">Iniciar sesión</button>
+        </div>
+        {{#if errorMsg}}
+        <div id="errorMsg">{{{errorMsg}}}</div>
+        {{/if}}
 
-        <p>¿No tienes cuenta? <a href="/signup">¡Regístrate!</a></p>
-    </div>
-</div>
+    </form>
+
+    <p>¿No tienes cuenta? <a href="/signup">¡Regístrate!</a></p>
+</section>

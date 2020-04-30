@@ -143,6 +143,63 @@ nav {
 
 }
 
+//Forms
+
+.form-page {
+  padding: 120px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+
+  h2 {
+    margin: 0 0 16px;
+    font-weight: 700;
+  }
+
+  form {
+    width: 500px;
+
+    &.complex-form {
+      width: 1000px;
+
+      .upload-file {
+        margin-top: 44px;
+      }
+    }
+
+
+    .upload-file {
+      background-color: $light-grey;
+      width: 100%;
+      margin: 32px 0 0;
+      padding: 8px 16px;
+      border-radius: 10px;
+    }
+
+    label {
+      margin: 24px 0 0;
+      text-align: left;
+      display: block;
+    }
+
+    .my-button {
+      margin: 40px 0 24px 0px;
+    }
+
+  }
+
+  p {
+    text-align: center;
+
+    a {
+      color: $link-color;
+    }
+  }
+}
+
+
 //buttons
 .my-button {
   text-transform: uppercase;
@@ -359,7 +416,6 @@ nav {
 
 
   .my-list {
-    width: 546px;
     border: $light-grey 3px solid;
     border-radius: 20px;
     padding: 20px 32px;
@@ -370,16 +426,22 @@ nav {
 
     .ordering {
 
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+
       .my-button {
         margin-left: 16px;
       }
 
       .list-card {
         background-color: $light-grey;
+        min-width: 310px;
         border-radius: 10px;
         padding: 10px;
         display: flex;
-        align-items: flex-end;
+        align-items: center;
+        justify-content: space-between;
         margin: 8px 0;
 
         &.fav {
@@ -483,16 +545,15 @@ footer {
   left: 0;
 }
 
-//Drag and Drop
-
 
 #errorMsg {
-  background-color: red;
-  color: white;
+  background-color: $p-color;
+  color: $red;
   font-weight: 400;
   text-align: center;
   padding: 10px 0;
-  margin-top: 5px;
+  margin-top: 16px;
+  border-radius: 10px;
 }
 
 #workMap {

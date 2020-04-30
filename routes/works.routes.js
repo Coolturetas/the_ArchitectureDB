@@ -31,6 +31,7 @@ router.get('/edit/:id', checkAuth, (req, res, next) => {
 				works: results[0],
 				archs: results[1],
 				trends: results[2],
+				user: req.user,
 			})
 		)
 		.catch((err) => next(new Error('No se ha encontrado nada para editar', err)))
@@ -70,7 +71,7 @@ router.get('/new', checkAuth, (req, res, next) => {
 	const allPromise = [Arch.find(), Trend.find()]
 
 	Promise.all(allPromise)
-		.then((results) => res.render('works/works-add', { archs: results[0], trends: results[1] }))
+		.then((results) => res.render('works/works-add', { archs: results[0], trends: results[1], user: req.user }))
 		.catch((err) => next(new Error('No se han encontrado las opciones para el formulario', err)))
 })
 
@@ -158,23 +159,47 @@ router.get('/show/:id', (req, res, next) => {
 
 router.post('/add-visited/:id', checkAuth, (req, res, next) => {
 	const workId = req.params.id
-	if (!req.user.visitedList.likesId.includes(workId)) {
+	const visites = req.user.visitedList.likesId
+
+	if (visites.length === 0) {
 		List.findByIdAndUpdate(req.user.visitedList, { $push: { likesId: workId } })
 			.then(res.redirect('/works'))
-			.catch((err) => console.log('No se ha añadido nada a la lista', err))
+			.catch((err) => next(err))
 	} else {
-		res.redirect('/works')
+		visites.forEach((elm) => {
+			if (elm.id !== workId) {
+				console.log('nole')
+				List.findByIdAndUpdate(req.user.visitedList, { $push: { likesId: workId } })
+					.then(res.redirect('/works'))
+					.catch((err) => next(err))
+			} else {
+				console.log('sile')
+				res.redirect('/works')
+			}
+		})
 	}
 })
 
 router.post('/add-wish/:id', checkAuth, (req, res, next) => {
 	const workId = req.params.id
-	if (!req.user.wishList.likesId.includes(workId)) {
+	const wishes = req.user.wishList.likesId
+
+	if (wishes.length === 0) {
 		List.findByIdAndUpdate(req.user.wishList, { $push: { likesId: workId } })
 			.then(res.redirect('/works'))
-			.catch((err) => console.log('No se ha añadido nada a la lista', err))
+			.catch((err) => next(err))
 	} else {
-		res.redirect('/works')
+		wishes.forEach((elm) => {
+			if (elm.id !== workId) {
+				console.log('nole')
+				List.findByIdAndUpdate(req.user.wishList, { $push: { likesId: workId } })
+					.then(res.redirect('/works'))
+					.catch((err) => next(err))
+			} else {
+				console.log('sile')
+				res.redirect('/works')
+			}
+		})
 	}
 })
 

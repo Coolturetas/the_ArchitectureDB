@@ -1,36 +1,27 @@
-<div class="row justify-content-center">
-  <div class="col-md-6">
+<section class="form-page">
 
-    <h2>New architect</h2>
-  </div>
-</div>
-<div class="row justify-content-center">
-  <div class="col-md-6">
-    <form action="/architects/create" method="POST" enctype="multipart/form-data">
-      <div class="form-group">
-        <label for="name">Name</label>
-        <input name="name" type="text" class="form-control" id="name">
-        <small>This field is required</small>
-      </div>
-      <div class="form-group">
-        <label for="country">Country</label>
-        <input name="country" type="text" class="form-control" id="country">
-      </div>
-      <div class="form-group">
-        <label for="flagship-work">Flagship work</label>
-        <input name="flagshipWork" type="text" class="form-control" id="flagship-work">
-      </div>
-      <div class="custom-file">
-        <input type="file" class="custom-file-input btn" id="customFile" name="photo-arch">
-        <label class="custom-file-label" for="customFile"></label>
-      </div>
+  <h2 class="center">New architect</h2>
 
-      <button type="submit" class="btn btn-dark btn-block btn-lg">Submit</button>
+  <form action="/architects/create" method="POST" enctype="multipart/form-data">
 
-      {{#if errorMsg}}
-      <div id="errorMsg">{{{errorMsg}}}</div>
-      {{/if}}
+    <label for="name">Nombre</label>
+    <input name="name" type="text" class="form-control" id="name">
 
-    </form>
-  </div>
-</div>
+    <label for="country">País de procedencia</label>
+    <input name="country" type="text" class="form-control" id="country">
+
+    <label for="flagship-work">Obra más conocida</label>
+    <input name="flagshipWork" type="text" class="form-control" id="flagship-work">
+
+    <input type="file" class="upload-file" name="photo-arch">
+    <div class="row justify-content-center">
+      <button type="submit" class="my-button main filled">Añadir Nuevo</button>
+    </div>
+    {{#if errorMsg}}
+    <div id="errorMsg">{{{errorMsg}}}</div>
+    {{/if}}
+
+  </form>
+  <a href="/architects" class="my-button nolined">Cancelar y volver</a>
+
+</section>

@@ -13,7 +13,7 @@ function checkAuth(req, res, next) {
 //Creation
 
 router.get('/create', checkAuth, (req, res, next) => {
-	res.render('./architects/create')
+	res.render('./architects/create', { user: req.user })
 })
 
 router.post('/create', checkAuth, cloudUploader.single('photo-arch'), (req, res, next) => {
@@ -43,7 +43,7 @@ router.post('/create', checkAuth, cloudUploader.single('photo-arch'), (req, res,
 router.get('/edit/:id', (req, res, next) => {
 	Architect.findById(req.params.id)
 		.then((architect) => {
-			res.render('./architects/edit', architect)
+			res.render('./architects/edit', { architect, user: req.user })
 		})
 		.catch((err) => {
 			next(new Error(err))
