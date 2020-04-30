@@ -6,23 +6,35 @@ document.addEventListener(
   false
 )
 
+const directionsService = new google.maps.DirectionsService()
+let directionsRenderer = new google.maps.DirectionsRenderer()
+
 const workMap = document.getElementById('workMap')
 const mapButtons = document.querySelectorAll('.show-map')
+const routeCalc = document.getElementById('routeCalc')
 
 let renderedMap
 let workId
 let markers = []
+let waypointAddresses = []
+let waypoints = []
 let marker
 
 function setMapOnAll(map) {
   for (let i = 0; i < markers.length; i++) {
     markers[i].setMap(map)
   }
+  if (directionsRenderer) {
+    directionsRenderer.setMap(null)
+    directionsRenderer = null
+  }
 }
 
 function deleteMarkers() {
   setMapOnAll(null)
   markers = []
+  waypointAddresses = []
+  waypoints = []
 }
 
 function pinMarker(place, targetMap) {
@@ -46,7 +58,7 @@ function getWorkAddress(id) {
   axios
     .get(`api/works/${id}`)
     .then((result) => {
-      console.log(result)
+      waypointAddresses.push(result.data.work.address)
       pinMarker(result.data.work, renderedMap)
     })
     .catch((err) => {
@@ -76,8 +88,40 @@ function startMapMulti() {
   renderedMap = new google.maps.Map(workMap, {
     zoom: 15,
     center: ironhackBCN,
-    styles: mapStyles.silver
+    styles: mapStyles.silver,
   })
+}
+
+function calculateRoutes() {
+  for (let i = 0; i < markers.length; i++) {
+    waypoints.push({
+      location: waypointAddresses[i],
+      stopover: true,
+    })
+  }
+
+  console.log(waypoints)
+
+  directionsService.route(
+    {
+      origin: waypoints[0].location,
+      destination: waypoints[waypoints.length - 1].location,
+      waypoints: waypoints,
+      optimizeWaypoints: true,
+      travelMode: 'DRIVING',
+    },
+    (response, status) => {
+      if (status === 'OK') {
+        directionsRenderer = new google.maps.DirectionsRenderer()
+        directionsRenderer.setMap(renderedMap)
+        directionsRenderer.setDirections(response)
+        const route = response.routes[0]
+        console.log(route)
+      } else {
+        console.log(status)
+      }
+    }
+  )
 }
 
 startMapMulti()
@@ -88,7 +132,6 @@ for (let i = 0; i < mapButtons.length; i++) {
     axios
       .get(`/api/list/mylists/${workId}`)
       .then((result) => {
-        console.log(result.data.list.likesId)
         getListElement()
       })
       .catch((err) => {
@@ -96,3 +139,5 @@ for (let i = 0; i < mapButtons.length; i++) {
       })
   })
 }
+
+routeCalc.addEventListener('click', () => calculateRoutes())
