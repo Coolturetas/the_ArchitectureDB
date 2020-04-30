@@ -3,8 +3,6 @@ const router = express.Router()
 const Architect = require('./../models/architect.model')
 const Trend = require('./../models/trend.model')
 const Work = require('./../models/work.model')
-const User = require('./../models/user.model')
-const passport = require('passport')
 
 const checkIsInRole = (...roles) => (req, res, next) => {
 	if (!req.user) {
@@ -19,9 +17,7 @@ const checkIsInRole = (...roles) => (req, res, next) => {
 	return next()
 }
 
-function checkAuth(req, res, next) {
-	return req.isAuthenticated() ? next() : res.redirect('/login')
-}
+const checkAuth = (req, res, next) => (req.isAuthenticated() ? next() : res.redirect('/login'))
 
 //Access to dashboard
 

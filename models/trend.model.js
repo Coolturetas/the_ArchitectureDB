@@ -12,7 +12,7 @@ const trendSchema = new Schema(
 		country: String,
 		description: String,
 		bestWork: String,
-		year: Number,
+		year: String,
 		isVerified: { type: Boolean, default: false },
 	},
 	{
