@@ -5,7 +5,7 @@
         <div id="visites" class="my-list">
             <h5>Lugares en los que estuve</h5>
 
-            <div id="to-wish" class="row ordering list">
+            <div id="to-wish" class="row ordering visit-list">
                 <input type="hidden" class="listId" value={{visites.id}}>
                 {{#each visites.likesId}}
                 <div class="list-card like">
@@ -25,10 +25,11 @@
         <article id="wishes" class="my-list">
 
             <h5>Dónde me gustaría ir</h5>
-            <div id="to-visited" class="row ordering list">
+            <div id="to-visited" class="row ordering wish-list">
 
                 {{#each wishes.likesId}}
                 <div class="list-card fav">
+                    <input type="hidden" class="card-id" value="{{id}}">
                     <h5 class="center">{{ name }}</h5>
                     <form action="/list/delete/{{id}}" method="post">
                         <button type="submit" class="my-button outlined mini">Quitar</button>
@@ -61,6 +62,7 @@
             <a href="#" id="routeUrl" class="my-button outlined" target="_blank">Introducir ruta en Google Maps</a>
         </div>
 
+        <button id="routeCalc" class="my-button outlined">Calcular ruta</button>
 
     </article>
 
