@@ -9,7 +9,7 @@ document.addEventListener(
 const directionsService = new google.maps.DirectionsService()
 let directionsRenderer = new google.maps.DirectionsRenderer()
 
-const workMap = document.getElementById('workMap')
+const routesMap = document.getElementById('routes-map')
 const mapButtons = document.querySelectorAll('.show-map')
 const routeCalc = document.getElementById('routeCalc')
 const routeUrl = document.getElementById('routeUrl')
@@ -112,7 +112,7 @@ function startMapMulti() {
     lat: 41.3977381,
     lng: 2.190471916,
   }
-  renderedMap = new google.maps.Map(workMap, {
+  renderedMap = new google.maps.Map(routesMap, {
     zoom: 15,
     center: ironhackBCN,
     styles: mapStyles.silver,

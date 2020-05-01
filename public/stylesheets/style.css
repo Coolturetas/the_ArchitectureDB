@@ -425,4 +425,8 @@ footer {
   width: 280px;
   text-align: center; }
 
+#routes-map {
+  height: 500px;
+  width: 700px; }
+
 /*# sourceMappingURL=style.css.map */
