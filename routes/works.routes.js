@@ -39,8 +39,6 @@ router.post('/edit/:id', checkAuth, cloudUploader.single('photo-work'), (req, re
 	let verification = true
 	req.user.role === 'colaborator' ? (verification = false) : null
 
-	let pic = req.file && req.file.url
-
 	const editWork = {
 		trend: req.body.trend,
 		country: req.body.country,
@@ -53,7 +51,11 @@ router.post('/edit/:id', checkAuth, cloudUploader.single('photo-work'), (req, re
 		isVerified: verification,
 	}
 
-	Work.findByIdAndUpdate(req.params.id, editWork, { picWork: pic, new: true })
+	if (req.file) {
+		editWork.picWork = req.file.url
+	}
+
+	Work.findByIdAndUpdate(req.params.id, editWork, { new: true })
 		.then(res.redirect('/works'))
 		.catch((err) => next(new Error(err)))
 })
@@ -70,9 +72,6 @@ router.get('/new', checkAuth, (req, res, next) => {
 router.post('/', checkAuth, cloudUploader.single('photo-work'), (req, res, next) => {
 	let verification = true
 	req.user.role === 'colaborator' ? (verification = false) : null
-	let pic
-
-	req.file ? (pic = req.file.url) : (pic = 'https://res.cloudinary.com/dxf11hxhh/image/upload/v1587913924/theArchitectureDB/default_dh4el6.jpg')
 
 	const newWork = {
 		trend: req.body.trend,
@@ -86,7 +85,13 @@ router.post('/', checkAuth, cloudUploader.single('photo-work'), (req, res, next)
 		isVerified: verification,
 	}
 
-	Work.create(newWork, { picWork: pic })
+	if (req.file === undefined) {
+		newWork.picWork = 'https://res.cloudinary.com/dxf11hxhh/image/upload/v1587913924/theArchitectureDB/default_dh4el6.jpg'
+	} else {
+		newWork.picWork = req.file.url
+	}
+
+	Work.create(newWork)
 		.then(res.redirect('/works'))
 		.catch((err) => console.log(err))
 })
