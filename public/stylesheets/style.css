@@ -156,7 +156,8 @@ nav {
     color: #009cba; }
   .my-button.outlined {
     border: solid 1px #ff576f;
-    color: #ff576f; }
+    color: #ff576f;
+    background-color: white; }
     .my-button.outlined:hover {
       background-color: #ff576f;
       color: white;
@@ -424,14 +425,15 @@ footer {
   display: none;
   position: fixed;
   background-color: #f5f6f9;
-  box-shadow: 5px 5px 5px 5px rgba(102, 102, 101, 0.5);
+  border: #ff576f solid 2px;
+  border-radius: 20px;
   padding: 16px; }
   #map-container #routeUrl {
     display: none;
     width: 280px;
     text-align: center; }
   #map-container #routes-map {
-    height: 500px;
+    height: 350px;
     width: 700px; }
 
 /*# sourceMappingURL=style.css.map */

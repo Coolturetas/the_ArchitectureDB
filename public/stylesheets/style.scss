@@ -229,6 +229,7 @@ nav {
   &.outlined {
     border: solid 1px $red;
     color: $red;
+    background-color: white;
 
     &:hover {
       background-color: $red;
@@ -550,12 +551,13 @@ footer {
 
 //Map container on Lists view
 
-#map-container{
+#map-container {
 
   display: none;
   position: fixed;
   background-color: $light-grey;
-  box-shadow: 5px 5px 5px 5px rgba(102,102,101,0.5);
+  border: $red solid 2px;
+  border-radius: 20px;
   padding: 16px;
 
   #routeUrl {
@@ -563,9 +565,9 @@ footer {
     width: 280px;
     text-align: center;
   }
-  
+
   #routes-map {
-    height: 500px;
+    height: 350px;
     width: 700px;
   }
 

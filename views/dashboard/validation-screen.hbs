@@ -1,86 +1,93 @@
 <sction id="validation-page">
-  <h2 class="center">Validación de colaboraciones</h2>
+  <h1 class="center">Validación de colaboraciones</h1>
 
-  <h5>Architects</h5>
+  <div class="my-list">
+    <h5>Architects</h5>
 
-  <div class="row" id="all-cards">
-    {{#each architects}}
-    <div class="card-dsg">
+    <div class="row">
+      {{#each architects}}
+      <div class="card-dsg">
 
-      <figure class="card-img">
-        <img src="{{photo}}" alt="{{name}}">
-      </figure>
+        <figure class="card-img">
+          <img src="{{photo}}" alt="{{name}}">
+        </figure>
 
-      <div class="card-text">
-        <h5 class="center">{{name}}</h5>
-        <small><em>{{country}}</em></small>
-        <p>{{flagshipWork}}</p>
+        <div class="card-text">
+          <h5 class="center">{{name}}</h5>
+          <small><em>{{country}}</em></small>
+          <p>{{flagshipWork}}</p>
 
-        <form action="/dashboard/architects/accept/{{_id}}" method="POST">
-          <button type="submit" class="my-button mini filled">Aceptar</button>
-        </form>
-        <form action="/dashboard/architects/reject/{{_id}}" method="POST"><button type="submit"
-            class="my-button mini filled">Rechazar</button>
-        </form>
+          <form action="/dashboard/architects/accept/{{_id}}" method="POST">
+            <button type="submit" class="my-button mini filled">Aceptar</button>
+          </form>
+          <form action="/dashboard/architects/reject/{{_id}}" method="POST"><button type="submit"
+              class="my-button mini filled">Rechazar</button>
+          </form>
+        </div>
+
       </div>
 
+      {{/each}}
     </div>
 
-    {{/each}}
   </div>
 
-  <hr>
+  <div class="my-list">
+    <h5>Trends</h5>
+    <div class="row">
+      {{#each trends}}
+      <div class="card-dsg">
 
-  <h5>Trends</h5>
-  <div class="row">
-    {{#each trends}}
-    <div class="card-dsg">
+        <figure class="card-img">
+          <img src="{{picTrend}}" alt="{{name}}">
+        </figure>
 
-      <figure class="card-img">
-        <img src="{{picTrend}}" alt="{{name}}">
-      </figure>
+        <div class="card-text">
+          <h5 class="center">{{name}}</h5>
+          <small><em>{{country}}</em></small>
+          <p>{{bestWork}}</p>
+          <p>{{year}}</p>
 
-      <div class="card-text">
-        <h5 class="center">{{name}}</h5>
-        <small><em>{{country}}</em></small>
-        <p>{{bestWork}}</p>
-        <p>{{year}}</p>
+          <form action="/dashboard/trends/accept/{{_id}}" method="POST"><button type="submit"
+              class="my-button mini filled">Aceptar</button>
+          </form>
+          <form action="/dashboard/trends/reject/{{_id}}" method="POST"><button type="submit"
+              class="my-button mini filled">Rechazar</button></form>
+        </div>
 
-        <form action="/dashboard/trends/accept/{{_id}}" method="POST"><button type="submit"
-            class="my-button mini filled">Aceptar</button>
-        </form>
-        <form action="/dashboard/trends/reject/{{_id}}" method="POST"><button type="submit"
-            class="my-button mini filled">Rechazar</button></form>
       </div>
-
+      {{/each}}
     </div>
-    {{/each}}
+
   </div>
 
-  <h5>Works</h5>
-  <div class="row">
-    {{#each works}}
-    <div class="card-dsg">
+  <div class="my-list">
 
-      <figure class="card-img">
-        <img src="{{picWork}}" alt="{{name}}">
-      </figure>
+    <h5>Works</h5>
+    <div class="row">
+      {{#each works}}
+      <div class="card-dsg">
 
-      <div class="card-text">
-        <h5 class="center">{{name}}</h5>
-        <small><em>{{country}}</em></small>
-        <p>{{year}}</p>
+        <figure class="card-img">
+          <img src="{{picWork}}" alt="{{name}}">
+        </figure>
 
-        <form action="/dashboard/works/accept/{{_id}}" method="POST"><button type="submit"
-            class="my-button mini filled">Aceptar</button>
-        </form>
-        <form action="/dashboard/works/reject/{{_id}}" method="POST"><button type="submit"
-            class="my-button mini filled">Rechazar</button></form>
+        <div class="card-text">
+          <h5 class="center">{{name}}</h5>
+          <small><em>{{country}}</em></small>
+          <p>{{year}}</p>
+
+          <form action="/dashboard/works/accept/{{_id}}" method="POST"><button type="submit"
+              class="my-button mini filled">Aceptar</button>
+          </form>
+          <form action="/dashboard/works/reject/{{_id}}" method="POST"><button type="submit"
+              class="my-button mini filled">Rechazar</button></form>
+        </div>
+
       </div>
 
+      {{/each}}
     </div>
-
-    {{/each}}
   </div>
 
 </sction>
