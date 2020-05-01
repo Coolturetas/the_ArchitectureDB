@@ -1,9 +1,8 @@
 $p-color: #666665;
 $dark-blue: #2b3647;
-$red: #FF576F;
+$red: #ff576f;
 $light-grey: #f5f6f9;
-$link-color: #009CBA;
-
+$link-color: #009cba;
 
 body {
   font-weight: 200;
@@ -51,14 +50,12 @@ h1 {
   font-size: 50px;
   font-weight: 700;
   margin: 8px 0;
-
 }
 
 h2 {
   font-size: 40px;
   font-weight: 400;
   margin: 8px 0;
-
 }
 
 h3 {
@@ -72,7 +69,6 @@ h4 {
   font-size: 35px;
   font-weight: 700;
   margin: 8px 0;
-
 }
 
 h5 {
@@ -96,14 +92,12 @@ nav {
   justify-content: space-between;
   align-items: center;
 
-
   #first-group {
     display: flex;
     justify-content: flex-start;
     align-items: center;
     padding: 0;
     margin: 0;
-
   }
 
   #third-group {
@@ -144,7 +138,6 @@ nav {
       display: block;
     }
   }
-
 }
 
 //Forms
@@ -155,7 +148,6 @@ nav {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-
 
   h2 {
     margin: 0 0 16px;
@@ -172,7 +164,6 @@ nav {
         margin-top: 44px;
       }
     }
-
 
     .upload-file {
       background-color: $light-grey;
@@ -191,7 +182,6 @@ nav {
     .my-button {
       margin: 40px 0 24px 0px;
     }
-
   }
 
   p {
@@ -202,7 +192,6 @@ nav {
     }
   }
 }
-
 
 //buttons
 .my-button {
@@ -245,7 +234,6 @@ nav {
       background-color: $red;
       color: white;
       text-decoration: none;
-
     }
 
     &.mini {
@@ -268,7 +256,6 @@ nav {
       color: $red;
     }
   }
-
 }
 
 .fav-btn {
@@ -280,7 +267,6 @@ nav {
     margin: 0 5px;
   }
 }
-
 
 //main-page
 #main-page {
@@ -359,15 +345,12 @@ nav {
       display: flex;
       flex-direction: column;
 
-
       .btn-card {
         display: flex;
         justify-content: space-between;
         align-items: center;
       }
-
     }
-
   }
 }
 
@@ -384,7 +367,6 @@ nav {
   .my-button {
     margin: 8px 0;
   }
-
 
   .card-dsg {
     width: 168px;
@@ -420,9 +402,7 @@ nav {
         font-size: 18px;
       }
     }
-
   }
-
 
   .my-list {
     border: $light-grey 3px solid;
@@ -434,7 +414,6 @@ nav {
     align-items: flex-start;
 
     .ordering {
-
       display: flex;
       flex-direction: column;
       align-items: flex-start;
@@ -463,7 +442,6 @@ nav {
       }
     }
   }
-
 }
 
 //Dets page
@@ -518,7 +496,6 @@ nav {
   }
 
   .post-area {
-
     .each-post {
       background-color: $light-grey;
       border-radius: 20px;
@@ -556,7 +533,6 @@ footer {
   left: 0;
 }
 
-
 #errorMsg {
   background-color: $light-grey;
   color: $red;
@@ -570,4 +546,12 @@ footer {
 #workMap {
   height: 300px;
   width: 100%;
+}
+
+//Misc
+
+#routeUrl {
+  display: none;
+  width: 280px;
+  text-align: center;
 }

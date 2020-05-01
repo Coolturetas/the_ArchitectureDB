@@ -12,6 +12,7 @@ let directionsRenderer = new google.maps.DirectionsRenderer()
 const workMap = document.getElementById('workMap')
 const mapButtons = document.querySelectorAll('.show-map')
 const routeCalc = document.getElementById('routeCalc')
+const routeUrl = document.getElementById('routeUrl')
 
 let renderedMap
 let workId
@@ -37,11 +38,12 @@ function generateRouteUrl() {
   for (let i = 1; i < waypointAddresses.length - 1; i++) {
     console.log(encodeURIComponent(waypointAddresses[i]))
     urlWaypoints += encodeURIComponent(waypointAddresses[i])
-    i < waypointAddresses.length - 2 ? urlWaypoints += encodeURIComponent(`|`) : null
+    i < waypointAddresses.length - 2
+      ? (urlWaypoints += encodeURIComponent(`|`))
+      : null
   }
 
   return `${urlStart}${origin}&${destination}&${urlWaypoints}`
-  
 }
 
 function setMapOnAll(map) {
@@ -95,6 +97,7 @@ function getListElement() {
     .get(`/api/list/mylists/${workId}`)
     .then((result) => {
       deleteMarkers()
+      routeUrl.style.display = "none"
       result.data.list.likesId.forEach((elm) => {
         getWorkAddress(elm)
       })
@@ -139,8 +142,8 @@ function calculateRoutes() {
         directionsRenderer = new google.maps.DirectionsRenderer()
         directionsRenderer.setMap(renderedMap)
         directionsRenderer.setDirections(response)
-        const route = response.routes[0]
-        console.log(generateRouteUrl())
+        routeUrl.href = generateRouteUrl()
+        routeUrl.style.display = "block"
       } else {
         console.log(status)
       }

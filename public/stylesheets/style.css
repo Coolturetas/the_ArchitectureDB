@@ -41,7 +41,7 @@ h2 {
   margin: 8px 0; }
 
 h3 {
-  color: #FF576F;
+  color: #ff576f;
   font-size: 23px;
   font-weight: 400;
   margin: 8px 0; }
@@ -90,7 +90,7 @@ nav {
       padding: 0 8px; }
       nav li a:hover {
         text-decoration: underline;
-        color: #FF576F; }
+        color: #ff576f; }
   nav figure {
     width: 144px;
     margin-left: -50px;
@@ -131,7 +131,7 @@ nav {
   .form-page p {
     text-align: center; }
     .form-page p a {
-      color: #009CBA; }
+      color: #009cba; }
 
 .my-button {
   text-transform: uppercase;
@@ -144,21 +144,21 @@ nav {
     font-size: 12px;
     padding: 8px 16px; }
   .my-button.filled {
-    border: solid 1px #FF576F;
-    background-color: #FF576F;
+    border: solid 1px #ff576f;
+    background-color: #ff576f;
     color: white; }
     .my-button.filled:hover {
-      color: #FF576F;
+      color: #ff576f;
       background-color: white;
       text-decoration: none; }
   .my-button.disabled {
     background-color: #f5f6f9;
-    color: #009CBA; }
+    color: #009cba; }
   .my-button.outlined {
-    border: solid 1px #FF576F;
-    color: #FF576F; }
+    border: solid 1px #ff576f;
+    color: #ff576f; }
     .my-button.outlined:hover {
-      background-color: #FF576F;
+      background-color: #ff576f;
       color: white;
       text-decoration: none; }
     .my-button.outlined.mini {
@@ -174,7 +174,7 @@ nav {
     text-decoration: underline;
     background-color: transparent; }
     .my-button.nolined:hover {
-      color: #FF576F; }
+      color: #ff576f; }
 
 .fav-btn {
   display: flex;
@@ -195,7 +195,7 @@ nav {
     display: block;
     font-size: 14px; }
     #main-page small a {
-      color: #009CBA; }
+      color: #009cba; }
   #main-page #main-gp-btn {
     display: flex;
     justify-content: flex-end;
@@ -335,12 +335,12 @@ nav {
         #likes-page .my-list .ordering .list-card.fav,
         #arch-page .my-list .ordering .list-card.fav,
         #trend-page .my-list .ordering .list-card.fav {
-          border-left: #FF576F 3px solid; }
+          border-left: #ff576f 3px solid; }
         #validation-page .my-list .ordering .list-card.like,
         #likes-page .my-list .ordering .list-card.like,
         #arch-page .my-list .ordering .list-card.like,
         #trend-page .my-list .ordering .list-card.like {
-          border-left: #009CBA 3px solid; }
+          border-left: #009cba 3px solid; }
 
 #work-dets,
 #trend-dets,
@@ -353,7 +353,7 @@ nav {
     #work-dets .first-part a,
     #trend-dets .first-part a,
     #arch-dets .first-part a {
-      color: #009CBA; }
+      color: #009cba; }
     #work-dets .first-part img,
     #trend-dets .first-part img,
     #arch-dets .first-part img {
@@ -409,7 +409,7 @@ footer {
 
 #errorMsg {
   background-color: #f5f6f9;
-  color: #FF576F;
+  color: #ff576f;
   font-weight: 400;
   text-align: center;
   padding: 10px 0;
@@ -419,5 +419,10 @@ footer {
 #workMap {
   height: 300px;
   width: 100%; }
+
+#routeUrl {
+  display: none;
+  width: 280px;
+  text-align: center; }
 
 /*# sourceMappingURL=style.css.map */
