@@ -5,18 +5,16 @@ const Trend = require('../models/trend.model')
 const Arch = require('../models/architect.model')
 const Comment = require('../models/comment.model')
 const List = require('../models/list.model')
-const User = require('../models/user.model')
 const cloudUploader = require('../configs/cloudinary.config')
 
-function checkAuth(req, res, next) {
-	return req.isAuthenticated() ? next() : res.redirect('/login')
-}
+const checkAuth = (req, res, next) => (req.isAuthenticated() ? next() : res.redirect('/login'))
+const checkIsInRole = (role) => (req, res, next) => (req.isAuthenticated() && req.user.role === role ? next() : res.redirect('/login'))
 
 router.get('/', (req, res, next) => {
 	Work.find({ isVerified: true })
 		.populate('architect')
 		.then((workFound) => res.render('works/works-index', { workFound, user: req.user }))
-		.catch((err) => next(new Error('No se ha encontrado nada', err)))
+		.catch((err) => next(new Error(err)))
 })
 
 //Edit
@@ -34,17 +32,14 @@ router.get('/edit/:id', checkAuth, (req, res, next) => {
 				user: req.user,
 			})
 		)
-		.catch((err) => next(new Error('No se ha encontrado nada para editar', err)))
+		.catch((err) => next(new Error(err)))
 })
 
 router.post('/edit/:id', checkAuth, cloudUploader.single('photo-work'), (req, res, next) => {
 	let verification = true
 	req.user.role === 'colaborator' ? (verification = false) : null
 
-	let pic
-	if (req.file !== undefined) {
-		pic = req.file.url
-	}
+	let pic = req.file && req.file.url
 
 	const editWork = {
 		trend: req.body.trend,
@@ -59,11 +54,8 @@ router.post('/edit/:id', checkAuth, cloudUploader.single('photo-work'), (req, re
 	}
 
 	Work.findByIdAndUpdate(req.params.id, editWork, { picWork: pic, new: true })
-		.then((data) => {
-			console.log(data)
-			res.redirect('/works')
-		})
-		.catch((err) => console.log(err))
+		.then(res.redirect('/works'))
+		.catch((err) => next(new Error(err)))
 })
 
 //Add new
@@ -72,7 +64,7 @@ router.get('/new', checkAuth, (req, res, next) => {
 
 	Promise.all(allPromise)
 		.then((results) => res.render('works/works-add', { archs: results[0], trends: results[1], user: req.user }))
-		.catch((err) => next(new Error('No se han encontrado las opciones para el formulario', err)))
+		.catch((err) => next(new Error(err)))
 })
 
 router.post('/', checkAuth, cloudUploader.single('photo-work'), (req, res, next) => {
@@ -80,11 +72,7 @@ router.post('/', checkAuth, cloudUploader.single('photo-work'), (req, res, next)
 	req.user.role === 'colaborator' ? (verification = false) : null
 	let pic
 
-	if (req.file === undefined) {
-		pic = 'https://res.cloudinary.com/dxf11hxhh/image/upload/v1587913924/theArchitectureDB/default_dh4el6.jpg'
-	} else {
-		pic = req.file.url
-	}
+	req.file ? (pic = req.file.url) : (pic = 'https://res.cloudinary.com/dxf11hxhh/image/upload/v1587913924/theArchitectureDB/default_dh4el6.jpg')
 
 	const newWork = {
 		trend: req.body.trend,
@@ -100,7 +88,7 @@ router.post('/', checkAuth, cloudUploader.single('photo-work'), (req, res, next)
 
 	Work.create(newWork, { picWork: pic })
 		.then(res.redirect('/works'))
-		.catch((err) => next(new Error('No se ha creado nada', err)))
+		.catch((err) => console.log(err))
 })
 
 //Delete
@@ -108,7 +96,7 @@ router.post('/delete/:id', checkAuth, (req, res, next) => {
 	if (req.user.role == 'editor' || req.user.role == 'admin') {
 		Work.findByIdAndRemove(req.params.id)
 			.then(res.redirect('/works'))
-			.catch((err) => next(new Error('No se ha borrado nada', err)))
+			.catch((err) => next(new Error(err)))
 	}
 })
 
@@ -125,22 +113,16 @@ router.post('/post-comment/:id', checkAuth, (req, res, next) => {
 	}
 	Comment.create(newComment)
 		.then(res.redirect(`/works/show/${newComment.postedIn}`))
-		.catch((err) => next(new Error('No se ha posteado comentario', err)))
+		.catch((err) => next(new Error(err)))
 })
 
 router.post('/post-comment/delete/:id', checkAuth, (req, res, next) => {
 	const placePosted = req.body.reference
 	Comment.findById(req.params.id)
-		.then((result) => {
-			if (result.creatorId == req.user.id) {
-				return result.id
-			} else {
-				return res.redirect(`/works/show/${placePosted}`)
-			}
-		})
+		.then((result) => (result.creatorId == req.user.id || checkIsInRole('editor', 'admin') ? result.id : res.redirect(`/architects/view/${placePosted}`)))
 		.then((resultId) => Comment.findByIdAndRemove(resultId))
-		.then(() => res.redirect(`/works/show/${placePosted}`))
-		.catch((err) => console.log(err))
+		.then(res.redirect(`/works/show/${placePosted}`))
+		.catch((err) => next(new Error(err)))
 })
 
 //Find One by ID
@@ -150,7 +132,7 @@ router.get('/show/:id', (req, res, next) => {
 
 	Promise.all([promiseWork, promisePost])
 		.then((data) => res.render('works/works-dets', { works: data[0], posts: data[1], user: req.user }))
-		.catch((err) => next(new Error('No se ha encontrado nada para ver', err)))
+		.catch((err) => next(new Error(err)))
 })
 
 //
@@ -162,12 +144,10 @@ router.post('/add-visited/:id', checkAuth, (req, res, next) => {
 	const visites = req.user.visitedList.likesId
 
 	if (!visites.some((elm) => elm.id === workId)) {
-		console.log('nole')
 		List.findByIdAndUpdate(req.user.visitedList, { $push: { likesId: workId } })
 			.then(res.redirect('/works'))
-			.catch((err) => next(err))
+			.catch((err) => next(new Error(err)))
 	} else {
-		console.log('sile')
 		res.redirect('/works')
 	}
 })
@@ -177,12 +157,10 @@ router.post('/add-wish/:id', checkAuth, (req, res, next) => {
 	const wishes = req.user.wishList.likesId
 
 	if (!wishes.some((elm) => elm.id === workId)) {
-		console.log('nole')
 		List.findByIdAndUpdate(req.user.wishList, { $push: { likesId: workId } })
 			.then(res.redirect('/works'))
-			.catch((err) => next(err))
+			.catch((err) => next(new Error(err)))
 	} else {
-		console.log('sile')
 		res.redirect('/works')
 	}
 })

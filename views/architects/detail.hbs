@@ -38,9 +38,23 @@
     </div>
   </div>
 
-  <div class="row comment-section">
-    <div class="col-md-8 post-area">
-      <h2>Comentarios</h2>
+
+  <div class="comment-section">
+
+    <h4>¿Qué opinas de este arquitecto?</h4>
+
+    <form action="/architects/post-comment/{{arch.id}}" method="POST">
+
+      <input type="text" name="subject" id="subject" class="form-control" placeholder="Asunto">
+
+      <textarea class="form-control" id="comment" rows="4" cols="100" name="content"
+        placeholder="Cuéntanos qué opinas..."></textarea>
+
+      <button type="submit" class="my-button card filled">Publicar comentario</button>
+
+    </form>
+
+    <div class="post-area">
       {{#each posts}}
       <div class="each-post">
         <h5>{{subject}}</h5>
@@ -58,18 +72,6 @@
       {{/each}}
     </div>
 
-    <div class="col-md-4">
-      <form action="/architects/post-comment/{{arch.id}}" method="POST">
-
-        <input type="text" name="subject" id="subject" class="form-control" placeholder="Asunto">
-
-        <textarea class="form-control" id="comment" rows="4" cols="100" name="content"
-          placeholder="Cuéntanos qué opinas..."></textarea>
-
-        <button type="submit" class="my-button card filled">Publicar comentario</button>
-
-      </form>
-    </div>
-
   </div>
+
 </section>

@@ -30,8 +30,7 @@ router.post('/signup', (req, res, next) => {
 			const createVisitedList = { nameList: 'Lugares que visité', typeOfList: 'visited' }
 			const createWishList = { nameList: 'Me muero por ir', typeOfList: 'wish' }
 
-			List.create([createVisitedList, createWishList])
-				.then((listsCreated) => {
+			List.create([createVisitedList, createWishList]).then((listsCreated) => {
 				User.create({ username, password: hashPass, visitedList: listsCreated[0], wishList: listsCreated[1] })
 					.then(() => res.redirect('/'))
 					.catch(() => res.render('auth/signup', { errorMsg: 'No se pudo crear el usuario' }))
@@ -42,16 +41,7 @@ router.post('/signup', (req, res, next) => {
 
 // User login
 router.get('/login', (req, res) => res.render('auth/login', { errorMsg: req.flash('error') }))
-router.post(
-	'/login',
-	passport.authenticate('local', {
-		successRedirect: '/',
-		failureRedirect: '/login',
-		failureFlash: true,
-		passReqToCallback: true,
-		badRequestMessage: 'Rellena todos los campos',
-	})
-)
+router.post('/login', passport.authenticate('local', { successRedirect: '/', failureRedirect: '/login', failureFlash: true, passReqToCallback: true, badRequestMessage: 'Rellena todos los campos' }))
 
 // User logout
 router.get('/logout', (req, res) => {

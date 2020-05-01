@@ -241,6 +241,7 @@ nav {
         justify-content: space-between;
         align-items: center; }
 
+#validation-page,
 #likes-page,
 #arch-page,
 #trend-page {
@@ -249,10 +250,12 @@ nav {
   flex-direction: column;
   align-items: center;
   padding-bottom: 60px; }
+  #validation-page .my-button,
   #likes-page .my-button,
   #arch-page .my-button,
   #trend-page .my-button {
     margin: 8px 0; }
+  #validation-page .card-dsg,
   #likes-page .card-dsg,
   #arch-page .card-dsg,
   #trend-page .card-dsg {
@@ -261,12 +264,14 @@ nav {
     display: flex;
     flex-direction: column;
     align-items: center; }
+    #validation-page .card-dsg .card-img,
     #likes-page .card-dsg .card-img,
     #arch-page .card-dsg .card-img,
     #trend-page .card-dsg .card-img {
       width: inherit;
       height: 145px;
       margin-bottom: 0; }
+      #validation-page .card-dsg .card-img img,
       #likes-page .card-dsg .card-img img,
       #arch-page .card-dsg .card-img img,
       #trend-page .card-dsg .card-img img {
@@ -275,6 +280,7 @@ nav {
         height: 100%;
         object-fit: cover;
         overflow: hidden; }
+    #validation-page .card-dsg .card-text,
     #likes-page .card-dsg .card-text,
     #arch-page .card-dsg .card-text,
     #trend-page .card-dsg .card-text {
@@ -285,10 +291,12 @@ nav {
       flex-direction: column;
       align-items: center;
       border-radius: 0 0 10px 10px; }
+      #validation-page .card-dsg .card-text h5,
       #likes-page .card-dsg .card-text h5,
       #arch-page .card-dsg .card-text h5,
       #trend-page .card-dsg .card-text h5 {
         font-size: 18px; }
+  #validation-page .my-list,
   #likes-page .my-list,
   #arch-page .my-list,
   #trend-page .my-list {
@@ -299,16 +307,19 @@ nav {
     display: flex;
     flex-direction: column;
     align-items: flex-start; }
+    #validation-page .my-list .ordering,
     #likes-page .my-list .ordering,
     #arch-page .my-list .ordering,
     #trend-page .my-list .ordering {
       display: flex;
       flex-direction: column;
       align-items: flex-start; }
+      #validation-page .my-list .ordering .my-button,
       #likes-page .my-list .ordering .my-button,
       #arch-page .my-list .ordering .my-button,
       #trend-page .my-list .ordering .my-button {
         margin-left: 16px; }
+      #validation-page .my-list .ordering .list-card,
       #likes-page .my-list .ordering .list-card,
       #arch-page .my-list .ordering .list-card,
       #trend-page .my-list .ordering .list-card {
@@ -320,10 +331,12 @@ nav {
         align-items: center;
         justify-content: space-between;
         margin: 8px 0; }
+        #validation-page .my-list .ordering .list-card.fav,
         #likes-page .my-list .ordering .list-card.fav,
         #arch-page .my-list .ordering .list-card.fav,
         #trend-page .my-list .ordering .list-card.fav {
           border-left: #FF576F 3px solid; }
+        #validation-page .my-list .ordering .list-card.like,
         #likes-page .my-list .ordering .list-card.like,
         #arch-page .my-list .ordering .list-card.like,
         #trend-page .my-list .ordering .list-card.like {
@@ -359,19 +372,21 @@ nav {
     display: flex;
     flex-direction: column;
     align-items: flex-end;
-    margin-top: 74px; }
+    margin-top: 24px;
+    width: 1100px; }
     .comment-section form input,
     .comment-section form textarea {
       font-weight: 200;
       font-size: 14px;
       margin: 8px 0;
-      border: #666665 solid 1px; }
+      border: #2b3647 solid 1px; }
     .comment-section form .my-button {
       margin-top: 16px; }
   .comment-section .post-area .each-post {
     background-color: #f5f6f9;
     border-radius: 20px;
     padding: 20px;
+    width: 1100px;
     margin: 32px 0; }
     .comment-section .post-area .each-post h5 {
       text-transform: uppercase; }
@@ -393,7 +408,7 @@ footer {
   left: 0; }
 
 #errorMsg {
-  background-color: #666665;
+  background-color: #f5f6f9;
   color: #FF576F;
   font-weight: 400;
   text-align: center;
