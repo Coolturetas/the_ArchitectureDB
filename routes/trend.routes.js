@@ -27,9 +27,6 @@ router.post('/', cloudUploader.single('photo-trend'), checkAuth, (req, res, next
 	let verification = true
 	req.user.role == 'colaborator' ? (verification = false) : null
 
-	let pic
-	req.file ? (pic = req.file.url) : (pic = 'https://res.cloudinary.com/dxf11hxhh/image/upload/v1587913924/theArchitectureDB/default_dh4el6.jpg')
-
 	const newTrend = {
 		name: req.body.name,
 		description: req.body.description,
@@ -39,7 +36,13 @@ router.post('/', cloudUploader.single('photo-trend'), checkAuth, (req, res, next
 		isVerified: verification,
 	}
 
-	Trend.create(newTrend, { picTrend: pic })
+	if (req.file === undefined) {
+		newTrend.picTrend = 'https://res.cloudinary.com/dxf11hxhh/image/upload/v1587913924/theArchitectureDB/default_dh4el6.jpg'
+	} else {
+		newTrend.picTrend = req.file.url
+	}
+
+	Trend.create(newTrend)
 		.then(res.redirect('/trend'))
 		.catch((err) => console.log('No se ha creado nada', err))
 })
@@ -61,8 +64,6 @@ router.get('/edit/:id', checkAuth, (req, res, next) => {
 })
 
 router.post('/edit/:id', checkAuth, cloudUploader.single('photo-trend'), (req, res, next) => {
-	let pic = req.file && req.file.url
-
 	const editTrend = {
 		name: req.body.name,
 		description: req.body.description,
@@ -71,7 +72,11 @@ router.post('/edit/:id', checkAuth, cloudUploader.single('photo-trend'), (req, r
 		year: req.body.year,
 	}
 
-	Trend.findByIdAndUpdate(req.params.id, editTrend, { picTrend: pic, new: true })
+	if (req.file) {
+		editTrend.picTrend = req.file.url
+	}
+
+	Trend.findByIdAndUpdate(req.params.id, editTrend)
 		.then(res.redirect('/trend'))
 		.catch((err) => next(new Error('No se ha editado nada', err)))
 })
