@@ -9,6 +9,8 @@ document.addEventListener(
 const directionsService = new google.maps.DirectionsService()
 let directionsRenderer = new google.maps.DirectionsRenderer()
 
+const mapContainer = document.getElementById('map-container')
+const closeWindow = document.getElementById('close-window')
 const routesMap = document.getElementById('routes-map')
 const mapButtons = document.querySelectorAll('.show-map')
 const routeCalc = document.getElementById('routeCalc')
@@ -93,11 +95,12 @@ function getWorkAddress(id) {
 }
 
 function getListElement() {
+  mapContainer.style.display = 'block'
   axios
     .get(`/api/list/mylists/${workId}`)
     .then((result) => {
       deleteMarkers()
-      routeUrl.style.display = "none"
+      routeUrl.style.display = 'none'
       result.data.list.likesId.forEach((elm) => {
         getWorkAddress(elm)
       })
@@ -143,7 +146,7 @@ function calculateRoutes() {
         directionsRenderer.setMap(renderedMap)
         directionsRenderer.setDirections(response)
         routeUrl.href = generateRouteUrl()
-        routeUrl.style.display = "block"
+        routeUrl.style.display = 'block'
       } else {
         console.log(status)
       }
@@ -168,3 +171,4 @@ for (let i = 0; i < mapButtons.length; i++) {
 }
 
 routeCalc.addEventListener('click', () => calculateRoutes())
+closeWindow.addEventListener("click", () => mapContainer.style.display = "none")

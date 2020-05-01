@@ -420,13 +420,19 @@ footer {
   height: 300px;
   width: 100%; }
 
-#routeUrl {
+#map-container {
   display: none;
-  width: 280px;
-  text-align: center; }
-
-#routes-map {
-  height: 500px;
-  width: 700px; }
+  position: fixed;
+  background-color: #f5f6f9;
+  box-shadow: 5px 5px 5px 5px rgba(102, 102, 101, 0.5);
+  padding: 16px;
+  margin-bottom: 48px; }
+  #map-container #routeUrl {
+    display: none;
+    width: 280px;
+    text-align: center; }
+  #map-container #routes-map {
+    height: 500px;
+    width: 700px; }
 
 /*# sourceMappingURL=style.css.map */

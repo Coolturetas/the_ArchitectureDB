@@ -548,15 +548,25 @@ footer {
   width: 100%;
 }
 
-//Misc
+//Map container on Lists view
 
-#routeUrl {
+#map-container{
+
   display: none;
-  width: 280px;
-  text-align: center;
-}
+  position: fixed;
+  background-color: $light-grey;
+  box-shadow: 5px 5px 5px 5px rgba(102,102,101,0.5);
+  padding: 16px;
 
-#routes-map {
-  height: 500px;
-  width: 700px;
+  #routeUrl {
+    display: none;
+    width: 280px;
+    text-align: center;
+  }
+  
+  #routes-map {
+    height: 500px;
+    width: 700px;
+  }
+
 }
