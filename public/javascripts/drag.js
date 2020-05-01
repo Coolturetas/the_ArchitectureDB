@@ -32,8 +32,8 @@ const updateWish = () => {
 }
 
 saveChanges.addEventListener('click', () => {
-	updateWish()
-	// .then(() => updateLikes())
-	// .then(() => window.location.push())
-	// .catch((err) => new Error(err))
+	updateVisit()
+		.then(() => updateWish())
+		.then(() => window.location.push())
+		.catch((err) => new Error(err))
 })
