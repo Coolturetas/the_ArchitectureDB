@@ -4,8 +4,18 @@ const Architect = require('./../models/architect.model')
 const Trend = require('./../models/trend.model')
 const Work = require('./../models/work.model')
 
-const checkIsInRole = (role) => (req, res, next) => (req.isAuthenticated() && req.user.role === role ? next() : res.redirect('/login'))
+const checkIsInRole = (...roles) => (req, res, next) => {
+	if (!req.user) {
+		return res.redirect('/login')
+	}
 
+	const hasRole = roles.find((role) => req.user.role === role)
+	if (!hasRole) {
+		return res.redirect('/login')
+	}
+
+	return next()
+}
 
 //access to validation screen
 
