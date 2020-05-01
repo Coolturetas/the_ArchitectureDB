@@ -139,4 +139,19 @@ router.post('/user/visitedList/likes', (req, res, next) => {
 		.catch((err) => next(new Error(err)))
 })
 
+router.get('/user/wishList/likes', (req, res, next) => {
+	User.findById(req.user.id)
+		.then((result) => List.findById(result.wishList))
+		.then((wishList) => res.json({ wishList }))
+		.catch((err) => next(new Error(err)))
+})
+
+router.post('/user/wishList/likes', (req, res, next) => {
+	console.log('hola ke ase')
+	User.findById(req.user.id)
+		.then((result) => List.findByIdAndUpdate(result.wishList, { likesId: req.body.likesId }))
+		.then((wishList) => res.json({ wishList }))
+		.catch((err) => next(new Error(err)))
+})
+
 module.exports = router
