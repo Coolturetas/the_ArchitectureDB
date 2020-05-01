@@ -58,6 +58,9 @@ router.get('/edit/:id', checkAuth, (req, res, next) => {
 })
 
 router.post('/edit/:id', checkAuth, cloudUploader.single('photo-trend'), (req, res, next) => {
+	let verification = true
+	req.user.role === 'colaborator' ? (verification = false) : null
+
 	const editTrend = {
 		name: req.body.name,
 		description: req.body.description,
