@@ -28,7 +28,7 @@ let urlWaypoints
 
 function generateRouteUrl() {
   urlStart = `https://www.google.com/maps/dir/?api=1&`
-  origin = `origin=${encodeURIComponent(waypointAddresses[1])}`
+  origin = `origin=${encodeURIComponent(waypointAddresses[0])}`
   destination = `destination=${encodeURIComponent(
     waypointAddresses[waypointAddresses.length - 1]
   )}`
