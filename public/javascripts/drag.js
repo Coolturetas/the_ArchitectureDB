@@ -1,9 +1,6 @@
 const wish = document.getElementById('to-wish')
 const visit = document.getElementById('to-visited')
 
-const hiddenList = document.querySelector('.listId').value
-const hiddenCard = document.querySelector('.card-id').value
-
 const saveChanges = document.getElementById('send-changes')
 
 new Sortable(wish, {
@@ -21,14 +18,13 @@ const updateLists = () => {
 	let worksArray = []
 	cards.forEach((elm) => worksArray.push(elm.value))
 	console.log(worksArray)
-	let listToChange = []
 
-	axios
-		.post(`/api/user/visitedList`)
-		.then((data) => console.log(data))
-		// .then((response) => response.data.likesId)
-		// .then((ready) => ready.forEach((elm) => listToChange.push(elm)))
-		.catch((err) => console.log('nada'))
+	return axios.post(`http://localhost:3000/api/user/visitedList/likes`, { likesId: worksArray })
 }
 
-saveChanges.addEventListener('click', updateLists)
+saveChanges.addEventListener('click', () => {
+	updateLists()
+	// .then(() => updateLikes())
+	// .then(() => window.location.push())
+	// .catch((err) => new Error(err))
+})
