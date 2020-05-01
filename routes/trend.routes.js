@@ -9,12 +9,6 @@ function checkAuth(req, res, next) {
 	return req.isAuthenticated() ? next() : res.redirect('/login')
 }
 
-function checkRoles(role) {
-	return function (req, res, next) {
-		return req.isAuthenticated() && req.user.role === role ? next() : res.redirect('/login')
-	}
-}
-
 //Print Architects DB
 router.get('/', (req, res, next) => {
 	Trend.find({ isVerified: true }).then((atFound) => res.render('archTrend/at-index', { atFound, user: req.user }))
@@ -61,6 +55,10 @@ router.get('/edit/:id', checkAuth, (req, res, next) => {
 })
 
 router.post('/edit/:id', checkAuth, cloudUploader.single('photo-trend'), (req, res, next) => {
+
+	let verification = true
+	req.user.role === 'colaborator' ? (verification = false) : null
+
 	let pic = req.file && req.file.url
 
 	const editTrend = {
@@ -69,6 +67,7 @@ router.post('/edit/:id', checkAuth, cloudUploader.single('photo-trend'), (req, r
 		country: req.body.country,
 		bestWork: req.body.bestWork,
 		year: req.body.year,
+		isVerified: verification,
 	}
 
 	Trend.findByIdAndUpdate(req.params.id, editTrend, { picTrend: pic, new: true })
