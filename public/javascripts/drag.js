@@ -21,13 +21,10 @@ const updateLists = () => {
 	let worksArray = []
 	cards.forEach((elm) => worksArray.push(elm.value))
 	console.log(worksArray)
-	let listToChange = []
 
 	axios
-		.post(`/api/user/visitedList`)
+		.post(`http://localhost:3000/api/user/visitedList/likes`, { likesId: worksArray })
 		.then((data) => console.log(data))
-		// .then((response) => response.data.likesId)
-		// .then((ready) => ready.forEach((elm) => listToChange.push(elm)))
 		.catch((err) => console.log('nada'))
 }
 
